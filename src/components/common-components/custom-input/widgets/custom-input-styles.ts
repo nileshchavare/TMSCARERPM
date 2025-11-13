@@ -1,0 +1,33 @@
+import { alpha } from "@mui/system";
+
+import { theme } from "../../../../utils/theme";
+
+export const errorStyle = {
+  color: `red`,
+};
+
+export const customInputStyles = {
+  textFieldRoot: {
+    border: `1px solid ${alpha(theme.palette.grey[500], 0.3)}`,
+    // padding: "6px, 8px, 6px, 8px",
+    // borderRadius: "16px",
+  },
+  textFieldInput: {
+    color: "#333333",
+    fontSize: "15px",
+    fontStyle: "normal",
+    fontWeight: "500",
+    lineHeight: "130%",
+    letterSpacing: "0.12px",
+
+    "&::placeholder": {
+      fontSize: "12px",
+      fontStyle: "inter sans-serif",
+      fontWeight: "400",
+    },
+  },
+
+  textFieldError: {
+    border: `1px solid red`,
+  },
+};
