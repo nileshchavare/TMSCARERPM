@@ -2,11 +2,11 @@ import React from "react"
 import { Controller, useForm } from "react-hook-form";
 import { Button, Link, Typography } from "@mui/material";
 import { Box, Grid } from "@mui/system";
-import CustomInput from "../../common-components/custom-input/custom-input";
-import CustomLabel from "../../common-components/custom-label/custom-label";
+import CustomInput from "../../../../components/common-components/custom-input/custom-input";
+import CustomLabel from "../../../../components/common-components/custom-label/custom-label";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { widthOfInput, type UserLoginProps } from "./constant";
-import { loginSchema } from "../../../constants/yupSchemas";
+import { loginSchema } from "../../../../constants/yupSchemas";
 import AuthPage from "../AuthPage";
 import { useNavigate } from "react-router-dom";
 
@@ -110,7 +110,7 @@ const UserLogin: React.FC<UserLoginProps> = () => {
                         </Grid>
                     </Box>
                     <Grid width={"100%"} height={"38px"}>
-                        <Button variant="contained" fullWidth type="submit" loading={false} disabled={!formState.isValid} >
+                        <Button variant="contained" fullWidth type="submit" loading={false} disabled={!formState.isValid} onClick={()=>navigate('/app/dashboard')}>
                             Log In
                         </Button>
                     </Grid>

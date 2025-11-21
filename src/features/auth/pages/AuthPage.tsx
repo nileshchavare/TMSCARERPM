@@ -2,8 +2,8 @@
 import CopyrightIcon from "@mui/icons-material/Copyright";
 import { Typography } from "@mui/material";
 import { Box, Grid } from "@mui/system";
-import LoginImage from '../../assets/svg/LogInFlow.svg'
-import Logo from '../../assets/svg/logo.svg'
+import LoginImage from '../../../assets/svg/LogInFlow.svg'
+import Logo from '../../../assets/logos/logo.svg'
 import React from "react";
 
 
@@ -13,7 +13,6 @@ const AuthPage = ({ children }: any) => {
     <React.Fragment key={"login"}>
 
       <Grid width={"100%"} height={"100%"} container flexWrap={"nowrap"}>
-        {/* Login image */}
         <Grid
           width={'33%'}
           bgcolor="#EFF0F2"

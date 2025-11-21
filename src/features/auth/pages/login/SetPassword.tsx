@@ -1,9 +1,9 @@
 import { Button, Typography } from '@mui/material'
 import { Box, Grid } from '@mui/system'
 import React from 'react'
-import CustomLabel from '../../common-components/custom-label/custom-label'
 import { Controller, useForm } from 'react-hook-form'
-import CustomInput from '../../common-components/custom-input/custom-input'
+import CustomInput from "../../../../components/common-components/custom-input/custom-input";
+import CustomLabel from "../../../../components/common-components/custom-label/custom-label";
 import type { SetPasswordProps } from './constant'
 import { widthOfInput } from './constant'
 import AuthPage from '../AuthPage'

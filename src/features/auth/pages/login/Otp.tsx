@@ -2,8 +2,8 @@ import { Box, Button, Typography } from '@mui/material'
 import { Grid } from '@mui/system'
 import React, { useEffect, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form';
-import CustomLabel from '../../common-components/custom-label/custom-label';
-import CustomOtp from '../../common-components/custom-otp/custom-otp';
+import CustomLabel from "../../../../components/common-components/custom-label/custom-label";
+import CustomOtp from '../../../../components/common-components/custom-otp/custom-otp';
 import { widthOfInput, type OtpProps } from './constant';
 import AuthPage from '../AuthPage';
 import { useNavigate } from 'react-router-dom';

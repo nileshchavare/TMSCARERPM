@@ -9,7 +9,7 @@ import { customLabelStyles } from "./widgets/custom-label-styles";
 interface CustomFormLabelProps {
   label: string | React.ReactNode;
   isRequired?: boolean;
-  variant?: "bodySmall" | "bodyMedium" | 'body5Medium';
+  variant?: "bodySmall" | "bodyMedium" | 'body5Medium' | 'body14PX500FW' | 'body14PX400FW';
   color?: string;
 }
 

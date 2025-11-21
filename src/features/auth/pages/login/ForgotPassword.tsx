@@ -2,10 +2,10 @@ import React from "react"
 import { Controller, useForm } from "react-hook-form";
 import { Button, Typography } from "@mui/material";
 import { Box, Grid } from "@mui/system";
-import CustomInput from "../../common-components/custom-input/custom-input";
-import CustomLabel from "../../common-components/custom-label/custom-label";
+import CustomInput from "../../../../components/common-components/custom-input/custom-input";
+import CustomLabel from "../../../../components/common-components/custom-label/custom-label";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { forgotPasswordSchema } from "../../../constants/yupSchemas";
+import { forgotPasswordSchema } from "../../../../constants/yupSchemas";
 import { widthOfInput, type ForgotPasswordProps } from "./constant";
 import AuthPage from "../AuthPage";
 import { useNavigate } from "react-router-dom";
