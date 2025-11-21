@@ -1,15 +1,14 @@
-import React from "react";
-import { Box, Button, useMediaQuery } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+import { Box, Button, useMediaQuery } from "@mui/material";
+import React from "react";
 
-import CustomTabs from "../../../components/common-components/custom-tab/CustomTabs";
 import CustomInput from "../../../components/common-components/custom-input/custom-input";
+import CustomTabs from "../../../components/common-components/custom-tab/CustomTabs";
 
-import { useForm, Controller } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 
 import AddClinicForm from "../../../forms/AddClinicForm";
-import ArchiveList from "./ArchiveList";
-import AllClinicList from "./AllClinicList";
+import AllClinicList from "./clinic-list";
 
 import MainDrawer from "../../../components/ui/MainDrawer";
 import { useDrawer } from "../../../hooks/useDrawer";
@@ -24,7 +23,11 @@ const Clinics: React.FC = () => {
     },
   });
 
-  const { open: openDrawer, close: closeDrawer, content: contentDrawer } = useDrawer();
+  const {
+    open: openDrawer,
+    close: closeDrawer,
+    content: contentDrawer,
+  } = useDrawer();
 
   const openAddClinic = () => {
     openDrawer({
@@ -35,9 +38,15 @@ const Clinics: React.FC = () => {
 
   const tabs = ["All Clinics", "Archived"];
 
-  const tabComponents = [<AllClinicList />, <ArchiveList />];
+  const tabComponents = [<AllClinicList />, <AllClinicList />];
 
-  const DrawerContent = ({ identifier ,onClose}: { identifier: string, onClose?: () => void }) => {
+  const DrawerContent = ({
+    identifier,
+    onClose,
+  }: {
+    identifier: string;
+    onClose?: () => void;
+  }) => {
     if (identifier === "drawer-add-clinic") {
       return <AddClinicForm onClose={onClose} />;
     }
@@ -84,7 +93,7 @@ const Clinics: React.FC = () => {
               variant="contained"
               startIcon={<AddIcon />}
               onClick={openAddClinic}
-              sx={(theme)=>({width:'180px'})}
+              sx={() => ({ width: "180px" })}
             >
               Add Clinic
             </Button>
@@ -96,7 +105,13 @@ const Clinics: React.FC = () => {
       <MainDrawer
         drawerWidth="700px"
         anchor="right"
-        content={<DrawerContent onClose={closeDrawer} identifier={contentDrawer.identifier ?? ""} />}
+        showMandatoryIndicator
+        content={
+          <DrawerContent
+            onClose={closeDrawer}
+            identifier={contentDrawer.identifier ?? ""}
+          />
+        }
       />
     </>
   );

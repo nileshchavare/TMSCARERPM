@@ -3,16 +3,19 @@ import { createBrowserRouter, Navigate, Outlet } from "react-router-dom";
 import AuthLayout from "../layout/auth-layout";
 import PrivateLayout from "../layout/private-layout";
 import UserLogin from "../features/auth/pages/login/userLogin";
-import Clinics from "../features/admin/clinics/index";
+import Clinics from "../features/admin/clinics/clinics-tab";
 import Dashboard from "../features/admin/dashboard/dashboard";
 import Patients from "../features/admin/patients/index";
 import CareTeam from "../features/admin/care-team/index";
 import Settings from "../features/admin/settings/index";
 
-
-const ForgotPassword = lazy(() => import("../features/auth/pages/login/ForgotPassword"));
+const ForgotPassword = lazy(
+  () => import("../features/auth/pages/login/ForgotPassword")
+);
 const Otp = lazy(() => import("../features/auth/pages/login/Otp"));
-const SetPassword = lazy(() => import("../features/auth/pages/login/SetPassword"));
+const SetPassword = lazy(
+  () => import("../features/auth/pages/login/SetPassword")
+);
 
 const Loader = () => <div>Loading...</div>;
 
@@ -56,7 +59,7 @@ export const privateRoutes = createBrowserRouter([
             <SetPassword />
           </Suspense>
         ),
-      }
+      },
     ],
   },
   {
@@ -83,6 +86,6 @@ export const privateRoutes = createBrowserRouter([
         path: "settings",
         element: <Settings />,
       },
-    ]
+    ],
   },
 ]);

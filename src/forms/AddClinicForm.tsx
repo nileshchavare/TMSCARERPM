@@ -1,23 +1,20 @@
-import React, { useEffect } from "react";
-import {
-  Box,
-  Grid,
-  Typography,
-  Divider,
-  Button,
-} from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
-import { useForm, Controller, useFieldArray } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import CustomInput from "../components/common-components/custom-input/custom-input";
-import DropDownForText from "../components/common-components/drop-dwon-for-text/drop-down-for-text";
+import AddIcon from "@mui/icons-material/Add";
+import { Box, Button, Divider, Grid, Typography } from "@mui/material";
+import React, { useEffect } from "react";
+import { Controller, useFieldArray, useForm } from "react-hook-form";
 import CustomSingleCheckBox from "../components/common-components/custom-checkbox/single-checkbox";
-import CustomRadioButton from "../components/common-components/radio-button/radio-button";
-import DrawerFooterButtons from "../components/ui/DrawerFooter";
+import CustomInput from "../components/common-components/custom-input/custom-input";
 import CustomLabel from "../components/common-components/custom-label/custom-label";
-import { SPECIALTY_OPTIONS, STATUS_OPTIONS, US_STATES, type FormValues } from "../features/admin/clinics/constant";
+import DropDownForText from "../components/common-components/drop-dwon-for-text/drop-down-for-text";
+import CustomRadioButton from "../components/common-components/radio-button/radio-button";
 import { clinicSchema } from "../constants/yupSchemas";
-
+import {
+  SPECIALTY_OPTIONS,
+  STATUS_OPTIONS,
+  US_STATES,
+  type FormValues,
+} from "../features/admin/clinics/constant";
 
 const AddClinicForm: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
   const defaultValues: FormValues = {
@@ -32,12 +29,12 @@ const AddClinicForm: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
     status: "",
 
     primaryContacts: [
-      { id: `${Date.now()}`, name: "", email: null, phone: null }
+      { id: `${Date.now()}`, name: "", email: null, phone: null },
     ],
 
     physicalAddress: {
-      addressLine1: null,
-      addressLine2: null,
+      addressLine1: "",
+      addressLine2: "",
       state: null,
       city: null,
       zipCode: null,
@@ -58,7 +55,6 @@ const AddClinicForm: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
     useTpsCdces: null,
   };
 
-
   const {
     control,
     handleSubmit,
@@ -69,7 +65,7 @@ const AddClinicForm: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
   } = useForm<FormValues>({
     defaultValues,
     resolver: yupResolver(clinicSchema),
-    mode: "onBlur",
+    mode: "onChange",
   });
 
   const { fields, append, remove } = useFieldArray({
@@ -116,15 +112,22 @@ const AddClinicForm: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
         }}
       >
         <form onSubmit={handleSubmit(onSubmit)} noValidate>
-
-          <Typography variant="body14PX500FW" color="neutral.80" sx={{ marginBottom: '12px !important' }}>
+          <Typography
+            variant="body14PX500FW"
+            color="neutral.80"
+            sx={{ marginBottom: "12px !important" }}
+          >
             Demographics
           </Typography>
 
           <Grid container spacing={2}>
-
             <Grid size={{ xs: 12, md: 4 }}>
-              <CustomLabel variant="body5Medium" label="Clinic Name" color="neutral.60" />
+              <CustomLabel
+                variant="body5Medium"
+                label="Clinic Name"
+                color="neutral.60"
+                isRequired
+              />
               <Controller
                 name="clinicName"
                 control={control}
@@ -142,7 +145,11 @@ const AddClinicForm: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
             </Grid>
 
             <Grid size={{ xs: 12, md: 4 }}>
-              <CustomLabel variant="body5Medium" label="Group NPI Number" color="neutral.60" />
+              <CustomLabel
+                variant="body5Medium"
+                label="Group NPI Number"
+                color="neutral.60"
+              />
               <Controller
                 name="groupNpiNumber"
                 control={control}
@@ -160,7 +167,11 @@ const AddClinicForm: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
             </Grid>
 
             <Grid size={{ xs: 12, md: 4 }}>
-              <CustomLabel variant="body5Medium" label="Phone Number" color="neutral.60" />
+              <CustomLabel
+                variant="body5Medium"
+                label="Phone Number"
+                color="neutral.60"
+              />
               <Controller
                 name="phoneNumber"
                 control={control}
@@ -179,7 +190,11 @@ const AddClinicForm: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
             </Grid>
 
             <Grid size={{ xs: 12, md: 4 }}>
-              <CustomLabel variant="body5Medium" label="Email" color="neutral.60" />
+              <CustomLabel
+                variant="body5Medium"
+                label="Email"
+                color="neutral.60"
+              />
               <Controller
                 name="email"
                 control={control}
@@ -198,7 +213,11 @@ const AddClinicForm: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
             </Grid>
 
             <Grid size={{ xs: 12, md: 4 }}>
-              <CustomLabel variant="body5Medium" label="Fax" color="neutral.60" />
+              <CustomLabel
+                variant="body5Medium"
+                label="Fax"
+                color="neutral.60"
+              />
               <Controller
                 name="fax"
                 control={control}
@@ -216,7 +235,11 @@ const AddClinicForm: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
             </Grid>
 
             <Grid size={{ xs: 12, md: 4 }}>
-              <CustomLabel variant="body5Medium" label="Tax Number" color="neutral.60" />
+              <CustomLabel
+                variant="body5Medium"
+                label="Tax Number"
+                color="neutral.60"
+              />
               <Controller
                 name="taxNumber"
                 control={control}
@@ -233,9 +256,12 @@ const AddClinicForm: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
               />
             </Grid>
 
-
             <Grid size={{ xs: 12, md: 4 }}>
-              <CustomLabel variant="body5Medium" label="TIN/EIN" color="neutral.60" />
+              <CustomLabel
+                variant="body5Medium"
+                label="TIN/EIN"
+                color="neutral.60"
+              />
               <Controller
                 name="tinEin"
                 control={control}
@@ -253,7 +279,11 @@ const AddClinicForm: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
             </Grid>
 
             <Grid size={{ xs: 12, md: 4 }}>
-              <CustomLabel variant="body5Medium" label="Specialty" color="neutral.60" />
+              <CustomLabel
+                variant="body5Medium"
+                label="Specialty"
+                color="neutral.60"
+              />
               <Controller
                 name="specialty"
                 control={control}
@@ -267,7 +297,11 @@ const AddClinicForm: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
                       placeholder="Select Specialty"
                     />
                     {errors.specialty && (
-                      <Typography color="error" variant="caption" sx={{ mt: 0.5 }}>
+                      <Typography
+                        color="error"
+                        variant="caption"
+                        sx={{ mt: 0.5 }}
+                      >
                         {errors.specialty?.message as string}
                       </Typography>
                     )}
@@ -277,7 +311,11 @@ const AddClinicForm: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
             </Grid>
 
             <Grid size={{ xs: 12, md: 4 }}>
-              <CustomLabel variant="body5Medium" label="Status" color="neutral.60" />
+              <CustomLabel
+                variant="body5Medium"
+                label="Status"
+                color="neutral.60"
+              />
               <Controller
                 name="status"
                 control={control}
@@ -291,7 +329,11 @@ const AddClinicForm: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
                       placeholder="Select Status"
                     />
                     {errors.status && (
-                      <Typography color="error" variant="caption" sx={{ mt: 0.5 }}>
+                      <Typography
+                        color="error"
+                        variant="caption"
+                        sx={{ mt: 0.5 }}
+                      >
                         {errors.status?.message as string}
                       </Typography>
                     )}
@@ -301,13 +343,28 @@ const AddClinicForm: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
             </Grid>
           </Grid>
 
-          <Divider sx={{ my: '20px', color: 'neutral.5' }} />
+          <Divider sx={{ my: "20px", color: "neutral.5" }} />
 
-          <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
-            <Typography variant="body14PX500FW" color="neutral.80" sx={{ marginBottom: '12px !important' }}>
+          <Box
+            display="flex"
+            justifyContent="space-between"
+            alignItems="center"
+            mb={2}
+          >
+            <Typography
+              variant="body14PX500FW"
+              color="neutral.80"
+              sx={{ marginBottom: "12px !important" }}
+            >
               Primary Contact
             </Typography>
-            <Button startIcon={<AddIcon />} variant="outlined" sx={(theme) => ({ backgroundColor: theme.palette.primary[10], padding: '4px 10px' })}
+            <Button
+              startIcon={<AddIcon />}
+              variant="outlined"
+              sx={(theme) => ({
+                backgroundColor: theme.palette.primary[10],
+                padding: "4px 10px",
+              })}
             >
               Add
             </Button>
@@ -317,7 +374,11 @@ const AddClinicForm: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
             {fields.map((item, index) => (
               <React.Fragment key={item.id}>
                 <Grid size={{ xs: 12, md: 4 }}>
-                  <CustomLabel variant="body5Medium" label="Name" color="neutral.60" />
+                  <CustomLabel
+                    variant="body5Medium"
+                    label="Name"
+                    color="neutral.60"
+                  />
                   <Controller
                     name={`primaryContacts.${index}.name`}
                     control={control}
@@ -327,15 +388,24 @@ const AddClinicForm: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
                         value={field.value ?? ""}
                         placeholder="Enter Name"
                         bgWhite
-                        hasError={!!(errors.primaryContacts?.[index] as any)?.name}
-                        errorMessage={((errors.primaryContacts?.[index] as any)?.name?.message as string) ?? ""}
+                        hasError={
+                          !!(errors.primaryContacts?.[index] as any)?.name
+                        }
+                        errorMessage={
+                          ((errors.primaryContacts?.[index] as any)?.name
+                            ?.message as string) ?? ""
+                        }
                       />
                     )}
                   />
                 </Grid>
 
                 <Grid size={{ xs: 12, md: 4 }}>
-                  <CustomLabel variant="body5Medium" label="Email" color="neutral.60" />
+                  <CustomLabel
+                    variant="body5Medium"
+                    label="Email"
+                    color="neutral.60"
+                  />
                   <Controller
                     name={`primaryContacts.${index}.email`}
                     control={control}
@@ -345,15 +415,24 @@ const AddClinicForm: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
                         value={field.value ?? ""}
                         placeholder="Enter Email"
                         bgWhite
-                        hasError={!!(errors.primaryContacts?.[index] as any)?.email}
-                        errorMessage={((errors.primaryContacts?.[index] as any)?.email?.message as string) ?? ""}
+                        hasError={
+                          !!(errors.primaryContacts?.[index] as any)?.email
+                        }
+                        errorMessage={
+                          ((errors.primaryContacts?.[index] as any)?.email
+                            ?.message as string) ?? ""
+                        }
                       />
                     )}
                   />
                 </Grid>
 
                 <Grid size={{ xs: 12, md: 4 }}>
-                  <CustomLabel variant="body5Medium" label="Phone Number" color="neutral.60" />
+                  <CustomLabel
+                    variant="body5Medium"
+                    label="Phone Number"
+                    color="neutral.60"
+                  />
                   <Controller
                     name={`primaryContacts.${index}.phone`}
                     control={control}
@@ -364,8 +443,13 @@ const AddClinicForm: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
                         placeholder="Enter Phone Number"
                         bgWhite
                         isNumeric
-                        hasError={!!(errors.primaryContacts?.[index] as any)?.phone}
-                        errorMessage={((errors.primaryContacts?.[index] as any)?.phone?.message as string) ?? ""}
+                        hasError={
+                          !!(errors.primaryContacts?.[index] as any)?.phone
+                        }
+                        errorMessage={
+                          ((errors.primaryContacts?.[index] as any)?.phone
+                            ?.message as string) ?? ""
+                        }
                       />
                     )}
                   />
@@ -374,37 +458,63 @@ const AddClinicForm: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
             ))}
           </Grid>
 
-          <Divider sx={{ my: '20px', color: 'neutral.5' }} />
+          <Divider sx={{ my: "20px", color: "neutral.5" }} />
 
-          <Typography variant="body14PX500FW" color="neutral.80" sx={{ marginBottom: '12px !important' }}>
+          <Typography
+            variant="body14PX500FW"
+            color="neutral.80"
+            sx={{ marginBottom: "12px !important" }}
+          >
             Physical Address
           </Typography>
 
           <Grid container spacing={2}>
             <Grid size={{ xs: 12, md: 6 }}>
-              <CustomLabel variant="body5Medium" label="Address Line 1" color="neutral.60" />
+              <CustomLabel
+                variant="body5Medium"
+                label="Address Line 1"
+                color="neutral.60"
+              />
               <Controller
                 name="physicalAddress.addressLine1"
                 control={control}
                 render={({ field }) => (
-                  <CustomInput {...field} value={field.value ?? ""} placeholder="Enter Address Line 1" bgWhite />
+                  <CustomInput
+                    {...field}
+                    value={field.value ?? ""}
+                    placeholder="Enter Address Line 1"
+                    bgWhite
+                  />
                 )}
               />
             </Grid>
 
             <Grid size={{ xs: 12, md: 6 }}>
-              <CustomLabel variant="body5Medium" label="Address Line 2" color="neutral.60" />
+              <CustomLabel
+                variant="body5Medium"
+                label="Address Line 2"
+                color="neutral.60"
+              />
               <Controller
                 name="physicalAddress.addressLine2"
                 control={control}
                 render={({ field }) => (
-                  <CustomInput {...field} value={field.value ?? ""} placeholder="Enter Address Line 2" bgWhite />
+                  <CustomInput
+                    {...field}
+                    value={field.value ?? ""}
+                    placeholder="Enter Address Line 2"
+                    bgWhite
+                  />
                 )}
               />
             </Grid>
 
             <Grid size={{ xs: 12, md: 4 }}>
-              <CustomLabel variant="body5Medium" label="State" color="neutral.60" />
+              <CustomLabel
+                variant="body5Medium"
+                label="State"
+                color="neutral.60"
+              />
               <Controller
                 name="physicalAddress.state"
                 control={control}
@@ -421,34 +531,61 @@ const AddClinicForm: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
             </Grid>
 
             <Grid size={{ xs: 12, md: 4 }}>
-              <CustomLabel variant="body5Medium" label="City" color="neutral.60" />
+              <CustomLabel
+                variant="body5Medium"
+                label="City"
+                color="neutral.60"
+              />
               <Controller
                 name="physicalAddress.city"
                 control={control}
                 render={({ field }) => (
-                  <CustomInput {...field} value={field.value ?? ""} placeholder="Enter City" bgWhite />
+                  <CustomInput
+                    {...field}
+                    value={field.value ?? ""}
+                    placeholder="Enter City"
+                    bgWhite
+                  />
                 )}
               />
             </Grid>
 
             <Grid size={{ xs: 12, md: 4 }}>
-              <CustomLabel variant="body5Medium" label="Zip" color="neutral.60" />
+              <CustomLabel
+                variant="body5Medium"
+                label="Zip"
+                color="neutral.60"
+              />
               <Controller
                 name="physicalAddress.zipCode"
                 control={control}
                 render={({ field }) => (
-                  <CustomInput {...field} value={field.value ?? ""} placeholder="Enter Zip Code" bgWhite isNumeric />
+                  <CustomInput
+                    {...field}
+                    value={field.value ?? ""}
+                    placeholder="Enter Zip Code"
+                    bgWhite
+                    isNumeric
+                  />
                 )}
               />
             </Grid>
           </Grid>
 
-          <Divider sx={{ my: '20px', color: 'neutral.5' }} />
-          <Box display="flex" justifyContent="space-between" alignItems="center" mb={1.5}>
-
-          <Typography variant="body14PX500FW" color="neutral.80" sx={{ marginBottom: '12px !important' }}>
-            Billing Address
-          </Typography>
+          <Divider sx={{ my: "20px", color: "neutral.5" }} />
+          <Box
+            display="flex"
+            justifyContent="space-between"
+            alignItems="center"
+            mb={1.5}
+          >
+            <Typography
+              variant="body14PX500FW"
+              color="neutral.80"
+              sx={{ marginBottom: "12px !important" }}
+            >
+              Billing Address
+            </Typography>
             <Controller
               name="billingSameAsPhysical"
               control={control}
@@ -464,7 +601,11 @@ const AddClinicForm: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
 
           <Grid container spacing={2}>
             <Grid size={{ xs: 12, md: 6 }}>
-              <CustomLabel variant="body5Medium" label="Address line 1" color="neutral.60" />
+              <CustomLabel
+                variant="body5Medium"
+                label="Address line 1"
+                color="neutral.60"
+              />
               <Controller
                 name="billingAddress.addressLine1"
                 control={control}
@@ -481,7 +622,11 @@ const AddClinicForm: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
             </Grid>
 
             <Grid size={{ xs: 12, md: 6 }}>
-              <CustomLabel variant="body5Medium" label="Address line 2" color="neutral.60" />
+              <CustomLabel
+                variant="body5Medium"
+                label="Address line 2"
+                color="neutral.60"
+              />
               <Controller
                 name="billingAddress.addressLine2"
                 control={control}
@@ -497,7 +642,11 @@ const AddClinicForm: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
               />
             </Grid>
             <Grid size={{ xs: 12, md: 4 }}>
-              <CustomLabel variant="body5Medium" label="State" color="neutral.60" />
+              <CustomLabel
+                variant="body5Medium"
+                label="State"
+                color="neutral.60"
+              />
               <Controller
                 name="billingAddress.state"
                 control={control}
@@ -515,7 +664,11 @@ const AddClinicForm: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
             </Grid>
 
             <Grid size={{ xs: 12, md: 4 }}>
-              <CustomLabel variant="body5Medium" label="City" color="neutral.60" />
+              <CustomLabel
+                variant="body5Medium"
+                label="City"
+                color="neutral.60"
+              />
               <Controller
                 name="billingAddress.city"
                 control={control}
@@ -532,7 +685,11 @@ const AddClinicForm: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
             </Grid>
 
             <Grid size={{ xs: 12, md: 4 }}>
-              <CustomLabel variant="body5Medium" label="Zip" color="neutral.60" />
+              <CustomLabel
+                variant="body5Medium"
+                label="Zip"
+                color="neutral.60"
+              />
               <Controller
                 name="billingAddress.zipCode"
                 control={control}
@@ -550,17 +707,25 @@ const AddClinicForm: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
             </Grid>
           </Grid>
 
-          <Divider sx={{ my: '20px', color: 'neutral.5' }} />
+          <Divider sx={{ my: "20px", color: "neutral.5" }} />
 
-          <Typography variant="body14PX500FW" color="neutral.80" sx={{ marginBottom: '12px !important' }}>
+          <Typography
+            variant="body14PX500FW"
+            color="neutral.80"
+            sx={{ marginBottom: "12px !important" }}
+          >
             Other Settings
           </Typography>
 
           <Grid container spacing={2}>
             <Grid size={{ xs: 12, md: 4 }}>
-              <Typography variant="body14PX400FW" sx={(theme) => ({color: theme.palette.neutral[80],  })} >
-                RPM Billing Scheme</Typography>
-            
+              <Typography
+                variant="body14PX400FW"
+                sx={(theme) => ({ color: theme.palette.neutral[80] })}
+              >
+                RPM Billing Scheme
+              </Typography>
+
               <Controller
                 name="rpmBillingScheme"
                 control={control}
@@ -575,8 +740,12 @@ const AddClinicForm: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
             </Grid>
 
             <Grid size={{ xs: 12, md: 4 }}>
-             <Typography variant="body14PX400FW" sx={(theme) => ({color: theme.palette.neutral[80],  })} >
-                Use TPS Billing</Typography>
+              <Typography
+                variant="body14PX400FW"
+                sx={(theme) => ({ color: theme.palette.neutral[80] })}
+              >
+                Use TPS Billing
+              </Typography>
               <Controller
                 name="useTpsBilling"
                 control={control}
@@ -591,8 +760,12 @@ const AddClinicForm: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
             </Grid>
 
             <Grid size={{ xs: 12, md: 4 }}>
-              <Typography variant="body14PX400FW" sx={(theme) => ({color: theme.palette.neutral[80],  })} >
-                Use TPS CDCES</Typography>
+              <Typography
+                variant="body14PX400FW"
+                sx={(theme) => ({ color: theme.palette.neutral[80] })}
+              >
+                Use TPS CDCES
+              </Typography>
               <Controller
                 name="useTpsCdces"
                 control={control}
@@ -608,7 +781,7 @@ const AddClinicForm: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
           </Grid>
         </form>
       </Box>
-      <DrawerFooterButtons onCancel={handleCancel} onSave={() => handleSubmit(onSubmit)()} loading={false} />
+      {/* <Drawe  rFooterButtons onCancel={handleCancel} onSave={() => handleSubmit(onSubmit)()} loading={false} /> */}
     </Box>
   );
 };

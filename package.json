@@ -5,9 +5,24 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build --mode development",
+    "build:qa": "tsc && vite build --mode qa",
+    "build:uat": "tsc && vite build --mode uat",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepare": "husky install",
+    "test": "vitest",
+    "test:watch": "vitest --watchAll",
+    "test:coverage": "vitest --coverage"
+  },
+  "lint-staged": {
+    "*.{css,scss}": [
+      "npx prettier --write"
+    ],
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "npx prettier --write"
+    ]
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",

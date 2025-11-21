@@ -1,14 +1,16 @@
 import { useForm, Controller } from "react-hook-form";
 import { Box, Grid } from "@mui/material";
 import { yupResolver } from "@hookform/resolvers/yup";
-import DrawerFooterButtons from "../components/ui/DrawerFooter"; 
-import {type AddStaffFormValues } from "../features/admin/settings/types/type";
-import { addStaffSchema, locationOptions, roleOptions } from "../features/admin/settings/constant";
+// import DrawerFooterButtons from "../components/ui/DrawerFooter";
+import { type AddStaffFormValues } from "../features/admin/settings/types/type";
+import {
+  addStaffSchema,
+  locationOptions,
+  roleOptions,
+} from "../features/admin/settings/constant";
 import CustomLabel from "../components/common-components/custom-label/custom-label";
 import CustomInput from "../components/common-components/custom-input/custom-input";
 import DropDownForText from "../components/common-components/drop-dwon-for-text/drop-down-for-text";
-
-
 
 const AddStaffForm = ({ onClose }: { onClose?: () => void }) => {
   const {
@@ -28,7 +30,7 @@ const AddStaffForm = ({ onClose }: { onClose?: () => void }) => {
     },
   });
 
-    const handleCancel = () => {
+  const handleCancel = () => {
     reset();
     onClose?.();
   };
@@ -40,9 +42,8 @@ const AddStaffForm = ({ onClose }: { onClose?: () => void }) => {
   };
 
   return (
-  <form onSubmit={handleSubmit(onSubmit)} noValidate>
+    <form onSubmit={handleSubmit(onSubmit)} noValidate>
       <Grid container spacing={2} sx={{ p: 2 }}>
-
         <Grid size={{ xs: 12, md: 6 }}>
           <CustomLabel variant="body5Medium" label="Title" color="neutral.60" />
           <Controller
@@ -102,7 +103,11 @@ const AddStaffForm = ({ onClose }: { onClose?: () => void }) => {
         </Grid>
 
         <Grid size={{ xs: 12, md: 6 }}>
-          <CustomLabel variant="body5Medium" label="Phone Number" color="neutral.60" />
+          <CustomLabel
+            variant="body5Medium"
+            label="Phone Number"
+            color="neutral.60"
+          />
           <Controller
             name="phoneNumber"
             control={control}
@@ -140,7 +145,11 @@ const AddStaffForm = ({ onClose }: { onClose?: () => void }) => {
         </Grid>
 
         <Grid size={{ xs: 12, md: 6 }}>
-          <CustomLabel variant="body5Medium" label="Location" color="neutral.60" />
+          <CustomLabel
+            variant="body5Medium"
+            label="Location"
+            color="neutral.60"
+          />
           <Controller
             name="location"
             control={control}
@@ -158,12 +167,12 @@ const AddStaffForm = ({ onClose }: { onClose?: () => void }) => {
       </Grid>
 
       <Box sx={{ p: 2 }}>
-        <DrawerFooterButtons
+        {/* <DrawerFooterButtons
 
           onCancel={handleCancel}
           onSave={handleSubmit(onSubmit)}
 
-        />
+        /> */}
       </Box>
     </form>
   );
