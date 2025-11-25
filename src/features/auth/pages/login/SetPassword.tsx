@@ -9,6 +9,11 @@ import { widthOfInput } from './constant'
 import AuthPage from '../AuthPage'
 import { useNavigate } from 'react-router-dom'
 
+export type ResetPasswordFormValues = {
+  password: string;
+  confirmPassword: string;
+};
+
 const SetPassword: React.FC<SetPasswordProps> = () => {
   const navigate =useNavigate()
   const initialValues = {
@@ -26,7 +31,7 @@ const SetPassword: React.FC<SetPasswordProps> = () => {
     // resolver: yupResolver(setPasswordSchema),
   });
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: ResetPasswordFormValues) => {
     navigate("/auth/login")
     console.log(data)
   }

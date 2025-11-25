@@ -8,6 +8,10 @@ import { widthOfInput, type OtpProps } from './constant';
 import AuthPage from '../AuthPage';
 import { useNavigate } from 'react-router-dom';
 
+export type OTPType = {
+    otp: string;
+};
+
 const Otp: React.FC<OtpProps> = () => {
     const [timeLeft, setTimeLeft] = useState(30);
     const navigate = useNavigate();
@@ -40,7 +44,7 @@ const Otp: React.FC<OtpProps> = () => {
         setTimeLeft(30);
     };
 
-    const onSubmit = (data: any) => {
+    const onSubmit = (data: OTPType) => {
         navigate("/auth/set-password")
         console.log("6-digit OTP string:", data.otp);
         reset(initialValues);

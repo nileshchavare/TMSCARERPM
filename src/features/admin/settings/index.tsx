@@ -1,4 +1,4 @@
-import { Box, Button, Drawer } from '@mui/material'
+import { Box } from '@mui/material'
 import React from 'react'
 import CustomTabs from '../../../components/common-components/custom-tab/CustomTabs'
 import { Controller, useForm } from 'react-hook-form';
@@ -9,8 +9,8 @@ import RollsAndPermissions from './rollsandpermissions/RollsAndPermissions';
 import Groups from './groups/Groups';
 import DropdownButton from '../../../components/common-components/drop-down-for-button/drop-down-for-button';
 import MainDrawer from '../../../components/ui/MainDrawer';
-import AddStaffForm from '../../../forms/AddStaffForm';
-import AddProviderForm from '../../../forms/AddProviderForm';
+import AddStaffForm from '../../../forms/staff-form';
+import AddProviderForm from '../../../forms/provider-form';
 import { useDrawer } from '../../../hooks/useDrawer';
 
 const index = () => {
@@ -105,6 +105,7 @@ const index = () => {
       <MainDrawer
         drawerWidth='700px'
         anchor='right'
+        showMandatoryIndicator
         content={<DrawerContent onClose={closeDrawer} identifier={contentDrawer?.identifier || ""} />}
       />
     </>

@@ -17,7 +17,7 @@ export const stylesOfFooter = {
   position: "absolute",
   bottom: 0,
   left: 0,
-  padding: "8px 24px",
+  padding: "12px 24px",
 };
 
 interface MainDrawerProps {

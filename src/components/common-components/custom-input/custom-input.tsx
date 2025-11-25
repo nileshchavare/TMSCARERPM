@@ -48,6 +48,7 @@ interface CustomInputProps {
   bgGrey?: boolean;
   isAlphabetic?: boolean;
   showEllipsis?: boolean;
+  autoComplete?: string;
 }
 
 export default function CustomInput(props: CustomInputProps) {
@@ -169,6 +170,7 @@ export default function CustomInput(props: CustomInputProps) {
         type={showPassword ? "text" : props.isPassword ? "password" : "text"}
         placeholder={props.placeholder}
         value={inputValue}
+        
         sx={{
           borderRadius: "4px",
           paddingRight: paddingRight ? paddingRight : "0px",
@@ -195,13 +197,16 @@ export default function CustomInput(props: CustomInputProps) {
             },
           }),
         }}
-        inputProps={{ maxLength: maxLength ? maxLength : "" }}
+        inputProps={{
+              maxLength: maxLength ?? "",
+              autoComplete: props.autoComplete ?? "off",
+          }}
+
         onChange={handleInputChange}
         onBlur={handleInputBlur}
         error={props.hasError}
         required={required}
         disabled={props.disableField}
-        autoComplete="false"
         // inputMode={props.isNumeric ? "number" : "text"}
         inputMode={props.isNumeric ? "numeric" : props.isDecimal ? "decimal" : props.isAlphabetic ? "text" : "text"}
         // onInput={

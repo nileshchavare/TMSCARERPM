@@ -21,59 +21,39 @@ export const STATUS_OPTIONS = [
 
 export type PrimaryContact = {
   id: string;
-  name?: string;
-  email?: string;
-  phone?: string;
-};
+  name: string;
+  email: string;
+  phone: string;
+}
 
 export type Address = {
-  addressLine1?: string;
+  addressLine1: string;
   addressLine2?: string;
-  state?: string;
-  city?: string;
-  zipCode?: string;
-};
+  state: string;
+  city: string;
+  zipCode: string;
+}
 
 export interface FormValues {
+  rpmBillingScheme: string;
+  useTpsCdces: string;
+  useTpsBilling: string;
+  rpmBilling: string;
+
   clinicName: string;
-  groupNpiNumber: string | null;
-  phoneNumber: string | null;
-  email: string | null;
-  fax: string | null;
-  taxNumber: string | null;
-  tinEin: string | null;
-  specialty: string | null;
+  groupNpiNumber: string;
+  phoneNumber: string;
+  email: string;
+  fax?: string;
+  taxNumber?: string;
+  tinEin?: string;
+  specialty: string;
   status: string;
 
-  primaryContacts: {
-    id: string;
-    name: string;
-    email: string | null;
-    phone: string | null;
-  }[];
+  primaryContacts: PrimaryContact[];
 
-  physicalAddress: {
-    addressLine1: string | null;
-    addressLine2: string | null;
-    state: string | null;
-    city: string | null;
-    zipCode: string | null;
-  };
-
-  billingAddress: {
-    addressLine1: string | null;
-    addressLine2: string | null;
-    state: string | null;
-    city: string | null;
-    zipCode: string | null;
-  };
-
-  billingSameAsPhysical: boolean;
-
-  rpmBillingScheme: string | null;
-
-  useTpsBilling: "Yes" | "No" | null;
-  useTpsCdces: "Yes" | "No" | null;
+  physicalAddress: Address;
+  billingAddress: Address;
 }
 
 export type ClinicRow = {

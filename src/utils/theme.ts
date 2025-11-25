@@ -1,6 +1,6 @@
 import { alpha, createTheme } from "@mui/material";
 import "@mui/material/styles";
-import type { TypographyVariantsOptions, PaletteColor, PaletteColorOptions } from "@mui/material/styles";
+import type { TypographyVariantsOptions, } from "@mui/material/styles";
 import React from "react";
 
 declare module "@mui/material/styles" {
@@ -58,6 +58,7 @@ declare module "@mui/material/styles" {
     body16PX400FW: React.CSSProperties;
     body16PX500FW: React.CSSProperties;
     inputSmallIcon: React.CSSProperties;
+    body20PX500FW: React.CSSProperties;
   }
 }
 
@@ -77,6 +78,7 @@ declare module "@mui/material/Typography" {
     body16PX500FW: true;
     body14PX500FW: true;
     body5Regular: true;
+    body20PX500FW: true;
   }
 }
 interface ExtendedTypographyOptions extends TypographyVariantsOptions {
@@ -91,6 +93,7 @@ interface ExtendedTypographyOptions extends TypographyVariantsOptions {
   body16PX400FW: React.CSSProperties;
   body14PX500FW: React.CSSProperties;
   body5Regular: React.CSSProperties;
+  body20PX500FW: React.CSSProperties;
 }
 
 declare module "@mui/material/styles" {
@@ -250,12 +253,12 @@ export const theme = createTheme({
   },
   palette: {
     primary: {
-      ...palette.primary, 
+      ...palette.primary,
       main: palette.primary.main,
       light: palette.primary.light,
     },
     secondary: {
-      ...palette.secondary, 
+      ...palette.secondary,
       main: palette.secondary.main,
       light: palette.secondary.light,
     },
@@ -305,6 +308,13 @@ export const theme = createTheme({
       fontFamily: "Figtree, sans-serif",
       fontWeight: 400,
       fontSize: "1rem", // 16px = 1rem
+      lineHeight: "120%",
+      letterSpacing: "0",
+    },
+    body20PX500FW: { //body16PX400FW
+      fontFamily: "Figtree, sans-serif",
+      fontWeight: 500,
+      fontSize: "1.25rem", // 16px = 1rem
       lineHeight: "120%",
       letterSpacing: "0",
     },
@@ -389,6 +399,9 @@ export const theme = createTheme({
           fontWeight: 500,
           padding: "6px 10px",
           borderRadius: "4px",
+          height: "36px",
+          minHeight: "36px",
+          lineHeight: "36px",
           fontSize: "14px",
           "&.MuiButton-containedPrimary": {
             boxShadow: "none",

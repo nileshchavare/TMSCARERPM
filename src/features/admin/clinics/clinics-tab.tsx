@@ -1,5 +1,5 @@
 import AddIcon from "@mui/icons-material/Add";
-import { Box, Button, useMediaQuery } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import React from "react";
 
 import CustomInput from "../../../components/common-components/custom-input/custom-input";
@@ -7,7 +7,7 @@ import CustomTabs from "../../../components/common-components/custom-tab/CustomT
 
 import { Controller, useForm } from "react-hook-form";
 
-import AddClinicForm from "../../../forms/AddClinicForm";
+import AddClinicForm from "../../../forms/clinic-form";
 import AllClinicList from "./clinic-list";
 
 import MainDrawer from "../../../components/ui/MainDrawer";
@@ -15,7 +15,6 @@ import { useDrawer } from "../../../hooks/useDrawer";
 
 const Clinics: React.FC = () => {
   const [tabValue, setTabValue] = React.useState(0);
-  const isMobile = useMediaQuery("(max-width: 768px)");
 
   const { control } = useForm({
     defaultValues: {
@@ -39,7 +38,6 @@ const Clinics: React.FC = () => {
   const tabs = ["All Clinics", "Archived"];
 
   const tabComponents = [<AllClinicList />, <AllClinicList />];
-
   const DrawerContent = ({
     identifier,
     onClose,
@@ -55,7 +53,7 @@ const Clinics: React.FC = () => {
 
   return (
     <>
-      <Box sx={{ p: 2 }}>
+      <Box sx={{ p: '5px 16px' }}>
         <Box
           sx={{
             display: "flex",
@@ -63,7 +61,7 @@ const Clinics: React.FC = () => {
             justifyContent: "space-between",
             alignItems: { xs: "flex-start", md: "center" },
             gap: 2,
-            mb: 3,
+            mb: 2,
           }}
         >
           <CustomTabs tabs={tabs} value={tabValue} onChange={setTabValue} />

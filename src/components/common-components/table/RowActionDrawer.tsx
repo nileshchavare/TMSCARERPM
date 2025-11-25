@@ -48,7 +48,8 @@ export function RowActionMenu<T = any>({ row, options }: RowActionMenuProps<T>) 
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
         onClose={handleClose}
-        anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
       >
         {options.map((opt) => (
           <MenuItem key={opt.key} onClick={() => handleOptionClick(opt)}>

@@ -1,17 +1,53 @@
-//addStaff.schema.ts
-import * as yup from "yup";
 
-export const addStaffSchema = yup.object({
-  title: yup.string().required("Title is required"),
-  name: yup.string().required("Name is required"),
-  email: yup.string().email("Enter a valid email").required("Email is required"),
-  phoneNumber: yup
-    .string()
-    .required("Phone number is required")
-    .matches(/^[0-9]{10}$/, "Phone number must be 10 digits"),
-  role: yup.string().required("Role is required"),
-  location: yup.string().required("Location is required"),
-});
+
+export interface UserRow {
+  id: number;
+  userId: string;
+  username: string;
+  roleType: string;
+  role: string;
+  email: string;
+  contactNumber: string;
+  status: string;
+  action: string;
+}
+
+export interface AddStaffFormValues {
+  title: string;
+  name: string;
+  email: string;
+  phoneNumber: string;
+  role: string;
+  location: string;
+}
+export interface AddProviderFormValues {
+  firstName: string;
+  lastName: string;
+  npiNumber: string;
+  email: string;
+  phoneNumber: string;
+  location: string;
+
+  licenseState: string;
+  licenseNumber: string;
+  expiryDate: string;
+
+  physicalAddress: {
+    addressLine1: string;
+    addressLine2: string;
+    state: string;
+    city: string;
+    zipCode: string;
+  };
+
+  billingAddress: {
+    addressLine1: string;
+    addressLine2: string;
+    state: string;
+    city: string;
+    zipCode: string;
+  };
+}
 
 export const roleOptions = [
   { key: "admin", value: "Admin" },
@@ -24,56 +60,3 @@ export const locationOptions = [
   { key: "la", value: "Los Angeles" },
   { key: "remote", value: "Remote" },
 ];
-
-//provider.schema.ts
-export const providerSchema = yup.object().shape({
-
-  firstName: yup.string().required("First name is required"),
-  lastName: yup.string().required("Last name is required"),
-  npiNumber: yup
-    .string()
-    .matches(/^[0-9]{10}$/, "NPI must be 10 digits")
-    .required("NPI number is required"),
-  email: yup.string().email("Invalid email").required("Email is required"),
-  phoneNumber: yup
-    .string()
-    .matches(/^[0-9]{10}$/, "Phone number must be 10 digits")
-    .required("Phone number is required"),
-  location: yup.string().required("Location is required"),
-
-  licenseState: yup.string().required("State is required"),
-  licenseNumber: yup.string().required("License number is required"),
-  expiryDate: yup.string().required("Expiry date is required"),
-
-  physicalAddress1: yup.string().required("Address line 1 is required"),
-  physicalAddress2: yup.string(),
-  physicalState: yup.string().required("State is required"),
-  physicalCity: yup.string().required("City is required"),
-  physicalZip: yup
-    .string()
-    .matches(/^[0-9]{5}$/, "ZIP must be 5 digits")
-    .required("ZIP code is required"),
-
-  billingSameAsPhysical: yup.boolean(),
-  billingAddress1: yup.string().when("billingSameAsPhysical", {
-    is: false,
-    then: (schema) => schema.required("Address line 1 is required"),
-  }),
-  billingAddress2: yup.string(),
-  billingState: yup.string().when("billingSameAsPhysical", {
-    is: false,
-    then: (schema) => schema.required("State is required"),
-  }),
-  billingCity: yup.string().when("billingSameAsPhysical", {
-    is: false,
-    then: (schema) => schema.required("City is required"),
-  }),
-  billingZip: yup.string().when("billingSameAsPhysical", {
-    is: false,
-    then: (schema) =>
-      schema
-        .matches(/^[0-9]{5}$/, "ZIP must be 5 digits")
-        .required("ZIP code is required"),
-  }),
-});
-

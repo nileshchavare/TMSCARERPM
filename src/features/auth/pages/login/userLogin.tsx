@@ -10,30 +10,32 @@ import { loginSchema } from "../../../../constants/yupSchemas";
 import AuthPage from "../AuthPage";
 import { useNavigate } from "react-router-dom";
 
+export type LoginDataType = {
+  email: string;
+  password: string;
+};
+
 const UserLogin: React.FC<UserLoginProps> = () => {
   const navigate = useNavigate();
   const initialValues = {
     email: "",
     password: "",
   };
-
   const {
     control,
     handleSubmit,
     reset,
-    formState: { errors },
-    setValue,
-    formState,
+    formState: { errors, isValid },
   } = useForm({
     defaultValues: initialValues,
     resolver: yupResolver(loginSchema),
     mode: "onChange",
   });
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: LoginDataType) => {
     console.log(data);
-
-    reset(initialValues);
+    navigate("/app/dashboard");
+    reset();
   };
   return (
     <AuthPage>
@@ -41,6 +43,7 @@ const UserLogin: React.FC<UserLoginProps> = () => {
         onSubmit={handleSubmit(onSubmit)}
         style={{ width: "100%", height: "100%" }}
         key={"loginUser"}
+        autoComplete="off"
       >
         <Grid
           mt={1.5}
@@ -80,14 +83,11 @@ const UserLogin: React.FC<UserLoginProps> = () => {
                 name="email"
                 render={({ field }) => (
                   <CustomInput
+                    autoComplete="new-email"
                     placeholder="Enter Email"
                     hasError={!!errors.email}
                     errorMessage={(errors.email?.message as string) || ""}
-                    onChange={(event) =>
-                      setValue("email", event.target.value, {
-                        shouldValidate: true,
-                      })
-                    }
+                    onChange={field.onChange} 
                     name={field.name}
                     value={field.value}
                     hasStartMailIcon
@@ -104,14 +104,11 @@ const UserLogin: React.FC<UserLoginProps> = () => {
                 render={({ field }) => (
                   <CustomInput
                     placeholder="Enter Password"
+                    autoComplete="new-password"
                     isPassword
                     hasError={!!errors.password}
                     errorMessage={errors.password?.message}
-                    onChange={(event) =>
-                      setValue("password", event.target.value, {
-                        shouldValidate: true,
-                      })
-                    }
+                    onChange={field.onChange} 
                     name={field.name}
                     value={field.value}
                   />
@@ -136,8 +133,7 @@ const UserLogin: React.FC<UserLoginProps> = () => {
               fullWidth
               type="submit"
               loading={false}
-              disabled={!formState.isValid}
-              onClick={() => navigate("/app/dashboard")}
+              disabled={!isValid}
             >
               Log In
             </Button>

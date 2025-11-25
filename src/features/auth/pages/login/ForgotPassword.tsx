@@ -10,6 +10,10 @@ import { widthOfInput, type ForgotPasswordProps } from "./constant";
 import AuthPage from "../AuthPage";
 import { useNavigate } from "react-router-dom";
 
+export type ForgotpasswordType = {
+    email: string;
+};
+
 const ForgotPassword: React.FC<ForgotPasswordProps> = () => {
     const navigate =useNavigate()
     const initialValues = {
@@ -26,7 +30,7 @@ const ForgotPassword: React.FC<ForgotPasswordProps> = () => {
         resolver: yupResolver(forgotPasswordSchema),
     });
 
-    const onSubmit = (data: any) => {
+    const onSubmit = (data: ForgotpasswordType) => {
         navigate("/auth/otp")
         console.log(data)
     }

@@ -25,6 +25,7 @@ const CustomTabs: React.FC<CustomTabsProps> = ({
       scrollButtons="auto"
       TabIndicatorProps={{ style: { display: "none" } }}
       sx={{
+        minwidth:120,
         backgroundColor: "#EFF0F2",    // <-- MAIN BACKGROUND
         borderRadius: "14px",
         padding: "4px",

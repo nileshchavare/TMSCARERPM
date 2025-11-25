@@ -51,16 +51,25 @@ export default function DropDownForText({
         value={valueProp !== undefined ? valueProp : value}
         onChange={handleChange}
         displayEmpty
+        renderValue={(selected) =>
+          selected && selected !== "" ? (
+            <Typography variant="bodySmall">
+              {options.find((o) => o.key === selected)?.value}
+            </Typography>
+          ) : (
+            <Typography variant="bodySmall" color="neutral.40">
+              {placeholder}
+            </Typography>
+          )
+        }
         sx={{
           border: "1px solid ",
           borderColor: "neutral.5",
           borderRadius: "4px",
-          padding: "7px 14px",
           "& .MuiSelect-select": {
+            padding: "9px 12px",
             display: "flex",
             alignItems: "center",
-            gap: "8px",
-            padding: "0px !important",
           },
 
           "& fieldset": {
@@ -71,9 +80,6 @@ export default function DropDownForText({
           color: "neutral.80",
         }}
       >
-                <MenuItem disabled value="">
-          <Typography color="neutral.40">{placeholder}</Typography>
-        </MenuItem>
         {options.map((option) => (
           <MenuItem key={option.key} value={option.key}>
             <Typography variant="bodySmall">{option.value}</Typography>

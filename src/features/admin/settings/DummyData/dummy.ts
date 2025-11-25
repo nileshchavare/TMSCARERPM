@@ -80,3 +80,63 @@ export const allClinicRows: ClinicRow[] = [
     status: "inactive",
   },
 ];
+
+
+export const locationRows = [
+  {
+    id: 1,
+    locationName: "New York Clinic",
+    phoneNumber: "9876543210",
+    email: "ny-clinic@example.com",
+    npiNumber: "1234567890",
+    taxNumber: "TAX-98765",
+    address: "123 Main Street, New York, NY 10001",
+    status: "Active",
+    action: "View",
+  },
+  {
+    id: 2,
+    locationName: "Los Angeles Clinic",
+    phoneNumber: "9876541200",
+    email: "la-clinic@example.com",
+    npiNumber: "0987654321",
+    taxNumber: "TAX-11223",
+    address: "45 Sunset Blvd, Los Angeles, CA 90001",
+    status: "Inactive",
+    action: "View",
+  },
+  {
+    id: 3,
+    locationName: "Houston Clinic",
+    phoneNumber: "9001122334",
+    email: "houston-clinic@example.com",
+    npiNumber: "5556667777",
+    taxNumber: "TAX-33445",
+    address: "88 Bay Area Road, Houston, TX 77001",
+    status: "Pending",
+    action: "View",
+  },
+  {
+    id: 4,
+    locationName: "Chicago Clinic",
+    phoneNumber: "9022334455",
+    email: "chicago-clinic@example.com",
+    npiNumber: "6677889900",
+    taxNumber: "TAX-88990",
+    address: "25 Downtown St, Chicago, IL 60007",
+    status: "Active",
+    action: "View",
+  },
+  {
+    id: 5,
+    locationName: "Phoenix Clinic",
+    phoneNumber: "9112233445",
+    email: "phoenix-clinic@example.com",
+    npiNumber: "1231231234",
+    taxNumber: "TAX-55667",
+    address: "66 Pine Street, Phoenix, AZ 85001",
+    status: "Suspended",
+    action: "View",
+  },
+];
+

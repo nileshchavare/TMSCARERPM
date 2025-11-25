@@ -18,7 +18,6 @@ export interface AddStaffFormValues {
   role: string;
   location: string;
 }
-
 export interface AddProviderFormValues {
   firstName: string;
   lastName: string;
@@ -31,18 +30,27 @@ export interface AddProviderFormValues {
   licenseNumber: string;
   expiryDate: string;
 
-  physicalAddress1: string;
-  physicalAddress2: string;
-  physicalState: string;
-  physicalCity: string;
-  physicalZip: string;
+  physicalAddress: {
+    addressLine1: string;
+    addressLine2: string;
+    state: string;
+    city: string;
+    zipCode: string;
+  };
 
-  billingSameAsPhysical: boolean;
-  billingAddress1: string;
-  billingAddress2: string;
-  billingState: string;
-  billingCity: string;
-  billingZip: string;
+  billingAddress: {
+    addressLine1: string;
+    addressLine2: string;
+    state: string;
+    city: string;
+    zipCode: string;
+  };
 }
+
+
+
+
+
+
 
 
