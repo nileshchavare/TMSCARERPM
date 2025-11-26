@@ -1,14 +1,15 @@
 import { lazy, Suspense } from "react";
 import { createBrowserRouter, Navigate, Outlet } from "react-router-dom";
 import AuthLayout from "../layout/auth-layout";
-import PrivateLayout from "../layout/private-layout";
+import PrivateRoute from "../layout/private-route";
 import UserLogin from "../features/auth/pages/login/userLogin";
 import Clinics from "../features/admin/clinics/clinics-tab";
 import Dashboard from "../features/admin/dashboard/dashboard";
 import Patients from "../features/admin/patients/index";
-import CareTeam from "../features/admin/care-team/index";
-import Settings from "../features/admin/settings/index";
+import CareTeam from "../features/admin/care-team/care-team-";
+import Settings from "../features/admin/settings/setting-tab";
 import ClinicDetails from "../features/admin/clinics/clinic-details";
+import MainLayout from "../layout/main-layout";
 
 const ForgotPassword = lazy(
   () => import("../features/auth/pages/login/ForgotPassword")
@@ -65,7 +66,13 @@ export const privateRoutes = createBrowserRouter([
   },
   {
     path: "app",
-    element: <PrivateLayout />,
+    element: (
+      <PrivateRoute>
+        <MainLayout>
+          <Outlet />
+        </MainLayout>
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "dashboard",

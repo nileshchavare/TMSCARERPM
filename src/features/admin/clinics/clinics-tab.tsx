@@ -1,5 +1,5 @@
 import AddIcon from "@mui/icons-material/Add";
-import { Box, Button } from "@mui/material";
+import { Box, Button, Grid } from "@mui/material";
 import React from "react";
 
 import CustomInput from "../../../components/common-components/custom-input/custom-input";
@@ -53,15 +53,14 @@ const Clinics: React.FC = () => {
 
   return (
     <>
-      <Box sx={{ p: '5px 16px' }}>
+      <Grid container width={"100%"} height={"100%"} flexDirection={"column"} flexWrap={'nowrap'} rowGap={2} p={2}>
         <Box
           sx={{
             display: "flex",
             flexDirection: { xs: "column", md: "row" },
             justifyContent: "space-between",
             alignItems: { xs: "flex-start", md: "center" },
-            gap: 2,
-            mb: 2,
+            gap: 2.,
           }}
         >
           <CustomTabs tabs={tabs} value={tabValue} onChange={setTabValue} />
@@ -80,7 +79,7 @@ const Clinics: React.FC = () => {
               render={({ field }) => (
                 <CustomInput
                   {...field}
-                  placeholder="Search Clinics..."
+                  placeholder="Search Clinic Name"
                   bgWhite
                   hasStartSearchIcon
                   onDebounceCall={(v) => console.log("Searching:", v)}
@@ -98,8 +97,8 @@ const Clinics: React.FC = () => {
           </Box>
         </Box>
 
-        <Box sx={{ mt: 3 }}>{tabComponents[tabValue]}</Box>
-      </Box>
+        <Box >{tabComponents[tabValue]}</Box>
+      </Grid>
       <MainDrawer
         drawerWidth="700px"
         anchor="right"

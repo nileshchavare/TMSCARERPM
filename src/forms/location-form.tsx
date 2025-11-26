@@ -59,7 +59,7 @@ const AddLocationForm = ({ onClose }: { onClose?: () => void }) => {
         onClose?.();
     }
     return (
-        <DrawerBody p={3} offset={footerRef?.current?.offsetHeight} >
+         <DrawerBody  padding="16px 20px" offset={footerRef?.current?.offsetHeight} gap={1}>
             <form onSubmit={handleSubmit(onSubmit)} >
                 <Grid container spacing={2}>
                     <Grid size={{ xs: 12, md: 6 }}>
@@ -207,7 +207,7 @@ const AddLocationForm = ({ onClose }: { onClose?: () => void }) => {
                     <Typography
                         variant="body14PX500FW"
                         color="neutral.80"
-                        sx={{ mb: 1.5, display: "block" }}
+                        sx={{display: "block" }}
                     >
                         Physical Address
                     </Typography>
@@ -334,7 +334,7 @@ const AddLocationForm = ({ onClose }: { onClose?: () => void }) => {
                     <Typography
                         variant="body14PX500FW"
                         color="neutral.80"
-                        sx={{ mb: 1.5 }}
+                        
                     >
                         Billing Address
                     </Typography>

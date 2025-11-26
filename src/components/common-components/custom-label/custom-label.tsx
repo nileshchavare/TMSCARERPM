@@ -17,7 +17,7 @@ function CustomLabel(props: CustomFormLabelProps) {
   const { label, isRequired, variant, color } = props;
 
   return (
-    <Box mb={1}>
+    <Box mb={'6px'}>
       <Typography
         sx={{ fontWeight: 500, letterSpacing: "inherit" }}
         variant={variant || "bodyExtraSmall"}

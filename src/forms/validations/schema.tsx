@@ -54,7 +54,7 @@ export const providerSchema = yup.object({
     .string()
     .matches(phoneNumberTenDigitRegex, phoneNumberInvalid)
     .required(phoneNumberRequired),
-  location: yup.string().required(locationRequired),
+  role: yup.string().required(locationRequired),
 
   licenseState: yup.string().required(licenseStateRequired),
   licenseNumber: yup.string().required(licenseNumberRequired),
@@ -83,7 +83,6 @@ export const providerSchema = yup.object({
   }).required(),
 });
 
-// Export the inferred type from the schema
 export type AddProviderFormValues = yup.InferType<typeof providerSchema>;
 
 export const addStaffSchema = yup.object({
@@ -99,9 +98,9 @@ export const addStaffSchema = yup.object({
     .required(phoneNumberRequired),
   role: yup.string().required(roleRequired),
   location: yup.string().required(locationRequired),
+  status:yup.string().required(statusRequired)
 });
 
-// Export the inferred type from the schema
 export type AddStaffFormValues = yup.InferType<typeof addStaffSchema>;
 
 export const addLocationSchema = yup.object().shape({
@@ -142,7 +141,6 @@ export const addLocationSchema = yup.object().shape({
     }),
 })
 
-// Export the inferred type from the schema
 export type AddLocationFormValues = yup.InferType<typeof addLocationSchema>;
 
 export const newClinicSchema = yup.object().shape({
@@ -211,6 +209,5 @@ export const newClinicSchema = yup.object().shape({
   }),
 })
 
-// Export the inferred type from the schema
 export type NewClinicFormValues = yup.InferType<typeof newClinicSchema>;
 

@@ -26,7 +26,7 @@ const AllClinicList: React.FC = () => {
     {
       field: "srNo",
       headerName: "Sr. No",
-      width: 80,
+      minWidth: 80,
       sortable: false,
       filterable: false,
       renderCell: (params) => {
@@ -36,18 +36,18 @@ const AllClinicList: React.FC = () => {
     {
       field: "clinicName",
       headerName: "Clinic Name",
-      minWidth: 350,
+      minWidth: 220,
       renderCell: (params) => <Typography variant="body14PX500FW" sx={{ cursor: "pointer" }} color="primary.70" onClick={() => handleNavigate(params)} >{params.value}</Typography>,
     },
     {
       field: "speciality",
       headerName: "Speciality",
-      width: 300,
+      minWidth: 220,
     },
     {
       field: "email",
       headerName: "Email ID",
-      width: 300,
+      minWidth: 220,
     },
     {
       field: "address",
@@ -58,19 +58,19 @@ const AllClinicList: React.FC = () => {
     {
       field: "contactNumber",
       headerName: "Contact No",
-      width: 200,
+      minWidth: 200,
     },
     {
       field: "status",
       headerName: "Status",
       renderCell: (params) => <CommonStatusChip value={params.value} />,
-      width: 150,
+      minWidth: 150,
     },
 
     {
       field: "actions",
       headerName: "Action",
-      width: 80,
+      minWidth: 80,
       sortable: false,
       filterable: false,
       renderCell: (params) => (

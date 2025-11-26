@@ -11,12 +11,9 @@ import DrawerBody from "../components/ui/DrawerBody";
 import { stylesOfFooter } from "../components/ui/MainDrawer";
 import { providerSchema, type AddProviderFormValues } from "./validations/schema";
 import { errorStyle } from "../components/common-components/custom-input/widgets/custom-input-styles";
+import { roleOptions } from "../features/admin/settings/constant";
+import CustomDatePicker from "../components/common-components/date-picker-field/date-picker-field";
 
-const locationOptions = [
-  { key: "ny", value: "New York" },
-  { key: "la", value: "Los Angeles" },
-  { key: "tx", value: "Texas" },
-];
 
 const stateOptions = [
   { key: "ny", value: "New York" },
@@ -34,7 +31,7 @@ const AddProviderForm = ({ onClose }: { onClose?: () => void }) => {
       npiNumber: "",
       email: "",
       phoneNumber: "",
-      location: "",
+      role: "",
       licenseState: "",
       licenseNumber: "",
       expiryDate: "",
@@ -74,11 +71,11 @@ const AddProviderForm = ({ onClose }: { onClose?: () => void }) => {
   };
 
   return (
-    <DrawerBody padding={3} offset={footerRef?.current?.offsetHeight}>
+    <DrawerBody  padding="16px 20px" offset={footerRef?.current?.offsetHeight} >
         <form onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={1}>
             <Grid size={12}>
-              <Typography variant="body14PX500FW" color="neutral.80" sx={{ mb: 1.5 ,display:'block'}}>
+              <Typography variant="body14PX500FW" color="neutral.80" sx={{ display:'block'}}>
               Demographic
               </Typography>
             </Grid>
@@ -90,7 +87,7 @@ const AddProviderForm = ({ onClose }: { onClose?: () => void }) => {
                 render={({ field }) => (
                   <CustomInput
                     {...field}
-                    placeholder="First Name"
+                    placeholder="Enter First Name"
                     bgWhite
                     hasError={!!errors.firstName}
                     errorMessage={errors.firstName?.message}
@@ -107,7 +104,7 @@ const AddProviderForm = ({ onClose }: { onClose?: () => void }) => {
                 render={({ field }) => (
                   <CustomInput
                     {...field}
-                    placeholder="Last Name"
+                    placeholder="Enter Last Name"
                     bgWhite
                     hasError={!!errors.lastName}
                     errorMessage={errors.lastName?.message}
@@ -127,7 +124,7 @@ const AddProviderForm = ({ onClose }: { onClose?: () => void }) => {
                     bgWhite
                     isNumeric
                     maxLength={10}
-                    placeholder="NPI Number"
+                    placeholder="Enter NPI Number"
                     hasError={!!errors.npiNumber}
                     errorMessage={errors.npiNumber?.message}
                   />
@@ -144,7 +141,7 @@ const AddProviderForm = ({ onClose }: { onClose?: () => void }) => {
                   <CustomInput
                     {...field}
                     bgWhite
-                    placeholder="Email"
+                    placeholder="Enter Email"
                     hasStartMailIcon
                     hasError={!!errors.email}
                     errorMessage={errors.email?.message}
@@ -164,7 +161,7 @@ const AddProviderForm = ({ onClose }: { onClose?: () => void }) => {
                     bgWhite
                     isNumeric
                     maxLength={10}
-                    placeholder="Phone Number"
+                    placeholder="Enter Phone Number"
                     hasError={!!errors.phoneNumber}
                     errorMessage={errors.phoneNumber?.message}
                   />
@@ -173,22 +170,22 @@ const AddProviderForm = ({ onClose }: { onClose?: () => void }) => {
             </Grid>
 
             <Grid size={{ xs: 12, md: 6 }}>
-              <CustomLabel label="Location" variant="body5Medium" color="neutral.60" isRequired />
+              <CustomLabel label="Role" variant="body5Medium" color="neutral.60" isRequired />
               <Controller
-                name="location"
+                name="role"
                 control={control}
                 render={({ field }) => (
                   <>
                     <DropDownForText
-                      options={locationOptions}
+                      options={roleOptions}
                       value={field.value}
                       onChange={(e) => field.onChange(e.target.value)}
                       width="100%"
-                      placeholder="Select Location"
+                      placeholder="Select Role"
                     />
-                    {errors.location && (
+                    {errors.role && (
                       <Typography textAlign={"start"} sx={errorStyle} variant="caption">
-                        {errors.location?.message}
+                        {errors.role?.message}
                       </Typography>
                     )}
                   </>
@@ -196,10 +193,10 @@ const AddProviderForm = ({ onClose }: { onClose?: () => void }) => {
               />
             </Grid>
 
-            <Grid size={12}><Divider sx={{ my: "20px" }} /></Grid>
+            <Grid size={12}><Divider sx={{ my: "16px" }} /></Grid>
 
             <Grid size={12}>
-              <CustomLabel variant="body14PX500FW" label="License State" color="neutral.80" />
+              <Typography variant="body14PX500FW" color="neutral.80" sx={{ display:'block'}}>License State</Typography>
             </Grid>
 
             <Grid size={{ xs: 12, md: 4 }}>
@@ -235,7 +232,7 @@ const AddProviderForm = ({ onClose }: { onClose?: () => void }) => {
                   <CustomInput
                     {...field}
                     bgWhite
-                    placeholder="License Number"
+                    placeholder="Enter License Number"
                     hasError={!!errors.licenseNumber}
                     errorMessage={errors.licenseNumber?.message}
                   />
@@ -249,21 +246,22 @@ const AddProviderForm = ({ onClose }: { onClose?: () => void }) => {
                 name="expiryDate"
                 control={control}
                 render={({ field }) => (
-                  <CustomInput
-                    {...field}
-                    bgWhite
-                    placeholder="YYYY-MM-DD"
-                    hasError={!!errors.expiryDate}
-                    errorMessage={errors.expiryDate?.message}
-                  />
+                  // <CustomInput
+                  //   {...field}
+                  //   bgWhite
+                  //   placeholder="YYYY-MM-DD"
+                  //   hasError={!!errors.expiryDate}
+                  //   errorMessage={errors.expiryDate?.message}
+                  // />
+                  <CustomDatePicker {...field} value={field.value ?? ''} onDateChange={field.onChange} bgWhite/>
                 )}
               />
             </Grid>
 
-            <Grid size={12}><Divider sx={{ my: "20px" }} /></Grid>
+            <Grid size={12}><Divider sx={{ my: "16px" }} /></Grid>
 
             <Grid size={12}>
-              <CustomLabel variant="body14PX500FW" label="Physical Address" color="neutral.80" />
+               <Typography variant="body14PX500FW" color="neutral.80" sx={{ display:'block'}}>Physical Address</Typography>
             </Grid>
 
             <Grid size={{ xs: 12, md: 6 }}>
@@ -276,7 +274,7 @@ const AddProviderForm = ({ onClose }: { onClose?: () => void }) => {
                     {...field}
                     value={field.value ?? ""}
                     bgWhite
-                    placeholder="Address Line 1"
+                    placeholder="Enter Address Line 1"
                     hasError={!!errors.physicalAddress?.addressLine1}
                     errorMessage={errors.physicalAddress?.addressLine1?.message}
                   />
@@ -290,7 +288,7 @@ const AddProviderForm = ({ onClose }: { onClose?: () => void }) => {
                 name="physicalAddress.addressLine2"
                 control={control}
                 render={({ field }) => (
-                  <CustomInput {...field} value={field.value ?? ""} bgWhite placeholder="Address Line 2" />
+                  <CustomInput {...field} value={field.value ?? ""} bgWhite placeholder="Enter Address Line 2" />
                 )}
               />
             </Grid>
@@ -329,7 +327,7 @@ const AddProviderForm = ({ onClose }: { onClose?: () => void }) => {
                     {...field}
                     value={field.value ?? ""}
                     bgWhite
-                    placeholder="City"
+                    placeholder="Enter City"
                     hasError={!!errors.physicalAddress?.city}
                     errorMessage={errors.physicalAddress?.city?.message}
                   />
@@ -349,7 +347,7 @@ const AddProviderForm = ({ onClose }: { onClose?: () => void }) => {
                     bgWhite
                     isNumeric
                     maxLength={5}
-                    placeholder="ZIP Code"
+                    placeholder="Enter ZIP Code"
                     hasError={!!errors.physicalAddress?.zipCode}
                     errorMessage={errors.physicalAddress?.zipCode?.message}
                   />
@@ -357,11 +355,11 @@ const AddProviderForm = ({ onClose }: { onClose?: () => void }) => {
               />
             </Grid>
 
-            <Grid size={12}><Divider sx={{ my: "20px" }} /></Grid>
+            <Grid size={12}><Divider sx={{ my: "16px" }} /></Grid>
 
             <Grid size={12}>
               <Box display="flex" justifyContent="space-between" alignItems="center">
-                <CustomLabel variant="body14PX500FW" label="Billing Address" color="neutral.80" />              
+                <Typography variant="body14PX500FW" color="neutral.80" sx={{ display:'block'}}>Billing Address</Typography>           
                 <Box display="flex" alignItems="center" gap={1}>
                   <CustomSingleCheckBox checked={sameAsPhysical} handleChange={() => setSameAsPhysical(!sameAsPhysical)} />
                   <CustomLabel label="Same as Physical" />
@@ -379,7 +377,7 @@ const AddProviderForm = ({ onClose }: { onClose?: () => void }) => {
                     {...field}
                     value={field.value ?? ""}
                     bgWhite
-                    placeholder="Address Line 1"
+                    placeholder="Enter Address Line 1"
                     disableField={sameAsPhysical}
                     hasError={!!errors.billingAddress?.addressLine1}
                     errorMessage={errors.billingAddress?.addressLine1?.message}
@@ -398,7 +396,7 @@ const AddProviderForm = ({ onClose }: { onClose?: () => void }) => {
                     {...field}
                     value={field.value ?? ""}
                     bgWhite
-                    placeholder="Address Line 2"
+                    placeholder="Enter Address Line 2"
                     disableField={sameAsPhysical}
                   />
                 )}
@@ -440,7 +438,7 @@ const AddProviderForm = ({ onClose }: { onClose?: () => void }) => {
                     {...field}
                     value={field.value ?? ""}
                     bgWhite
-                    placeholder="City"
+                    placeholder="Enter City"
                     disableField={sameAsPhysical}
                     hasError={!!errors.billingAddress?.city}
                     errorMessage={errors.billingAddress?.city?.message}
@@ -461,7 +459,7 @@ const AddProviderForm = ({ onClose }: { onClose?: () => void }) => {
                     bgWhite
                     isNumeric
                     maxLength={5}
-                    placeholder="ZIP Code"
+                    placeholder="Enter ZIP Code"
                     disableField={sameAsPhysical}
                     hasError={!!errors.billingAddress?.zipCode}
                     errorMessage={errors.billingAddress?.zipCode?.message}

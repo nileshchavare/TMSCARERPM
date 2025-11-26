@@ -68,7 +68,7 @@ const ClinicDetails = () => {
 
     return (
         <>
-            <Box sx={{ p: '0px 16px 16px 16px' }}>
+            <Grid container width={"100%"} height={"100%"} flexDirection={"column"} flexWrap={'nowrap'} rowGap={2} p={2}>
                 <Card
                     sx={{
                         border: "1px solid",
@@ -173,8 +173,6 @@ const ClinicDetails = () => {
                         justifyContent: "space-between",
                         alignItems: { xs: "flex-start", md: "center" },
                         gap: 2,
-                        mb: 2,
-                        mt: 2
                     }}
                 >
                     <CustomTabs tabs={tabs} value={tabValue} onChange={setTabValue} />
@@ -223,8 +221,8 @@ const ClinicDetails = () => {
                     </Box>
                 </Box>
 
-                <Box sx={{ mt: 3 }}>{tabComponents[tabValue]}</Box>
-            </Box>
+                <Box >{tabComponents[tabValue]}</Box>
+            </Grid>
             <MainDrawer
                 drawerWidth="700px"
                 anchor="right"

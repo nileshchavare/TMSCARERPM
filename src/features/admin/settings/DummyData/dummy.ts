@@ -140,3 +140,80 @@ export const locationRows = [
   },
 ];
 
+// care team home page data
+  export const peopleList = [
+    { id: 1, name: "Dr. John Smith", role: "Primary Doctor", count: 11 },
+    { id: 2, name: "Dr. Emily Carter", role: "Cardiologist", count: 21 },
+    { id: 3, name: "Nurse Alex Brown", role: "Nurse", count: 67 },
+  ];
+
+  export const assignedClinics = [
+    { id: 1, clinicName: "Sunrise Health Clinic", personId: 1, count: 31 },
+    { id: 2, clinicName: "City Hospital", personId: 2, count: 24 },
+    { id: 3, clinicName: "Metro Care Center", personId: 3, count: 2 },
+    { id: 4, clinicName: "Green Valley Clinic", personId: 1, count: 24 },
+  ];
+
+  export const patientsData = [
+    {
+      id: 1,
+      clinicId: 1,
+      patientId: "P-1010",
+      patientName: "John Doe",
+      primaryProvider: "Dr. John Smith",
+      dateOfBirth: "1985-04-20",
+      lastReview: "2025-01-12",
+      gmi: 6.8,
+      timeInRange: 72,
+      status: "Active",
+    },
+    {
+      id: 2,
+      clinicId: 1,
+      patientId: "P-1011",
+      patientName: "Amy Wilson",
+      primaryProvider: "Dr. John Smith",
+      dateOfBirth: "1988-09-14",
+      lastReview: "2025-01-10",
+      gmi: 7.2,
+      timeInRange: 67,
+      status: "Pending",
+    },
+    {
+      id: 3,
+      clinicId: 2,
+      patientId: "P-1020",
+      patientName: "Robert Davis",
+      primaryProvider: "Dr. Emily Carter",
+      dateOfBirth: "1976-03-09",
+      lastReview: "2025-01-08",
+      gmi: 7.5,
+      timeInRange: 62,
+      status: "Active",
+    },
+    {
+      id: 4,
+      clinicId: 3,
+      patientId: "P-1030",
+      patientName: "Sophia Martinez",
+      primaryProvider: "Nurse Alex Brown",
+      dateOfBirth: "1992-11-22",
+      lastReview: "2025-01-07",
+      gmi: 6.5,
+      timeInRange: 81,
+      status: "Inactive",
+    },
+    {
+      id: 5,
+      clinicId: 4,
+      patientId: "P-1040",
+      patientName: "Daniel Lee",
+      primaryProvider: "Dr. John Smith",
+      dateOfBirth: "1980-02-10",
+      lastReview: "2025-01-05",
+      gmi: 7.0,
+      timeInRange: 70,
+      status: "Active",
+    },
+  ];
+

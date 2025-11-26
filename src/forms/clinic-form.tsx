@@ -1,7 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
-import { Box, Button, Divider, Grid, Typography } from "@mui/material";
+import { Box, Button, Divider, Grid, IconButton, Typography } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
 import { Controller, useFieldArray, useForm, type SubmitHandler } from "react-hook-form";
 import CustomSingleCheckBox from "../components/common-components/custom-checkbox/single-checkbox";
@@ -101,7 +101,7 @@ const AddClinicForm: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
   };
 
   return (
-    <DrawerBody padding={3} offset={footerRef?.current?.offsetHeight}>
+    <DrawerBody padding="16px 20px" offset={footerRef?.current?.offsetHeight} gap={1}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Typography
           variant="body14PX500FW"
@@ -343,7 +343,7 @@ const AddClinicForm: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
           {fields.map((item, index) => (
             <React.Fragment key={item.id}>
               <Grid size={{ xs: 12, md: 4 }}>
-                <CustomLabel variant="body5Medium" label="Name" color="neutral.60" isRequired />
+                {index === 0 && <CustomLabel variant="body5Medium" label="Name" color="neutral.60" isRequired />}
                 <Controller
                   name={`primaryContacts.${index}.name`}
                   control={control}
@@ -361,7 +361,7 @@ const AddClinicForm: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
               </Grid>
 
               <Grid size={{ xs: 12, md: 4 }}>
-                <CustomLabel variant="body5Medium" label="Email" color="neutral.60" isRequired />
+                {index === 0 && <CustomLabel variant="body5Medium" label="Email" color="neutral.60" isRequired />}
                 <Controller
                   name={`primaryContacts.${index}.email`}
                   control={control}
@@ -379,7 +379,7 @@ const AddClinicForm: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
               </Grid>
 
               <Grid size={{ xs: 12, md: 3 }}>
-                <CustomLabel variant="body5Medium" label="Phone Number" color="neutral.60" isRequired />
+                {index === 0 && <CustomLabel variant="body5Medium" label="Phone Number" color="neutral.60" isRequired />}
                 <Controller
                   name={`primaryContacts.${index}.phone`}
                   control={control}
@@ -398,12 +398,16 @@ const AddClinicForm: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
               </Grid>
 
               <Grid size={{ xs: 12, md: 1 }}>
-                <DeleteOutlineOutlinedIcon
-                  sx={{
-                    cursor: "pointer",
-                  }}
+                <IconButton
+                  disabled={index === 0}
                   onClick={() => handleRemovePrimaryContact(index)}
-                />
+                  sx={(theme) => ({
+                    color: theme.palette.neutral[70],
+                  })}
+                >
+                  <DeleteOutlineOutlinedIcon />
+                </IconButton>
+
               </Grid>
             </React.Fragment>
           ))}
@@ -573,7 +577,7 @@ const AddClinicForm: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
                     disableField={billingSameAsPhysical}
                   />
                   {errors.billingAddress?.state && (
-                   <Typography textAlign={"start"} sx={errorStyle} variant="caption">
+                    <Typography textAlign={"start"} sx={errorStyle} variant="caption">
                       {errors.billingAddress?.state?.message}
                     </Typography>
                   )}

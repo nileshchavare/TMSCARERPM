@@ -59,9 +59,9 @@ declare module "@mui/material/styles" {
     body16PX500FW: React.CSSProperties;
     inputSmallIcon: React.CSSProperties;
     body20PX500FW: React.CSSProperties;
+    body18PX600FW: React.CSSProperties;
   }
 }
-
 
 
 declare module "@mui/material/Typography" {
@@ -79,6 +79,7 @@ declare module "@mui/material/Typography" {
     body14PX500FW: true;
     body5Regular: true;
     body20PX500FW: true;
+    body18PX600FW: true;
   }
 }
 interface ExtendedTypographyOptions extends TypographyVariantsOptions {
@@ -94,6 +95,7 @@ interface ExtendedTypographyOptions extends TypographyVariantsOptions {
   body14PX500FW: React.CSSProperties;
   body5Regular: React.CSSProperties;
   body20PX500FW: React.CSSProperties;
+  body18PX600FW: React.CSSProperties;
 }
 
 declare module "@mui/material/styles" {
@@ -349,6 +351,12 @@ export const theme = createTheme({
       fontFamily: "Figtree, sans-serif",
       fontWeight: 500,
       fontSize: "1rem",        // 16px
+      lineHeight: "120%",
+    },
+    body18PX600FW: {
+      fontFamily: "Figtree, sans-serif",
+      fontWeight: 600,
+      fontSize: "18px",        // 16px
       lineHeight: "120%",
     },
     body5Regular: {

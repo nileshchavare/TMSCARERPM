@@ -1,4 +1,4 @@
-import { Box } from '@mui/material'
+import { Box, Grid } from '@mui/material'
 import React from 'react'
 import CustomTabs from '../../../components/common-components/custom-tab/CustomTabs'
 import { Controller, useForm } from 'react-hook-form';
@@ -47,7 +47,7 @@ const index = () => {
   }
   return (
     <>
-      <Box sx={{ p: 2 }}>
+     <Grid container width={"100%"} height={"100%"} flexDirection={"column"} flexWrap={'nowrap'} rowGap={1.5} p={2}>
         <Box
           sx={{
             display: "flex",
@@ -55,7 +55,6 @@ const index = () => {
             justifyContent: "space-between",
             alignItems: { xs: "flex-start", md: "center" },
             gap: 2,
-            mb: 3,
           }}
         >
           <CustomTabs tabs={tabs} value={tabValue} onChange={setTabValue} />
@@ -100,8 +99,8 @@ const index = () => {
             />
           </Box>}
         </Box>
-        <Box sx={{ mt: 3 }}>{tabComponents[tabValue]}</Box>
-      </Box>
+        <Box >{tabComponents[tabValue]}</Box>
+      </Grid>
       <MainDrawer
         drawerWidth='700px'
         anchor='right'

@@ -53,7 +53,7 @@ const Navbar: React.FC = () => {
   return (
     <>
       <AppBar
-        position="fixed"
+        position="sticky"
         sx={{
           backgroundColor: "#FFFFFF",
           boxShadow: "none",

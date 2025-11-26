@@ -13,6 +13,7 @@ import {
 } from "../features/admin/settings/constant";
 import { addStaffSchema, type AddStaffFormValues } from "./validations/schema";
 import { errorStyle } from "../components/common-components/custom-input/widgets/custom-input-styles";
+import { STATUS_OPTIONS } from "../features/admin/clinics/constant";
 
 const AddStaffForm = ({ onClose }: { onClose?: () => void }) => {
    const footerRef = useRef<HTMLDivElement>(null);
@@ -30,6 +31,7 @@ const AddStaffForm = ({ onClose }: { onClose?: () => void }) => {
       phoneNumber: "",
       role: "",
       location: "",
+      status:'',
     },
   });
 
@@ -44,7 +46,7 @@ const AddStaffForm = ({ onClose }: { onClose?: () => void }) => {
   };
 
   return (
-    <DrawerBody padding={3} offset={footerRef?.current?.offsetHeight}>
+   <DrawerBody  padding="16px 20px" offset={footerRef?.current?.offsetHeight} gap={1}>
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
       <Grid container spacing={2} >
         <Grid size={{ xs: 12, md: 6 }}>
@@ -55,7 +57,7 @@ const AddStaffForm = ({ onClose }: { onClose?: () => void }) => {
             render={({ field }) => (
               <CustomInput
                 {...field}
-                placeholder="Title"
+                placeholder="Enter Title"
                 value={field.value ?? ""}
                 bgWhite
                 hasError={!!errors.title}
@@ -73,7 +75,7 @@ const AddStaffForm = ({ onClose }: { onClose?: () => void }) => {
             render={({ field }) => (
               <CustomInput
                 {...field}
-                placeholder="Full name"
+                placeholder="Enter Name"
                 value={field.value ?? ""}
                 bgWhite
                 hasError={!!errors.name}
@@ -91,7 +93,7 @@ const AddStaffForm = ({ onClose }: { onClose?: () => void }) => {
             render={({ field }) => (
               <CustomInput
                 {...field}
-                placeholder="Email"
+                placeholder="Enter Email"
                 value={field.value ?? ""}
                 bgWhite
                 hasError={!!errors.email}
@@ -114,7 +116,7 @@ const AddStaffForm = ({ onClose }: { onClose?: () => void }) => {
             render={({ field }) => (
               <CustomInput
                 {...field}
-                placeholder="Phone Number"
+                placeholder="Enter Phone Number"
                 value={field.value ?? ""}
                 bgWhite
                 hasError={!!errors.phoneNumber}
@@ -138,7 +140,7 @@ const AddStaffForm = ({ onClose }: { onClose?: () => void }) => {
                   value={field.value ?? ""}
                   onChange={(e) => field.onChange(e.target.value)}
                   width="100%"
-                  placeholder="Select role"
+                  placeholder="Select Role"
                 />
                 {errors.role && (
                  <Typography textAlign={"start"} sx={errorStyle} variant="caption">
@@ -167,7 +169,7 @@ const AddStaffForm = ({ onClose }: { onClose?: () => void }) => {
                   value={field.value ?? ""}
                   onChange={(e) => field.onChange(e.target.value)}
                   width="100%"
-                  placeholder="Select location"
+                  placeholder="Select Location"
                 />
                 {errors.location && (
                   <Typography textAlign={"start"} sx={errorStyle} variant="caption">
@@ -178,6 +180,34 @@ const AddStaffForm = ({ onClose }: { onClose?: () => void }) => {
             )}
           />
         </Grid>
+          <Grid size={{ xs: 12, md: 6 }}>
+            <CustomLabel
+              variant="body5Medium"
+              label="Status"
+              color="neutral.60"
+              isRequired
+            />
+            <Controller
+              name="status"
+              control={control}
+              render={({ field }) => (
+                <>
+                  <DropDownForText
+                    options={STATUS_OPTIONS}
+                    value={field.value ?? ""}
+                    onChange={(e) => field.onChange(e.target.value)}
+                    width="100%"
+                    placeholder="Select Status"
+                  />
+                  {errors.status && (
+                    <Typography textAlign={"start"} sx={errorStyle} variant="caption">
+                      {errors.status?.message}
+                    </Typography>
+                  )}
+                </>
+              )}
+            />
+          </Grid>
       </Grid>
 
        <Box ref={footerRef} sx={stylesOfFooter}>
