@@ -217,3 +217,231 @@ export const locationRows = [
     },
   ];
 
+
+  export const allClinic = [
+  {
+    id: "CL001",
+    name: "Sunrise Health Clinic",
+    address: "123 Main Street, New York",
+    phone: "212-555-1234",
+  },
+  {
+    id: "CL002",
+    name: "Green Valley Medical Center",
+    address: "45 Greenway Road, California",
+    phone: "310-555-7788",
+  },
+  {
+    id: "CL003",
+    name: "CityCare Family Clinic",
+    address: "89 River Street, Texas",
+    phone: "469-555-9123",
+  },
+  {
+    id: "CL004",
+    name: "Wellness Primary Care",
+    address: "72 Hilltop Avenue, Florida",
+    phone: "305-555-6451",
+  },
+  {
+    id: "CL005",
+    name: "Lakeside Medical Group",
+    address: "250 Lakeshore Drive, Chicago",
+    phone: "773-555-2204",
+  },
+];
+
+export  const allPatients = [
+        { key: "P001", value: "John Doe" },
+        { key: "P002", value: "Sarah Smith" },
+        { key: "P003", value: "Michael Johnson" },
+        { key: "P004", value: "Emily Brown" },
+        { key: "P005", value: "David Wilson" },
+    ];
+
+export const groupRows = [
+  {
+    id: 1,
+    groupName: "John Doe",
+    GroupMember: "Administrator",
+  },
+  {
+    id: 2,
+    groupName: "Sarah Smith",
+    GroupMember: "Doctor",
+  },
+  {
+    id: 3,
+    groupName: "Michael Johnson",
+    GroupMember: "Nurse",
+  },
+  {
+    id: 4,
+    groupName: "Lisa Anderson",
+    GroupMember: "Receptionist",
+  },
+  {
+    id: 5,
+    groupName: "David Wilson",
+    GroupMember: "Billing Manager",
+  },
+];
+
+export const groupRow = [
+  {
+    id: 1,
+    groupName: "Admin Group",
+    GroupMember: "John Doe, Alex Martin",
+  },
+  {
+    id: 2,
+    groupName: "Billing Group",
+    GroupMember: "Sarah Smith, Tina Brown",
+  },
+  {
+    id: 3,
+    groupName: "Nurse Team",
+    GroupMember: "Michael Johnson, Emily Davis",
+  },
+  {
+    id: 4,
+    groupName: "Doctor Group",
+    GroupMember: "Dr. Robert Clark, Dr. Lisa Turner",
+  },
+  {
+    id: 5,
+    groupName: "Support Team",
+    GroupMember: "Kevin Lee, Olivia Johnson",
+  },
+  {
+    id: 6,
+    groupName: "Reception Group",
+    GroupMember: "Emma Wilson, Noah Patel",
+  },
+  {
+    id: 7,
+    groupName: "Pharmacy Team",
+    GroupMember: "Harper Collins, Liam Walker",
+  },
+  {
+    id: 8,
+    groupName: "Lab Technicians",
+    GroupMember: "Sophia Perez, Ethan Parker",
+  },
+  {
+    id: 9,
+    groupName: "IT Support",
+    GroupMember: "Aiden Brooks, Mason Rivera",
+  },
+  {
+    id: 10,
+    groupName: "HR Department",
+    GroupMember: "Ava Mitchell, Chloe Rogers",
+  },
+];
+
+
+export const patientRows = [
+  {
+    id: 1,
+    patientId: "P001",
+    patientName: "John Doe",
+    referringProvider: "Dr. Emily Carter",
+    clinicName: "Sunrise Health Clinic",
+    dateOfBirth: "1987-05-12",
+    contactNumber: "+1 555-123-4567",
+    email: "john.doe@example.com",
+  },
+  {
+    id: 2,
+    patientId: "P002",
+    patientName: "Sarah Williams",
+    referringProvider: "Dr. Robert Lee",
+    clinicName: "Northside Medical Center",
+    dateOfBirth: "1990-11-22",
+    contactNumber: "+1 555-234-5678",
+    email: "sarah.williams@example.com",
+  },
+  {
+    id: 3,
+    patientId: "P003",
+    patientName: "Michael Johnson",
+    referringProvider: "Dr. Hannah Kim",
+    clinicName: "Green Valley Clinic",
+    dateOfBirth: "1985-03-18",
+    contactNumber: "+1 555-345-6789",
+    email: "michael.johnson@example.com",
+  },
+  {
+    id: 4,
+    patientId: "P004",
+    patientName: "Emily Davis",
+    referringProvider: "Dr. Steven Clark",
+    clinicName: "CarePoint Family Clinic",
+    dateOfBirth: "1992-09-30",
+    contactNumber: "+1 555-456-7890",
+    email: "emily.davis@example.com",
+  },
+  {
+    id: 5,
+    patientId: "P005",
+    patientName: "David Wilson",
+    referringProvider: "Dr. Laura Perez",
+    clinicName: "Wellness Medical Group",
+    dateOfBirth: "1981-07-14",
+    contactNumber: "+1 555-567-8901",
+    email: "david.wilson@example.com",
+  },
+
+  {
+    id: 6,
+    patientId: "P006",
+    patientName: "Olivia Brown",
+    referringProvider: "Dr. Anthony Scott",
+    clinicName: "HealthWay Clinic",
+    dateOfBirth: "1994-02-10",
+    contactNumber: "+1 555-678-9012",
+    email: "olivia.brown@example.com",
+  },
+  {
+    id: 7,
+    patientId: "P007",
+    patientName: "Ethan Miller",
+    referringProvider: "Dr. Grace Cooper",
+    clinicName: "Riverbend Medical Center",
+    dateOfBirth: "1989-08-25",
+    contactNumber: "+1 555-789-0123",
+    email: "ethan.miller@example.com",
+  },
+  {
+    id: 8,
+    patientId: "P008",
+    patientName: "Sophia Anderson",
+    referringProvider: "Dr. Charles Morgan",
+    clinicName: "Metro Healthcare",
+    dateOfBirth: "1993-01-05",
+    contactNumber: "+1 555-890-1234",
+    email: "sophia.anderson@example.com",
+  },
+  {
+    id: 9,
+    patientId: "P009",
+    patientName: "Liam Martinez",
+    referringProvider: "Dr. Isabella Thomas",
+    clinicName: "Premier Family Clinic",
+    dateOfBirth: "1986-04-27",
+    contactNumber: "+1 555-901-2345",
+    email: "liam.martinez@example.com",
+  },
+  {
+    id: 10,
+    patientId: "P010",
+    patientName: "Ava Thompson",
+    referringProvider: "Dr. Benjamin Harris",
+    clinicName: "Valley View Medical",
+    dateOfBirth: "1991-10-16",
+    contactNumber: "+1 555-012-3456",
+    email: "ava.thompson@example.com",
+  },
+];
+

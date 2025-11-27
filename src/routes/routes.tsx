@@ -5,7 +5,7 @@ import PrivateRoute from "../layout/private-route";
 import UserLogin from "../features/auth/pages/login/userLogin";
 import Clinics from "../features/admin/clinics/clinics-tab";
 import Dashboard from "../features/admin/dashboard/dashboard";
-import Patients from "../features/admin/patients/index";
+import Patients from "../features/admin/patients/patient-list";
 import CareTeam from "../features/admin/care-team/care-team-";
 import Settings from "../features/admin/settings/setting-tab";
 import ClinicDetails from "../features/admin/clinics/clinic-details";

@@ -4,8 +4,10 @@ import {
   MenuItem,
   Select,
   type SelectChangeEvent,
+  type SxProps,
   Typography,
 } from "@mui/material";
+import type { Theme } from "@emotion/react";
 
 type Option = { key: string; value: string };
 
@@ -16,6 +18,8 @@ type DropDownForTextProps = {
   width?: string;
   disableField?: boolean;
   placeholder?: string;
+  formSx?: SxProps<Theme>;
+  selectSx?: SxProps<Theme>;
 };
 
 export default function DropDownForText({
@@ -25,6 +29,8 @@ export default function DropDownForText({
   width,
   disableField,
   placeholder='Select Options',
+    formSx = {},
+  selectSx = {},
 }: DropDownForTextProps) {
   const [value, setValue] = React.useState<string>("");
 
@@ -44,6 +50,7 @@ export default function DropDownForText({
       variant="outlined"
       sx={{
         minWidth: width || "150px",
+          ...formSx, 
       }}
     >
       <Select
@@ -78,6 +85,7 @@ export default function DropDownForText({
 
           fontSize: "14px",
           color: "neutral.80",
+          ...selectSx,
         }}
       >
         {options.map((option) => (

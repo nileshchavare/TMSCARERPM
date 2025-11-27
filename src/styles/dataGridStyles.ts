@@ -4,7 +4,7 @@ export const dataGridStyles: SxProps<Theme> = (theme) => ({
   border: "1px solid #E9E9E9",
   borderRadius: 2,
   fontFamily: "'Figtree', sans-serif",
-  height: "600px",
+  height: "631px",
   "& .MuiDataGrid-columnHeaders": {
     backgroundColor: theme.palette.neutral?.[1] ?? "#F5F7FA",
     color: theme.palette.neutral?.[60] ?? "#556",

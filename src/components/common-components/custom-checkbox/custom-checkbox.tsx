@@ -8,8 +8,8 @@ import { theme } from "../../../utils/theme";
 
 // import { toCamelCase } from "@/utils/toCamelCase";
 
-import CheckboxCheckedLogo from "../../assets/image_svg/icons/_Checkbox base.svg";
-import CheckboxLogo from "../../assets/image_svg/icons/check_box_outline_blank_24dp_9B9D9F_FILL1_wght400_GRAD0_opsz24.svg";
+import CheckboxCheckedLogo from "../../../assets/icons/_Checkbox base.svg";
+import CheckboxLogo from "../../../assets/icons/check_box_outline_blank_24dp_9B9D9F_FILL1_wght400_GRAD0_opsz24.svg";
 
 export type CheckedArray = {
   checked: boolean;
@@ -110,7 +110,7 @@ const CustomCheckBox = (props: CustomCheckBoxType) => {
           container
           justifyContent={"flex-start"}
           flexDirection={oriantation === "vertical" ? "column" : "row"}
-          columnGap={"4px"}
+          columnGap={"16px"}
           width={width ? width : oriantation === "vertical" ? "100%" : width}
           size={size}
           key={val.key}

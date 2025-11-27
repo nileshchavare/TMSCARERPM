@@ -1,0 +1,15 @@
+.custom-autocomplete .MuiAutocomplete-popupIndicator,
+.custom-autocomplete .MuiAutocomplete-clearIndicator {
+  display: none !important;
+}
+
+/* Prevent vertical expansion when selecting multiple values - only when enabled */
+.prevent-vertical-expansion .MuiAutocomplete-inputRoot {
+  flex-wrap: nowrap !important;
+  overflow: hidden !important;
+}
+
+.prevent-vertical-expansion .MuiAutocomplete-inputRoot.Mui-focused {
+  flex-wrap: nowrap !important;
+  overflow: hidden !important;
+}

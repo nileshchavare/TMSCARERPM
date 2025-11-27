@@ -80,6 +80,14 @@ const AddClinicForm: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
   useEffect(() => {
     if (billingSameAsPhysical) {
       setValue("billingAddress", { ...physicalAddr });
+    } else {
+      setValue('billingAddress', {
+        addressLine1: "",
+        addressLine2: "",
+        state: "",
+        city: "",
+        zipCode: "",
+      })
     }
   }, [billingSameAsPhysical, physicalAddr]);
 

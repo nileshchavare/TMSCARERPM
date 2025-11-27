@@ -12,14 +12,15 @@ import CommonStatusChip from "../../../components/common-components/common-statu
 
 interface AssignedPatientListProps {
   patients: any[];
+  openAssignPatient:()=>void
 }
 
-const AssignedPatientList = ({ patients }: AssignedPatientListProps) => {
+const AssignedPatientList = ({ patients,openAssignPatient }: AssignedPatientListProps) => {
   const [archive, setArchive] = useState(false);
   const [val, setVal] = useState("");
 
   const handleArchiveChange = () => setArchive(!archive);
-  const handleSearch = () => console.log(val);
+  const handleSearch = () => openAssignPatient()
 
 
 const rows = patients;

@@ -47,6 +47,24 @@ export interface AddProviderFormValues {
   };
 }
 
+export interface GroupRow {
+    groupName?: string;
+    GroupMember: string;
+    action?: string;
+}
+
+export interface PatientRow {
+  id: number;
+  patientId: string;
+  patientName: string;
+  referringProvider: string;
+  clinicName: string;
+  dateOfBirth: string;
+  contactNumber: string;
+  email: string;
+}
+
+
 
 
 
