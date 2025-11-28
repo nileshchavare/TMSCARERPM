@@ -10,6 +10,7 @@ import CareTeam from "../features/admin/care-team/care-team-";
 import Settings from "../features/admin/settings/setting-tab";
 import ClinicDetails from "../features/admin/clinics/clinic-details";
 import MainLayout from "../layout/main-layout";
+import Profile from "../features/admin/navbar-menu/profile";
 
 const ForgotPassword = lazy(
   () => import("../features/auth/pages/login/ForgotPassword")
@@ -65,7 +66,7 @@ export const privateRoutes = createBrowserRouter([
     ],
   },
   {
-    path: "app",
+    path: "tps",
     element: (
       <PrivateRoute>
         <MainLayout>
@@ -97,6 +98,50 @@ export const privateRoutes = createBrowserRouter([
       {
         path: "settings",
         element: <Settings />,
+      },
+      {
+        path: "profile",
+        element: <Profile />,
+      },
+    ],
+  },
+    {
+    path: "clinic",
+    element: (
+      <PrivateRoute>
+        <MainLayout>
+          <Outlet />
+        </MainLayout>
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        path: "dashboard",
+        element: <Dashboard />,
+      },
+      {
+        path: "patients",
+        element: <Patients />,
+      },
+      {
+        path: "clinics",
+        element: <Clinics />,
+      },
+      {
+        path: "clinic-details/:id",
+        element: <ClinicDetails />
+      },
+      {
+        path: "care-team",
+        element: <CareTeam />,
+      },
+      {
+        path: "settings",
+        element: <Settings />,
+      },
+      {
+        path: "profile",
+        element: <Profile />,
       },
     ],
   },

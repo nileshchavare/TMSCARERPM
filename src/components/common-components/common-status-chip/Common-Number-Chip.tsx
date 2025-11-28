@@ -1,4 +1,5 @@
 import { Chip, type ChipProps } from "@mui/material";
+import { type Theme } from "@mui/material/styles";
 
 interface CommonNumberChipProps {
   label: number;
@@ -7,7 +8,7 @@ interface CommonNumberChipProps {
 
 const CommonNumberChip = ({ label, size = "small" }: CommonNumberChipProps) => {
 
-  const getColors = (theme: any) => {
+  const getColors = (theme: Theme) => {
     if (label >= 0 && label <= 10) {
       return {
         bg: theme.palette.positive[5],

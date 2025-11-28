@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   AppBar,
   Toolbar,
@@ -15,22 +15,44 @@ import {
   ListItemButton,
   ListItemText,
 } from "@mui/material";
-
+import PersonIcon from "@mui/icons-material/Person";
+import LogoutIcon from "@mui/icons-material/Logout";
 import MenuIcon from "@mui/icons-material/Menu";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import SearchIcon from "@mui/icons-material/Search";
 import NotificationsIcon from '@mui/icons-material/NotificationsOutlined';
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, NavLink } from "react-router-dom";
 
 import Logo from "../../../assets/logos/logo.svg";
+import DropDownForText from "../drop-dwon-for-text/drop-down-for-text";
+import { clinicOptions } from "../../../features/admin/clinics/constant";
 
 const pages = ["Dashboard", "Patients", "Clinics", "Care Team", "Settings"];
-const settings = ["Profile", "Account", "Logout"];
+type SettingKey = "profile" | "logout";
+
+interface SettingItem {
+  label: string;
+  key: SettingKey;
+  icon: React.ReactNode;
+}
+
+const settings: SettingItem[] = [
+  { label: "View Profile", key: "profile", icon: <PersonIcon /> },
+  { label: "Logout", key: "logout", icon: <LogoutIcon /> },
+];
+
+
+const settingsLinks: Record<SettingKey, string> = {
+  profile: "/app/profile",
+  logout: "/app/logout",
+};
+
+
+
 
 const Navbar: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
-
+  const [clinic, setClinic] = useState("");
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
@@ -66,7 +88,7 @@ const Navbar: React.FC = () => {
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
-              minHeight: { xs: 50, sm: 50, md: 50, lg: 50 }, 
+              minHeight: { xs: 50, sm: 50, md: 50, lg: 50 },
             }}
           >
             <Box sx={{ display: "flex", alignItems: "center", gap: 2, flexGrow: 1 }}>
@@ -85,7 +107,7 @@ const Navbar: React.FC = () => {
               />
               <Box
                 sx={{
-                  display: { xs: "none", md: "flex" },
+                  display: { xs: "none",sm:'none', md: "flex" },
                   gap: 2,
                 }}
               >
@@ -109,16 +131,16 @@ const Navbar: React.FC = () => {
 
                         "&::after": isActive
                           ? {
-                              content: '""',
-                              position: "absolute",
-                              bottom: 0,
-                              left: 0,
-                              right: 0,
-                              height: "1.5px",
-                              backgroundColor: "primary.0",
-                              borderRadius: 2,
-                              borderBottom: "2px solid ",
-                            }
+                            content: '""',
+                            position: "absolute",
+                            bottom: 0,
+                            left: 0,
+                            right: 0,
+                            height: "1.5px",
+                            backgroundColor: "primary.0",
+                            borderRadius: 2,
+                            borderBottom: "2px solid ",
+                          }
                           : {},
 
                         "&:hover": {
@@ -134,13 +156,20 @@ const Navbar: React.FC = () => {
                 })}
               </Box>
             </Box>
-            <Box sx={{ display: "flex", alignItems: "center", gap:'0.5rem' }}>
+            <Box sx={{ display: "flex", alignItems: "center", gap: '0.5rem' }}>
               <IconButton>
-                <SearchIcon sx={(theme)=>({color:theme.palette.neutral[70]})} />
+                <DropDownForText
+                  options={clinicOptions}
+                  value={clinic}
+                  onChange={(e) => setClinic(e.target.value)}
+                  width="100%"
+                  placeholder="Select Clinic"
+                />
+
               </IconButton>
 
               <IconButton>
-                <NotificationsIcon sx={(theme)=>({color:theme.palette.neutral[70]})} />
+                <NotificationsIcon sx={(theme) => ({ color: theme.palette.neutral[70] })} />
               </IconButton>
 
               <Box
@@ -166,10 +195,10 @@ const Navbar: React.FC = () => {
                 >
                   {initials}
                 </Avatar>
-                <Typography variant="body14PX400FW" sx={(theme)=>({color:theme.palette.neutral[70]})} >
+                <Typography variant="body14PX400FW" sx={(theme) => ({ color: theme.palette.neutral[70] })} >
                   {fullName}
                 </Typography>
-                <KeyboardArrowDownIcon sx={(theme)=>({ color: theme.palette.neutral[70],width:'20px' })} />
+                <KeyboardArrowDownIcon sx={(theme) => ({ color: theme.palette.neutral[70], width: '20px' })} />
               </Box>
 
               <Menu
@@ -179,11 +208,29 @@ const Navbar: React.FC = () => {
                 anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
                 transformOrigin={{ vertical: "top", horizontal: "right" }}
               >
-                {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography>{setting}</Typography>
+                {settings.map((item) => (
+                  <MenuItem key={item.key} onClick={handleCloseUserMenu}>
+                    <NavLink
+                      to={settingsLinks[item.key]}
+                      style={{
+                        textDecoration: "none",
+                        color: "inherit",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "10px",
+                      }}
+                    >
+                      {/* ICON WITH CUSTOM COLOR */}
+                      <span style={{ color: item.label === 'View Profile' ? "#373D41" : 'red' }}>
+                        {item.icon}
+                      </span>
+
+                      {/* LABEL */}
+                      {item.label}
+                    </NavLink>
                   </MenuItem>
                 ))}
+
               </Menu>
             </Box>
           </Toolbar>

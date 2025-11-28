@@ -50,7 +50,6 @@ const MainLayout = (props: React.PropsWithChildren) => {
   // }, [navigate, location.pathname]);
 
   return (
-    <>
       <Grid container height={"100vh"}>
         <Grid
           container
@@ -71,7 +70,6 @@ const MainLayout = (props: React.PropsWithChildren) => {
           </Grid>
         </Grid>
       </Grid>
-    </>
   );
 };
 

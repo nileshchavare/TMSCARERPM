@@ -1,4 +1,4 @@
-import {type ChangeEvent,type JSX,type SyntheticEvent,type UIEvent, useEffect, useState } from "react";
+import {type ChangeEvent,type JSX,type SyntheticEvent,type UIEvent, useEffect, useMemo, useState } from "react";
 
 import SearchIcon from "@mui/icons-material/Search";
 import { Autocomplete, CircularProgress, Paper, Typography, alpha } from "@mui/material";
@@ -25,7 +25,6 @@ export type Options2 = { label: string; value: string }[];
 export type CustomAutoCompleteOptions = {
   key: string;
   value: string;
-  // eslint-disable-next-line no-undef
   child?: JSX.Element;
   info?: string;
   hide?: boolean;
@@ -107,7 +106,14 @@ const CustomAutoComplete = (props: CustomAutoCompleteProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const _options: Options = [...options];
-  const optionsList = _options.filter((opt) => !opt.hide).map((opt) => opt);
+//   const _options = useMemo(() => {
+//   return props.options.map((opt) => ({ ...opt }));
+// }, [props.options]);
+
+  // const optionsList = _options.filter((opt) => !opt.hide).map((opt) => opt);
+  const optionsList = useMemo(() => {
+  return _options.filter((opt) => !opt.hide);
+}, [_options]);
 
   const [defaultOption, setDefaultOption] = useState(value ? _options.find((opt) => opt.key === value) || null : null);
 

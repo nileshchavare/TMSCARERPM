@@ -65,3 +65,16 @@ export type ClinicRow = {
   contactNumber?: string;
   status?: "active" | "inactive" | "pending";
 };
+
+export const clinicOptions = [
+  { key: "C001", value: "Sunrise Health Clinic" },
+  { key: "C002", value: "Northside Medical Center" },
+  { key: "C003", value: "Green Valley Clinic" },
+  { key: "C004", value: "CarePoint Family Clinic" },
+  { key: "C005", value: "Wellness Medical Group" },
+  { key: "C006", value: "Riverbend Medical Center" },
+  { key: "C007", value: "Metro Healthcare" },
+  { key: "C008", value: "Premier Family Clinic" },
+  { key: "C009", value: "Valley View Medical" },
+];
+
