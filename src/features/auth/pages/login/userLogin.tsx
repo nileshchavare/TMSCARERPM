@@ -31,10 +31,9 @@ const UserLogin: React.FC<UserLoginProps> = () => {
     resolver: yupResolver(loginSchema),
     mode: "onChange",
   });
-
-  const onSubmit = (data: LoginDataType) => {
-    console.log(data);
-    navigate("/app/dashboard");
+  // use data:LoginDataType
+  const onSubmit = () => {
+    navigate("/tps/dashboard");
     reset();
   };
   return (
@@ -87,7 +86,7 @@ const UserLogin: React.FC<UserLoginProps> = () => {
                     placeholder="Enter Email"
                     hasError={!!errors.email}
                     errorMessage={(errors.email?.message as string) || ""}
-                    onChange={field.onChange} 
+                    onChange={field.onChange}
                     name={field.name}
                     value={field.value}
                     hasStartMailIcon
@@ -108,7 +107,7 @@ const UserLogin: React.FC<UserLoginProps> = () => {
                     isPassword
                     hasError={!!errors.password}
                     errorMessage={errors.password?.message}
-                    onChange={field.onChange} 
+                    onChange={field.onChange}
                     name={field.name}
                     value={field.value}
                   />

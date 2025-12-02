@@ -19,7 +19,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import LogoutIcon from "@mui/icons-material/Logout";
 import MenuIcon from "@mui/icons-material/Menu";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import NotificationsIcon from '@mui/icons-material/NotificationsOutlined';
+import NotificationsIcon from "@mui/icons-material/NotificationsOutlined";
 import { useNavigate, useLocation, NavLink } from "react-router-dom";
 
 import Logo from "../../../assets/logos/logo.svg";
@@ -40,14 +40,10 @@ const settings: SettingItem[] = [
   { label: "Logout", key: "logout", icon: <LogoutIcon /> },
 ];
 
-
 const settingsLinks: Record<SettingKey, string> = {
-  profile: "/app/profile",
-  logout: "/app/logout",
+  profile: "/tps/profile",
+  logout: "/tps/logout",
 };
-
-
-
 
 const Navbar: React.FC = () => {
   const navigate = useNavigate();
@@ -55,9 +51,8 @@ const Navbar: React.FC = () => {
   const [clinic, setClinic] = useState("");
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
-    null
+    null,
   );
-
 
   const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
 
@@ -91,7 +86,14 @@ const Navbar: React.FC = () => {
               minHeight: { xs: 50, sm: 50, md: 50, lg: 50 },
             }}
           >
-            <Box sx={{ display: "flex", alignItems: "center", gap: 2, flexGrow: 1 }}>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: 2,
+                flexGrow: 1,
+              }}
+            >
               <IconButton
                 sx={{ display: { xs: "flex", md: "none" } }}
                 onClick={handleDrawerToggle}
@@ -102,17 +104,17 @@ const Navbar: React.FC = () => {
                 component="img"
                 src={Logo}
                 alt="Logo"
-                onClick={() => navigate("/app/dashboard")}
+                onClick={() => navigate("/tps/dashboard")}
                 sx={{ height: 42, cursor: "pointer" }}
               />
               <Box
                 sx={{
-                  display: { xs: "none",sm:'none', md: "flex" },
+                  display: { xs: "none", sm: "none", md: "flex" },
                   gap: 2,
                 }}
               >
                 {pages.map((page) => {
-                  const path = `/app/${page.toLowerCase().replace(" ", "-")}`;
+                  const path = `/tps/${page.toLowerCase().replace(" ", "-")}`;
                   const isActive = location.pathname === path;
 
                   return (
@@ -131,16 +133,16 @@ const Navbar: React.FC = () => {
 
                         "&::after": isActive
                           ? {
-                            content: '""',
-                            position: "absolute",
-                            bottom: 0,
-                            left: 0,
-                            right: 0,
-                            height: "1.5px",
-                            backgroundColor: "primary.0",
-                            borderRadius: 2,
-                            borderBottom: "2px solid ",
-                          }
+                              content: '""',
+                              position: "absolute",
+                              bottom: 0,
+                              left: 0,
+                              right: 0,
+                              height: "1.5px",
+                              backgroundColor: "primary.0",
+                              borderRadius: 2,
+                              borderBottom: "2px solid ",
+                            }
                           : {},
 
                         "&:hover": {
@@ -156,7 +158,7 @@ const Navbar: React.FC = () => {
                 })}
               </Box>
             </Box>
-            <Box sx={{ display: "flex", alignItems: "center", gap: '0.5rem' }}>
+            <Box sx={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
               <IconButton>
                 <DropDownForText
                   options={clinicOptions}
@@ -165,11 +167,12 @@ const Navbar: React.FC = () => {
                   width="100%"
                   placeholder="Select Clinic"
                 />
-
               </IconButton>
 
               <IconButton>
-                <NotificationsIcon sx={(theme) => ({ color: theme.palette.neutral[70] })} />
+                <NotificationsIcon
+                  sx={(theme) => ({ color: theme.palette.neutral[70] })}
+                />
               </IconButton>
 
               <Box
@@ -195,10 +198,18 @@ const Navbar: React.FC = () => {
                 >
                   {initials}
                 </Avatar>
-                <Typography variant="body14PX400FW" sx={(theme) => ({ color: theme.palette.neutral[70] })} >
+                <Typography
+                  variant="body14PX400FW"
+                  sx={(theme) => ({ color: theme.palette.neutral[70] })}
+                >
                   {fullName}
                 </Typography>
-                <KeyboardArrowDownIcon sx={(theme) => ({ color: theme.palette.neutral[70], width: '20px' })} />
+                <KeyboardArrowDownIcon
+                  sx={(theme) => ({
+                    color: theme.palette.neutral[70],
+                    width: "20px",
+                  })}
+                />
               </Box>
 
               <Menu
@@ -221,7 +232,12 @@ const Navbar: React.FC = () => {
                       }}
                     >
                       {/* ICON WITH CUSTOM COLOR */}
-                      <span style={{ color: item.label === 'View Profile' ? "#373D41" : 'red' }}>
+                      <span
+                        style={{
+                          color:
+                            item.label === "View Profile" ? "#373D41" : "red",
+                        }}
+                      >
                         {item.icon}
                       </span>
 
@@ -230,7 +246,6 @@ const Navbar: React.FC = () => {
                     </NavLink>
                   </MenuItem>
                 ))}
-
               </Menu>
             </Box>
           </Toolbar>
@@ -242,7 +257,7 @@ const Navbar: React.FC = () => {
         <Box sx={{ width: 250, mt: 2 }}>
           <List>
             {pages.map((page) => {
-              const path = `/app/${page.toLowerCase().replace(" ", "-")}`;
+              const path = `/tps/${page.toLowerCase().replace(" ", "-")}`;
               const isActive = location.pathname === path;
 
               return (
@@ -254,7 +269,9 @@ const Navbar: React.FC = () => {
                   }}
                   sx={{
                     backgroundColor: isActive ? "#DDEDFF" : "transparent",
-                    borderLeft: isActive ? "4px solid #1976d2" : "4px solid transparent",
+                    borderLeft: isActive
+                      ? "4px solid #1976d2"
+                      : "4px solid transparent",
                   }}
                 >
                   <ListItemText

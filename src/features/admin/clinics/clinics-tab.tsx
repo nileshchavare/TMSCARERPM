@@ -13,9 +13,21 @@ import AllClinicList from "./clinic-list";
 import MainDrawer from "../../../components/ui/MainDrawer";
 import { useDrawer } from "../../../hooks/useDrawer";
 
+const DrawerContent = ({
+  identifier,
+  onClose,
+}: {
+  identifier: string;
+  onClose?: () => void;
+}) => {
+  if (identifier === "drawer-add-clinic") {
+    return <AddClinicForm onClose={onClose} />;
+  }
+  return <></>;
+};
+
 const Clinics: React.FC = () => {
   const [tabValue, setTabValue] = React.useState(0);
-
   const { control } = useForm({
     defaultValues: {
       search: "",
@@ -36,31 +48,27 @@ const Clinics: React.FC = () => {
   };
 
   const tabs = ["All Clinics", "Archived"];
-
-  const tabComponents = [<AllClinicList />, <AllClinicList />];
-  const DrawerContent = ({
-    identifier,
-    onClose,
-  }: {
-    identifier: string;
-    onClose?: () => void;
-  }) => {
-    if (identifier === "drawer-add-clinic") {
-      return <AddClinicForm onClose={onClose} />;
-    }
-    return <></>;
-  };
+  const tabComponents = [AllClinicList, AllClinicList];
+  const ActiveTab = tabComponents[tabValue];
 
   return (
     <>
-      <Grid container width={"100%"} height={"100%"} flexDirection={"column"} flexWrap={'nowrap'} rowGap={2} p={2}>
+      <Grid
+        container
+        width={"100%"}
+        height={"100%"}
+        flexDirection={"column"}
+        flexWrap={"nowrap"}
+        rowGap={2}
+        p={2}
+      >
         <Box
           sx={{
             display: "flex",
             flexDirection: { xs: "column", md: "row" },
             justifyContent: "space-between",
             alignItems: { xs: "flex-start", md: "center" },
-            gap: 2.,
+            gap: 2,
           }}
         >
           <CustomTabs tabs={tabs} value={tabValue} onChange={setTabValue} />
@@ -82,7 +90,7 @@ const Clinics: React.FC = () => {
                   placeholder="Search Clinic Name"
                   bgWhite
                   hasStartSearchIcon
-                  onDebounceCall={(v) => console.log("Searching:", v)}
+                  onDebounceCall={() => {}}
                 />
               )}
             />
@@ -97,7 +105,9 @@ const Clinics: React.FC = () => {
           </Box>
         </Box>
 
-        <Box >{tabComponents[tabValue]}</Box>
+        <Box>
+          <ActiveTab />
+        </Box>
       </Grid>
       <MainDrawer
         drawerWidth="700px"

@@ -1,41 +1,52 @@
 import { Avatar, Box, Button, Divider, Grid, Typography } from "@mui/material";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, type UseFormGetValues } from "react-hook-form";
 import { useState } from "react";
 import CustomLabel from "../../../components/common-components/custom-label/custom-label";
 import CustomInput from "../../../components/common-components/custom-input/custom-input";
+import type {
+  CommonFieldProps,
+  EditProfileFormType,
+  PasswordFormType,
+} from "./constant";
 
+// ---------------- UTILS ----------------
 
 const titleCase = (str?: string) => {
   if (!str) return "";
-
   return str
     .toLowerCase()
     .trim()
     .replace(/\s+/g, " ")
     .split(" ")
     .map((word) =>
-      word.length > 0
-        ? word[0].toUpperCase() + word.slice(1)
-        : ""
+      word.length > 0 ? word[0].toUpperCase() + word.slice(1) : "",
     )
     .join(" ");
 };
-const formatLabel = (str: string) => {
-  return str
+
+const formatLabel = (str: string) =>
+  str
     .replace(/_/g, " ")
     .toLowerCase()
     .replace(/\b\w/g, (l) => l.toUpperCase());
-};
 
-
-
-const ChangePasswordFields = ({ control, errors }: any) => (
+// Change Password Fields
+const ChangePasswordFields = ({
+  control,
+  errors,
+}: CommonFieldProps<PasswordFormType>) => (
   <Grid container spacing={2}>
     {["current_Password", "new_Password", "confirm_Password"].map((field) => (
       <Grid size={{ xs: 12 }} key={field}>
-        <CustomLabel label={formatLabel(titleCase(field))} variant="body14PX400FW" color="neutral.50" isRequired />
+        <CustomLabel
+          label={formatLabel(titleCase(field))}
+          variant="body14PX400FW"
+          color="neutral.50"
+          isRequired
+        />
+
         <Controller
-          name={field}
+          name={field as keyof PasswordFormType}
           control={control}
           render={({ field: f }) => (
             <CustomInput
@@ -43,7 +54,7 @@ const ChangePasswordFields = ({ control, errors }: any) => (
               isPassword
               bgWhite
               placeholder={`Enter ${field}`}
-              hasError={!!errors[field]}
+              hasError={!!errors[field as keyof PasswordFormType]}
             />
           )}
         />
@@ -52,21 +63,31 @@ const ChangePasswordFields = ({ control, errors }: any) => (
   </Grid>
 );
 
-const ProfileEditFields = ({ control, errors }: any) => (
+// Edit Profile Fields
+const ProfileEditFields = ({
+  control,
+  errors,
+}: CommonFieldProps<EditProfileFormType>) => (
   <Grid container spacing={2}>
     {["name", "email", "phoneNumber", "userType", "role"].map((field) => (
       <Grid size={{ xs: 12, md: 6 }} key={field}>
-        <CustomLabel label={titleCase(field)} variant="body14PX400FW" color="neutral.50" isRequired />
+        <CustomLabel
+          label={titleCase(field)}
+          variant="body14PX400FW"
+          color="neutral.50"
+          isRequired
+        />
+
         <Controller
-          name={field}
+          name={field as keyof EditProfileFormType}
           control={control}
           render={({ field: f }) => (
             <CustomInput
               {...f}
               bgWhite
               placeholder={`Enter ${field}`}
-              hasError={!!errors[field]}
-              errorMessage={errors[field]?.message}
+              hasError={!!errors[field as keyof EditProfileFormType]}
+              errorMessage={errors[field as keyof EditProfileFormType]?.message}
             />
           )}
         />
@@ -75,34 +96,75 @@ const ProfileEditFields = ({ control, errors }: any) => (
   </Grid>
 );
 
-const ProfileView = ({ getValues }: any) => (
+// ----------------VIEW COMPONENTS ----------------
+
+interface ProfileViewProps {
+  getValues: UseFormGetValues<EditProfileFormType>;
+}
+
+const ProfileView = ({ getValues }: ProfileViewProps) => (
   <Grid container spacing={2}>
     <Field label="Name" value={getValues("name")} />
     <Field label="Email" value={getValues("email")} />
 
-    <Grid size={{ xs: 12 }}><Divider /></Grid>
+    <Grid size={{ xs: 12 }}>
+      <Divider />
+    </Grid>
 
     <Field label="Phone Number" value={getValues("phoneNumber")} />
     <Field label="Role Type" value={getValues("userType")} />
 
-    <Grid size={{ xs: 12 }} ><Divider /></Grid>
+    <Grid size={{ xs: 12 }}>
+      <Divider />
+    </Grid>
 
     <Field label="Role" value={getValues("role")} />
   </Grid>
 );
 
-const Field = ({ label, value }: any) => (
-  <Grid size={{ xs: 12, md: 6 }} >
-    <Typography sx={(theme) => ({ fontWeight: 400, fontSize: '14px', color: theme.palette.neutral[50] })} >{label}</Typography>
-    <Typography sx={(theme) => ({ fontWeight: 400, fontSize: '14px', color: theme.palette.neutral[80] })}>{value}</Typography>
+interface FieldProps {
+  label: string;
+  value: string;
+}
+
+const Field = ({ label, value }: FieldProps) => (
+  <Grid size={{ xs: 12, md: 6 }}>
+    <Typography
+      sx={(theme) => ({
+        fontWeight: 400,
+        fontSize: "14px",
+        color: theme.palette.neutral[50],
+      })}
+    >
+      {label}
+    </Typography>
+    <Typography
+      sx={(theme) => ({
+        fontWeight: 400,
+        fontSize: "14px",
+        color: theme.palette.neutral[80],
+      })}
+    >
+      {value}
+    </Typography>
   </Grid>
 );
 
-const ProfileViewFooter = ({ setMode }: any) => (
+// ---------------- FOOTERS ----------------
+
+interface FooterProps {
+  setMode: (mode: "view" | "edit" | "password") => void;
+}
+
+const ProfileViewFooter = ({ setMode }: FooterProps) => (
   <Box borderTop="1px solid #E0E0E0" p={2}>
     <Grid container spacing={2}>
       <Grid size={{ xs: 12, md: 6 }}>
-        <Button fullWidth variant="outlined" onClick={() => setMode("password")}>
+        <Button
+          fullWidth
+          variant="outlined"
+          onClick={() => setMode("password")}
+        >
           Change Password
         </Button>
       </Grid>
@@ -115,7 +177,7 @@ const ProfileViewFooter = ({ setMode }: any) => (
   </Box>
 );
 
-const ProfileEditFooter = ({ setMode }: any) => (
+const ProfileEditFooter = ({ setMode }: FooterProps) => (
   <Box mt={2}>
     <Grid container spacing={2}>
       <Grid size={{ xs: 12, md: 6 }}>
@@ -132,7 +194,7 @@ const ProfileEditFooter = ({ setMode }: any) => (
   </Box>
 );
 
-const PasswordFooter = ({ setMode }: any) => (
+const PasswordFooter = ({ setMode }: FooterProps) => (
   <Box mt={2}>
     <Grid container spacing={2}>
       <Grid size={{ xs: 12, md: 6 }}>
@@ -149,10 +211,12 @@ const PasswordFooter = ({ setMode }: any) => (
   </Box>
 );
 
+// ---------------- MAIN PROFILE COMPONENT ----------------
+
 const Profile = () => {
   const [mode, setMode] = useState<"view" | "edit" | "password">("view");
 
-  const editForm = useForm({
+  const editForm = useForm<EditProfileFormType>({
     defaultValues: {
       name: "John Doe",
       email: "Johndoe@gmail.com",
@@ -163,33 +227,26 @@ const Profile = () => {
     mode: "onChange",
   });
 
-  const passwordForm = useForm({
+  const passwordForm = useForm<PasswordFormType>({
     defaultValues: {
-      currentPassword: "",
-      newPassword: "",
-      confirmPassword: "",
+      current_Password: "",
+      new_Password: "",
+      confirm_Password: "",
     },
     mode: "onChange",
   });
 
-  const initials = editForm.getValues("name")
+  const initials = editForm
+    .getValues("name")
     .split(" ")
     .map((n) => n[0])
     .join("");
 
-  const handleEditSave = (values: any) => {
-    console.log("UPDATE PROFILE API:", values);
-    setMode("view");
-  };
-
-  const handlePasswordSave = (values: any) => {
-    console.log("CHANGE PASSWORD API:", values);
-    setMode("view");
-  };
+  const handleEditSave = () => setMode("view");
+  const handlePasswordSave = () => setMode("view");
 
   return (
     <Grid container justifyContent="center" p={2} alignItems="flex-start">
-
       <Box
         sx={(theme) => ({
           border: "1px solid",
@@ -198,12 +255,11 @@ const Profile = () => {
           borderRadius: "8px",
           maxWidth: "500px",
           width: "100%",
-          minWidth:'300px',
+          minWidth: "300px",
           height: "fit-content",
-          mx: "auto"
+          mx: "auto",
         })}
       >
-
         <Box p={2}>
           <Typography variant="body18PX600FW" color="neutral.90">
             {mode === "view" && "My Profile"}
@@ -211,6 +267,7 @@ const Profile = () => {
             {mode === "password" && "Change Password"}
           </Typography>
         </Box>
+
         <Box p={"18px 24px"} borderTop="1px solid #E0E0E0">
           {mode !== "password" && (
             <Box
@@ -236,13 +293,14 @@ const Profile = () => {
           )}
 
           <Box mt={2}>
-            {mode === "view" && (
-              <ProfileView getValues={editForm.getValues} />
-            )}
+            {mode === "view" && <ProfileView getValues={editForm.getValues} />}
 
             {mode === "edit" && (
               <form onSubmit={editForm.handleSubmit(handleEditSave)}>
-                <ProfileEditFields control={editForm.control} errors={editForm.formState.errors} />
+                <ProfileEditFields
+                  control={editForm.control}
+                  errors={editForm.formState.errors}
+                />
                 <ProfileEditFooter setMode={setMode} />
               </form>
             )}
@@ -253,23 +311,16 @@ const Profile = () => {
                   control={passwordForm.control}
                   errors={passwordForm.formState.errors}
                 />
-
                 <PasswordFooter setMode={setMode} />
               </form>
             )}
           </Box>
         </Box>
 
-        {mode === "view" && (
-          <ProfileViewFooter setMode={setMode} />
-        )}
+        {mode === "view" && <ProfileViewFooter setMode={setMode} />}
       </Box>
     </Grid>
   );
 };
 
 export default Profile;
-
-
-
-

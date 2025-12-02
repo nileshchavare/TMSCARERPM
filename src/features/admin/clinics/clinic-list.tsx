@@ -19,8 +19,8 @@ const AllClinicList: React.FC = () => {
   const navigate = useNavigate();
 
   const handleNavigate = (params: GridRenderCellParams) => {
-    navigate(`/app/clinic-details/${params.row.id}`);
-  }
+    navigate(`/tps/clinic-details/${params.row.id}`);
+  };
 
   const clinicsColumns: GridColDef<(typeof allClinicRows)[number]>[] = [
     {
@@ -37,7 +37,16 @@ const AllClinicList: React.FC = () => {
       field: "clinicName",
       headerName: "Clinic Name",
       minWidth: 220,
-      renderCell: (params) => <Typography variant="body14PX500FW" sx={{ cursor: "pointer" }} color="primary.70" onClick={() => handleNavigate(params)} >{params.value}</Typography>,
+      renderCell: (params) => (
+        <Typography
+          variant="body14PX500FW"
+          sx={{ cursor: "pointer" }}
+          color="primary.70"
+          onClick={() => handleNavigate(params)}
+        >
+          {params.value}
+        </Typography>
+      ),
     },
     {
       field: "speciality",
@@ -78,10 +87,10 @@ const AllClinicList: React.FC = () => {
       ),
     },
   ];
+  // row: ClinicRow here we pass this
+  const onEdit = () => {};
 
-  const onEdit = (row: ClinicRow) => console.log("Edit:", row);
-
-  const onArchive = (row: ClinicRow) => console.log("Archive:", row);
+  const onArchive = () => {};
 
   const actionOptions: RowActionOption<ClinicRow>[] = [
     {

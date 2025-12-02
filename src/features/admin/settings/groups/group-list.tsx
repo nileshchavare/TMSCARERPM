@@ -1,10 +1,13 @@
-import { groupRows } from '../DummyData/dummy';
-import { DataGrid } from '@mui/x-data-grid';
-import { Box } from '@mui/material';
-import { dataGridStyles } from '../../../../styles/dataGridStyles';
+import { groupRows } from "../DummyData/dummy";
+import { DataGrid } from "@mui/x-data-grid";
+import { Box } from "@mui/material";
+import { dataGridStyles } from "../../../../styles/dataGridStyles";
 import type { GridColDef } from "@mui/x-data-grid";
 import type { GroupRow } from "../types/type";
-import { RowActionMenu, type RowActionOption } from "../../../../components/common-components/table/RowActionDrawer";
+import {
+  RowActionMenu,
+  type RowActionOption,
+} from "../../../../components/common-components/table/RowActionDrawer";
 import Inventory2OutlinedIcon from "@mui/icons-material/Inventory2Outlined";
 import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
 
@@ -14,13 +17,13 @@ const GroupList = () => {
       key: "edit",
       label: "Edit",
       icon: <CreateOutlinedIcon fontSize="small" />,
-      onClick: (row) => console.log("Edit:", row),
+      onClick: () => {},
     },
     {
       key: "archive",
       label: "Archive",
       icon: <Inventory2OutlinedIcon fontSize="small" />,
-      onClick: (row) => console.log("Archive:", row),
+      onClick: () => {},
     },
   ];
 
@@ -48,7 +51,7 @@ const GroupList = () => {
         sx={dataGridStyles}
       />
     </Box>
-  )
-}
+  );
+};
 
-export default GroupList
+export default GroupList;

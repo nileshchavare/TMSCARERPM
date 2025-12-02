@@ -12,12 +12,15 @@ import { errorStyle } from "../../../components/common-components/custom-input/w
 
 const PatientList: React.FC = () => {
   const defaultValues = {
-    search: '',
-    status: '',
-  }
-  const { control, formState: { errors } } = useForm({
-    defaultValues
-  })
+    search: "",
+    status: "",
+  };
+  const {
+    control,
+    formState: { errors },
+  } = useForm({
+    defaultValues,
+  });
   const patientColumns: GridColDef<PatientRow>[] = [
     {
       field: "patientId",
@@ -48,8 +51,6 @@ const PatientList: React.FC = () => {
       headerName: "Date of Birth",
       flex: 1,
       minWidth: 140,
-
-
     },
     {
       field: "contactNumber",
@@ -66,17 +67,27 @@ const PatientList: React.FC = () => {
   ];
 
   return (
-    <Grid container width={"100%"} height={"100%"} flexDirection={"column"} flexWrap={'nowrap'} rowGap={2} p={2}>
+    <Grid
+      container
+      width={"100%"}
+      height={"100%"}
+      flexDirection={"column"}
+      flexWrap={"nowrap"}
+      rowGap={2}
+      p={2}
+    >
       <Box
         sx={{
           display: "flex",
           flexDirection: { xs: "column", md: "row" },
           justifyContent: "space-between",
           alignItems: { xs: "flex-start", md: "center" },
-          gap: 2.,
+          gap: 2,
         }}
       >
-        <Typography variant="body18PX600FW" color="neutral.90" >All Patients</Typography>
+        <Typography variant="body18PX600FW" color="neutral.90">
+          All Patients
+        </Typography>
         <Box
           sx={{
             display: "flex",
@@ -87,7 +98,6 @@ const PatientList: React.FC = () => {
           }}
         >
           <Box>
-
             <Controller
               name="search"
               control={control}
@@ -97,13 +107,12 @@ const PatientList: React.FC = () => {
                   placeholder="Search Patient Name"
                   bgWhite
                   hasStartSearchIcon
-                  onDebounceCall={(v) => console.log("Searching:", v)}
+                  onDebounceCall={() => {}}
                 />
               )}
             />
           </Box>
           <Box>
-
             <Controller
               name="status"
               control={control}
@@ -114,10 +123,14 @@ const PatientList: React.FC = () => {
                     value={field.value ?? "ACTIVE"}
                     onChange={(e) => field.onChange(e.target.value)}
                     width="100%"
-                    selectSx={{backgroundColor:'#FFFFFF',minWidth:'7rem'}}
+                    selectSx={{ backgroundColor: "#FFFFFF", minWidth: "7rem" }}
                   />
                   {errors?.status && (
-                    <Typography textAlign={"start"} sx={errorStyle} variant="caption">
+                    <Typography
+                      textAlign={"start"}
+                      sx={errorStyle}
+                      variant="caption"
+                    >
                       {errors?.status?.message}
                     </Typography>
                   )}
