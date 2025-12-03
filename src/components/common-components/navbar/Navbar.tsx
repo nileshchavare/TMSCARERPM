@@ -26,7 +26,14 @@ import Logo from "../../../assets/logos/logo.svg";
 import DropDownForText from "../drop-dwon-for-text/drop-down-for-text";
 import { clinicOptions } from "../../../features/admin/clinics/constant";
 
-const pages = ["Dashboard", "Patients", "Clinics", "Care Team", "Settings"];
+const pages = [
+  "Dashboard",
+  "Patients",
+  "Clinics",
+  "Care Team",
+  "Tasks",
+  "Settings",
+];
 type SettingKey = "profile" | "logout";
 
 interface SettingItem {

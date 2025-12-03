@@ -9,94 +9,206 @@ import type {
   PasswordFormType,
 } from "./constant";
 
-// ---------------- UTILS ----------------
-
-const titleCase = (str?: string) => {
-  if (!str) return "";
-  return str
-    .toLowerCase()
-    .trim()
-    .replace(/\s+/g, " ")
-    .split(" ")
-    .map((word) =>
-      word.length > 0 ? word[0].toUpperCase() + word.slice(1) : "",
-    )
-    .join(" ");
-};
-
-const formatLabel = (str: string) =>
-  str
-    .replace(/_/g, " ")
-    .toLowerCase()
-    .replace(/\b\w/g, (l) => l.toUpperCase());
-
-// Change Password Fields
 const ChangePasswordFields = ({
   control,
   errors,
 }: CommonFieldProps<PasswordFormType>) => (
   <Grid container spacing={2}>
-    {["current_Password", "new_Password", "confirm_Password"].map((field) => (
-      <Grid size={{ xs: 12 }} key={field}>
-        <CustomLabel
-          label={formatLabel(titleCase(field))}
-          variant="body14PX400FW"
-          color="neutral.50"
-          isRequired
-        />
+    <Grid size={{ xs: 12 }}>
+      <CustomLabel
+        label="Current Password"
+        variant="body14PX400FW"
+        color="neutral.50"
+        isRequired
+      />
 
-        <Controller
-          name={field as keyof PasswordFormType}
-          control={control}
-          render={({ field: f }) => (
-            <CustomInput
-              {...f}
-              isPassword
-              bgWhite
-              placeholder={`Enter ${field}`}
-              hasError={!!errors[field as keyof PasswordFormType]}
-            />
-          )}
-        />
-      </Grid>
-    ))}
+      <Controller
+        name="current_Password"
+        control={control}
+        render={({ field }) => (
+          <CustomInput
+            {...field}
+            isPassword
+            bgWhite
+            placeholder="Enter current password"
+            hasError={!!errors.current_Password}
+            errorMessage={errors.current_Password?.message}
+          />
+        )}
+      />
+    </Grid>
+
+    <Grid size={{ xs: 12 }}>
+      <CustomLabel
+        label="New Password"
+        variant="body14PX400FW"
+        color="neutral.50"
+        isRequired
+      />
+
+      <Controller
+        name="new_Password"
+        control={control}
+        render={({ field }) => (
+          <CustomInput
+            {...field}
+            isPassword
+            bgWhite
+            placeholder="Enter new password"
+            hasError={!!errors.new_Password}
+            errorMessage={errors.new_Password?.message}
+          />
+        )}
+      />
+    </Grid>
+
+    <Grid size={{ xs: 12 }}>
+      <CustomLabel
+        label="Confirm Password"
+        variant="body14PX400FW"
+        color="neutral.50"
+        isRequired
+      />
+
+      <Controller
+        name="confirm_Password"
+        control={control}
+        render={({ field }) => (
+          <CustomInput
+            {...field}
+            isPassword
+            bgWhite
+            placeholder="Enter confirm password"
+            hasError={!!errors.confirm_Password}
+            errorMessage={errors.confirm_Password?.message}
+          />
+        )}
+      />
+    </Grid>
   </Grid>
 );
 
-// Edit Profile Fields
 const ProfileEditFields = ({
   control,
   errors,
 }: CommonFieldProps<EditProfileFormType>) => (
   <Grid container spacing={2}>
-    {["name", "email", "phoneNumber", "userType", "role"].map((field) => (
-      <Grid size={{ xs: 12, md: 6 }} key={field}>
-        <CustomLabel
-          label={titleCase(field)}
-          variant="body14PX400FW"
-          color="neutral.50"
-          isRequired
-        />
+    <Grid size={{ xs: 12, md: 6 }}>
+      <CustomLabel
+        label="Name"
+        variant="body14PX400FW"
+        color="neutral.50"
+        isRequired
+      />
 
-        <Controller
-          name={field as keyof EditProfileFormType}
-          control={control}
-          render={({ field: f }) => (
-            <CustomInput
-              {...f}
-              bgWhite
-              placeholder={`Enter ${field}`}
-              hasError={!!errors[field as keyof EditProfileFormType]}
-              errorMessage={errors[field as keyof EditProfileFormType]?.message}
-            />
-          )}
-        />
-      </Grid>
-    ))}
+      <Controller
+        name="name"
+        control={control}
+        render={({ field }) => (
+          <CustomInput
+            {...field}
+            bgWhite
+            placeholder="Enter name"
+            hasError={!!errors.name}
+            errorMessage={errors.name?.message}
+          />
+        )}
+      />
+    </Grid>
+
+    <Grid size={{ xs: 12, md: 6 }}>
+      <CustomLabel
+        label="Email"
+        variant="body14PX400FW"
+        color="neutral.50"
+        isRequired
+      />
+
+      <Controller
+        name="email"
+        control={control}
+        render={({ field }) => (
+          <CustomInput
+            {...field}
+            bgWhite
+            placeholder="Enter email"
+            hasError={!!errors.email}
+            errorMessage={errors.email?.message}
+          />
+        )}
+      />
+    </Grid>
+
+    <Grid size={{ xs: 12, md: 6 }}>
+      <CustomLabel
+        label="Phone Number"
+        variant="body14PX400FW"
+        color="neutral.50"
+        isRequired
+      />
+
+      <Controller
+        name="phoneNumber"
+        control={control}
+        render={({ field }) => (
+          <CustomInput
+            {...field}
+            bgWhite
+            placeholder="Enter phone number"
+            hasError={!!errors.phoneNumber}
+            errorMessage={errors.phoneNumber?.message}
+          />
+        )}
+      />
+    </Grid>
+
+    <Grid size={{ xs: 12, md: 6 }}>
+      <CustomLabel
+        label="User Type"
+        variant="body14PX400FW"
+        color="neutral.50"
+        isRequired
+      />
+
+      <Controller
+        name="userType"
+        control={control}
+        render={({ field }) => (
+          <CustomInput
+            {...field}
+            bgWhite
+            placeholder="Enter user type"
+            hasError={!!errors.userType}
+            errorMessage={errors.userType?.message}
+          />
+        )}
+      />
+    </Grid>
+
+    <Grid size={{ xs: 12, md: 6 }}>
+      <CustomLabel
+        label="Role"
+        variant="body14PX400FW"
+        color="neutral.50"
+        isRequired
+      />
+
+      <Controller
+        name="role"
+        control={control}
+        render={({ field }) => (
+          <CustomInput
+            {...field}
+            bgWhite
+            placeholder="Enter role"
+            hasError={!!errors.role}
+            errorMessage={errors.role?.message}
+          />
+        )}
+      />
+    </Grid>
   </Grid>
 );
-
-// ----------------VIEW COMPONENTS ----------------
 
 interface ProfileViewProps {
   getValues: UseFormGetValues<EditProfileFormType>;
@@ -134,6 +246,7 @@ const Field = ({ label, value }: FieldProps) => (
         fontWeight: 400,
         fontSize: "14px",
         color: theme.palette.neutral[50],
+        mb: 1,
       })}
     >
       {label}
@@ -149,8 +262,6 @@ const Field = ({ label, value }: FieldProps) => (
     </Typography>
   </Grid>
 );
-
-// ---------------- FOOTERS ----------------
 
 interface FooterProps {
   setMode: (mode: "view" | "edit" | "password") => void;
@@ -185,6 +296,7 @@ const ProfileEditFooter = ({ setMode }: FooterProps) => (
           Cancel
         </Button>
       </Grid>
+
       <Grid size={{ xs: 12, md: 6 }}>
         <Button fullWidth variant="contained" type="submit">
           Save
@@ -210,8 +322,6 @@ const PasswordFooter = ({ setMode }: FooterProps) => (
     </Grid>
   </Box>
 );
-
-// ---------------- MAIN PROFILE COMPONENT ----------------
 
 const Profile = () => {
   const [mode, setMode] = useState<"view" | "edit" | "password">("view");
@@ -253,7 +363,7 @@ const Profile = () => {
           borderColor: theme.palette.neutral[5],
           backgroundColor: "#FFF",
           borderRadius: "8px",
-          maxWidth: "500px",
+          maxWidth: "650px",
           width: "100%",
           minWidth: "300px",
           height: "fit-content",
@@ -268,7 +378,7 @@ const Profile = () => {
           </Typography>
         </Box>
 
-        <Box p={"18px 24px"} borderTop="1px solid #E0E0E0">
+        <Box p={"18px 24px 24px 24px"} borderTop="1px solid #E0E0E0">
           {mode !== "password" && (
             <Box
               sx={(theme) => ({

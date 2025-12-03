@@ -11,13 +11,14 @@ import Settings from "../features/admin/settings/setting-tab";
 import ClinicDetails from "../features/admin/clinics/clinic-details";
 import MainLayout from "../layout/main-layout";
 import Profile from "../features/admin/navbar-menu/profile";
+import Tasks from "../features/admin/Tasks/task-tab";
 
 const ForgotPassword = lazy(
-  () => import("../features/auth/pages/login/ForgotPassword")
+  () => import("../features/auth/pages/login/ForgotPassword"),
 );
 const Otp = lazy(() => import("../features/auth/pages/login/Otp"));
 const SetPassword = lazy(
-  () => import("../features/auth/pages/login/SetPassword")
+  () => import("../features/auth/pages/login/SetPassword"),
 );
 
 const Loader = () => <div>Loading...</div>;
@@ -89,11 +90,15 @@ export const privateRoutes = createBrowserRouter([
       },
       {
         path: "clinic-details/:id",
-        element: <ClinicDetails />
+        element: <ClinicDetails />,
       },
       {
         path: "care-team",
         element: <CareTeam />,
+      },
+      {
+        path: "tasks",
+        element: <Tasks />,
       },
       {
         path: "settings",
@@ -105,7 +110,7 @@ export const privateRoutes = createBrowserRouter([
       },
     ],
   },
-    {
+  {
     path: "clinic",
     element: (
       <PrivateRoute>
@@ -129,7 +134,7 @@ export const privateRoutes = createBrowserRouter([
       },
       {
         path: "clinic-details/:id",
-        element: <ClinicDetails />
+        element: <ClinicDetails />,
       },
       {
         path: "care-team",

@@ -69,18 +69,6 @@ const ClinicDetails = () => {
     });
   };
 
-  // const DrawerContent = ({ identifier, onClose }: { identifier: string, onClose?: () => void }) => {
-  //     if (identifier === "drawer-add-staff") {
-  //         return <AddStaffForm onClose={onClose} />;
-  //     }
-  //     if (identifier === "drawer-add-provider") {
-  //         return <AddProviderForm onClose={onClose} />;
-  //     }
-  //     if (identifier === "drawer-add-location") {
-  //         return <AddLocationForm onClose={onClose} />;
-  //     }
-  // }
-
   const handleEditClinicProfile = () => {};
   const handleLocation = () => {
     openDrawer({

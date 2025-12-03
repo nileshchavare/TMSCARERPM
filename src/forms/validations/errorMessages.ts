@@ -2,7 +2,8 @@ export const emailIsRequired = "Email is required";
 export const emailRegexErrorMsg = "Please enter a valid email address";
 
 export const passwordIsRequired = "Password is required";
-export const passwordRegexErrorMsg = "Password must be at least 8 characters long and include uppercase, lowercase, number, and special character";
+export const passwordRegexErrorMsg =
+  "Password must be at least 8 characters long and include uppercase, lowercase, number, and special character";
 
 // Clinic Form Error Messages
 export const clinicNameRequired = "Clinic name is required";
@@ -46,3 +47,13 @@ export const expiryDateRequired = "Expiry date is required";
 export const titleRequired = "Title is required";
 export const nameRequired = "Name is required";
 export const roleRequired = "Role is required";
+
+// Task Form Error Messages
+export const taskCategoryRequired = "Task category is required";
+export const taskTitleRequired = "Task title is required";
+export const patientNameRequired = "Patient name is required";
+export const assignedToRequired = "Assigned to field is required";
+export const dateRequired = "Date is required";
+export const priorityRequired = "Priority is required";
+export const reminderRequired = "Reminder selection is required";
+export const repeatRequired = "Repeat selection is required";

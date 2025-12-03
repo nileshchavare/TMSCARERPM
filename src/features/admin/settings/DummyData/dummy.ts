@@ -1,4 +1,5 @@
 import type { ClinicRow } from "../../clinics/constant";
+import type { TaskRow } from "../../Tasks/constant";
 import type { UserRow } from "../types/type";
 
 export const userRows: UserRow[] = [
@@ -81,7 +82,6 @@ export const allClinicRows: ClinicRow[] = [
   },
 ];
 
-
 export const locationRows = [
   {
     id: 1,
@@ -141,84 +141,83 @@ export const locationRows = [
 ];
 
 // care team home page data
-  export const peopleList = [
-    { id: 1, name: "Dr. John Smith", role: "Primary Doctor", count: 11 },
-    { id: 2, name: "Dr. Emily Carter", role: "Cardiologist", count: 21 },
-    { id: 3, name: "Nurse Alex Brown", role: "Nurse", count: 67 },
-  ];
+export const peopleList = [
+  { id: 1, name: "Dr. John Smith", role: "Primary Doctor", count: 11 },
+  { id: 2, name: "Dr. Emily Carter", role: "Cardiologist", count: 21 },
+  { id: 3, name: "Nurse Alex Brown", role: "Nurse", count: 67 },
+];
 
-  export const assignedClinics = [
-    { id: 1, clinicName: "Sunrise Health Clinic", personId: 1, count: 31 },
-    { id: 2, clinicName: "City Hospital", personId: 2, count: 24 },
-    { id: 3, clinicName: "Metro Care Center", personId: 3, count: 2 },
-    { id: 4, clinicName: "Green Valley Clinic", personId: 1, count: 24 },
-  ];
+export const assignedClinics = [
+  { id: 1, clinicName: "Sunrise Health Clinic", personId: 1, count: 31 },
+  { id: 2, clinicName: "City Hospital", personId: 2, count: 24 },
+  { id: 3, clinicName: "Metro Care Center", personId: 3, count: 2 },
+  { id: 4, clinicName: "Green Valley Clinic", personId: 1, count: 24 },
+];
 
-  export const patientsData = [
-    {
-      id: 1,
-      clinicId: 1,
-      patientId: "P-1010",
-      patientName: "John Doe",
-      primaryProvider: "Dr. John Smith",
-      dateOfBirth: "1985-04-20",
-      lastReview: "2025-01-12",
-      gmi: 6.8,
-      timeInRange: 72,
-      status: "Active",
-    },
-    {
-      id: 2,
-      clinicId: 1,
-      patientId: "P-1011",
-      patientName: "Amy Wilson",
-      primaryProvider: "Dr. John Smith",
-      dateOfBirth: "1988-09-14",
-      lastReview: "2025-01-10",
-      gmi: 7.2,
-      timeInRange: 67,
-      status: "Pending",
-    },
-    {
-      id: 3,
-      clinicId: 2,
-      patientId: "P-1020",
-      patientName: "Robert Davis",
-      primaryProvider: "Dr. Emily Carter",
-      dateOfBirth: "1976-03-09",
-      lastReview: "2025-01-08",
-      gmi: 7.5,
-      timeInRange: 62,
-      status: "Active",
-    },
-    {
-      id: 4,
-      clinicId: 3,
-      patientId: "P-1030",
-      patientName: "Sophia Martinez",
-      primaryProvider: "Nurse Alex Brown",
-      dateOfBirth: "1992-11-22",
-      lastReview: "2025-01-07",
-      gmi: 6.5,
-      timeInRange: 81,
-      status: "Inactive",
-    },
-    {
-      id: 5,
-      clinicId: 4,
-      patientId: "P-1040",
-      patientName: "Daniel Lee",
-      primaryProvider: "Dr. John Smith",
-      dateOfBirth: "1980-02-10",
-      lastReview: "2025-01-05",
-      gmi: 7.0,
-      timeInRange: 70,
-      status: "Active",
-    },
-  ];
+export const patientsData = [
+  {
+    id: 1,
+    clinicId: 1,
+    patientId: "P-1010",
+    patientName: "John Doe",
+    primaryProvider: "Dr. John Smith",
+    dateOfBirth: "1985-04-20",
+    lastReview: "2025-01-12",
+    gmi: 6.8,
+    timeInRange: 72,
+    status: "Active",
+  },
+  {
+    id: 2,
+    clinicId: 1,
+    patientId: "P-1011",
+    patientName: "Amy Wilson",
+    primaryProvider: "Dr. John Smith",
+    dateOfBirth: "1988-09-14",
+    lastReview: "2025-01-10",
+    gmi: 7.2,
+    timeInRange: 67,
+    status: "Pending",
+  },
+  {
+    id: 3,
+    clinicId: 2,
+    patientId: "P-1020",
+    patientName: "Robert Davis",
+    primaryProvider: "Dr. Emily Carter",
+    dateOfBirth: "1976-03-09",
+    lastReview: "2025-01-08",
+    gmi: 7.5,
+    timeInRange: 62,
+    status: "Active",
+  },
+  {
+    id: 4,
+    clinicId: 3,
+    patientId: "P-1030",
+    patientName: "Sophia Martinez",
+    primaryProvider: "Nurse Alex Brown",
+    dateOfBirth: "1992-11-22",
+    lastReview: "2025-01-07",
+    gmi: 6.5,
+    timeInRange: 81,
+    status: "Inactive",
+  },
+  {
+    id: 5,
+    clinicId: 4,
+    patientId: "P-1040",
+    patientName: "Daniel Lee",
+    primaryProvider: "Dr. John Smith",
+    dateOfBirth: "1980-02-10",
+    lastReview: "2025-01-05",
+    gmi: 7.0,
+    timeInRange: 70,
+    status: "Active",
+  },
+];
 
-
-  export const allClinic = [
+export const allClinic = [
   {
     id: "CL001",
     name: "Sunrise Health Clinic",
@@ -251,13 +250,13 @@ export const locationRows = [
   },
 ];
 
-export  const allPatients = [
-        { key: "P001", value: "John Doe" },
-        { key: "P002", value: "Sarah Smith" },
-        { key: "P003", value: "Michael Johnson" },
-        { key: "P004", value: "Emily Brown" },
-        { key: "P005", value: "David Wilson" },
-    ];
+export const allPatients = [
+  { key: "P001", value: "John Doe" },
+  { key: "P002", value: "Sarah Smith" },
+  { key: "P003", value: "Michael Johnson" },
+  { key: "P004", value: "Emily Brown" },
+  { key: "P005", value: "David Wilson" },
+];
 
 export const groupRows = [
   {
@@ -339,7 +338,6 @@ export const groupRow = [
     GroupMember: "Ava Mitchell, Chloe Rogers",
   },
 ];
-
 
 export const patientRows = [
   {
@@ -445,3 +443,135 @@ export const patientRows = [
   },
 ];
 
+export const taskData: TaskRow[] = [
+  {
+    id: "1",
+    taskTitle: "Review Lab Report",
+    category: "Lab",
+    patientName: "John Doe",
+    assignedBy: "Dr. Smith",
+    assignedTo: "Nurse Kelly",
+    createdOn: "2025-02-10",
+    dueDate: "2025-02-15",
+    source: "System",
+    status: "todo",
+    priority: "High",
+  },
+  {
+    id: "2",
+    taskTitle: "Schedule Follow-up Appointment",
+    category: "Appointment",
+    patientName: "Emma Watson",
+    assignedBy: "Dr. Brown",
+    assignedTo: "Reception",
+    createdOn: "2025-02-09",
+    dueDate: "2025-02-12",
+    source: "Manual",
+    status: "over-due",
+    priority: "Low",
+  },
+  {
+    id: "3",
+    taskTitle: "Upload Insurance Documents",
+    category: "Insurance",
+    patientName: "Michael Johnson",
+    assignedBy: "Admin",
+    assignedTo: "Patient Support",
+    createdOn: "2025-02-08",
+    dueDate: "2025-02-20",
+    source: "System",
+    status: "todo",
+    priority: "Low",
+  },
+  {
+    id: "4",
+    taskTitle: "Verify Patient Address",
+    category: "Verification",
+    patientName: "Sarah Lee",
+    assignedBy: "Admin",
+    assignedTo: "Support",
+    createdOn: "2025-02-07",
+    dueDate: "2025-02-14",
+    source: "Manual",
+    status: "completed",
+    priority: "High",
+  },
+  {
+    id: "5",
+    taskTitle: "Prepare Discharge Summary",
+    category: "Documentation",
+    patientName: "David Clark",
+    assignedBy: "Dr. Adams",
+    assignedTo: "Nurse Helen",
+    createdOn: "2025-02-05",
+    dueDate: "2025-02-11",
+    source: "System",
+    status: "todo",
+    priority: "High",
+  },
+  {
+    id: "6",
+    taskTitle: "Send Medication Reminder",
+    category: "Reminder",
+    patientName: "Olivia Brown",
+    assignedBy: "System",
+    assignedTo: "Nurse Team",
+    createdOn: "2025-02-01",
+    dueDate: "2025-02-10",
+    source: "System",
+    status: "completed",
+    priority: "Low",
+  },
+  {
+    id: "7",
+    taskTitle: "Update Emergency Contact",
+    category: "Profile Update",
+    patientName: "Chris Evans",
+    assignedBy: "Patient",
+    assignedTo: "Support Team",
+    createdOn: "2025-02-03",
+    dueDate: "2025-02-08",
+    source: "Manual",
+    status: "over-due",
+    priority: "High",
+  },
+  {
+    id: "8",
+    taskTitle: "Check MRI Availability",
+    category: "Diagnostic",
+    patientName: "Ava Thompson",
+    assignedBy: "Dr. Carter",
+    assignedTo: "Receptionist",
+    createdOn: "2025-02-04",
+    dueDate: "2025-02-18",
+    source: "Manual",
+    status: "todo",
+    priority: "High",
+  },
+  {
+    id: "9",
+    taskTitle: "Update Allergy Information",
+    category: "Medical Info",
+    patientName: "Henry Wilson",
+    assignedBy: "Patient",
+    assignedTo: "Medical Staff",
+    createdOn: "2025-02-02",
+    dueDate: "2025-02-09",
+    source: "System",
+    status: "completed",
+    priority: "Low",
+  },
+  {
+    id: "10",
+    taskTitle: "Fill Prescription Form",
+    category: "Medication",
+    patientName: "Sophia Garcia",
+    assignedBy: "Dr. Green",
+    assignedTo: "Pharmacy",
+    createdOn: "2025-02-06",
+    dueDate: "2025-02-13",
+    source: "Manual",
+    status: "todo",
+    priority: "Low",
+  },
+];

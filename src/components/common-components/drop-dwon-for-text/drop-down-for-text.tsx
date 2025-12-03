@@ -28,8 +28,8 @@ export default function DropDownForText({
   onChange,
   width,
   disableField,
-  placeholder='Select Options',
-    formSx = {},
+  placeholder = "Select Options",
+  formSx = {},
   selectSx = {},
 }: DropDownForTextProps) {
   const [value, setValue] = React.useState<string>("");
@@ -50,7 +50,7 @@ export default function DropDownForText({
       variant="outlined"
       sx={{
         minWidth: width || "150px",
-          ...formSx, 
+        ...formSx,
       }}
     >
       <Select
@@ -70,6 +70,7 @@ export default function DropDownForText({
           )
         }
         sx={{
+          background: "#FFFFFF",
           border: "1px solid ",
           borderColor: "neutral.5",
           borderRadius: "4px",

@@ -31,6 +31,9 @@ import {
   locationNameRequired,
   taxNumberRequired,
   tinEinRequired,
+  taskCategoryRequired,
+  taskTitleRequired,
+  dateRequired,
 } from "./errorMessages";
 import {
   emailRegex,
@@ -60,27 +63,31 @@ export const providerSchema = yup.object({
   licenseNumber: yup.string().required(licenseNumberRequired),
   expiryDate: yup.string().required(expiryDateRequired),
 
-  physicalAddress: yup.object({
-    addressLine1: yup.string().required(addressLine1Required),
-    addressLine2: yup.string().default(""),
-    state: yup.string().required(stateRequired),
-    city: yup.string().required(cityRequired),
-    zipCode: yup
-      .string()
-      .matches(zipCodeFiveDigitRegex, zipCodeInvalid)
-      .required(zipCodeRequired),
-  }).required(),
+  physicalAddress: yup
+    .object({
+      addressLine1: yup.string().required(addressLine1Required),
+      addressLine2: yup.string().default(""),
+      state: yup.string().required(stateRequired),
+      city: yup.string().required(cityRequired),
+      zipCode: yup
+        .string()
+        .matches(zipCodeFiveDigitRegex, zipCodeInvalid)
+        .required(zipCodeRequired),
+    })
+    .required(),
 
-  billingAddress: yup.object({
-    addressLine1: yup.string().required(addressLine1Required),
-    addressLine2: yup.string().default(""),
-    state: yup.string().required(stateRequired),
-    city: yup.string().required(cityRequired),
-    zipCode: yup
-      .string()
-      .matches(zipCodeFiveDigitRegex, zipCodeInvalid)
-      .required(zipCodeRequired),
-  }).required(),
+  billingAddress: yup
+    .object({
+      addressLine1: yup.string().required(addressLine1Required),
+      addressLine2: yup.string().default(""),
+      state: yup.string().required(stateRequired),
+      city: yup.string().required(cityRequired),
+      zipCode: yup
+        .string()
+        .matches(zipCodeFiveDigitRegex, zipCodeInvalid)
+        .required(zipCodeRequired),
+    })
+    .required(),
 });
 
 export type AddProviderFormValues = yup.InferType<typeof providerSchema>;
@@ -98,48 +105,48 @@ export const addStaffSchema = yup.object({
     .required(phoneNumberRequired),
   role: yup.string().required(roleRequired),
   location: yup.string().required(locationRequired),
-  status:yup.string().required(statusRequired)
+  status: yup.string().required(statusRequired),
 });
 
 export type AddStaffFormValues = yup.InferType<typeof addStaffSchema>;
 
 export const addLocationSchema = yup.object().shape({
-    locationName: yup.string().required(locationNameRequired),
-    phoneNumber: yup
+  locationName: yup.string().required(locationNameRequired),
+  phoneNumber: yup
+    .string()
+    .matches(phoneNumberTenDigitRegex, phoneNumberInvalid)
+    .required(phoneNumberRequired),
+  email: yup
+    .string()
+    .matches(emailRegex, emailRegexErrorMsg)
+    .required(emailIsRequired),
+  npiNumber: yup
+    .string()
+    .matches(npiNumberRegex, npiNumberInvalid)
+    .required(groupNpiRequired),
+  taxNumber: yup.string().required(taxNumberRequired),
+  tinEin: yup.string().required(tinEinRequired),
+  physicalAddress: yup.object().shape({
+    addressLine1: yup.string().required(addressLine1Required),
+    addressLine2: yup.string().default(""),
+    state: yup.string().required(stateRequired),
+    city: yup.string().required(cityRequired),
+    zipCode: yup
       .string()
-      .matches(phoneNumberTenDigitRegex, phoneNumberInvalid)
-      .required(phoneNumberRequired),
-    email: yup
+      .matches(zipCodeFiveDigitRegex, zipCodeInvalid)
+      .required(zipCodeRequired),
+  }),
+  billingAddress: yup.object().shape({
+    addressLine1: yup.string().required(addressLine1Required),
+    addressLine2: yup.string().default(""),
+    state: yup.string().required(stateRequired),
+    city: yup.string().required(cityRequired),
+    zipCode: yup
       .string()
-      .matches(emailRegex, emailRegexErrorMsg)
-      .required(emailIsRequired),
-    npiNumber: yup
-      .string()
-      .matches(npiNumberRegex, npiNumberInvalid)
-      .required(groupNpiRequired),
-    taxNumber: yup.string().required(taxNumberRequired),
-    tinEin: yup.string().required(tinEinRequired),
-    physicalAddress: yup.object().shape({
-        addressLine1: yup.string().required(addressLine1Required),
-        addressLine2: yup.string().default(""),
-        state: yup.string().required(stateRequired),
-        city: yup.string().required(cityRequired),
-        zipCode: yup
-          .string()
-          .matches(zipCodeFiveDigitRegex, zipCodeInvalid)
-          .required(zipCodeRequired),
-    }),
-    billingAddress: yup.object().shape({
-        addressLine1: yup.string().required(addressLine1Required),
-        addressLine2: yup.string().default(""),
-        state: yup.string().required(stateRequired),
-        city: yup.string().required(cityRequired),
-        zipCode: yup
-          .string()
-          .matches(zipCodeFiveDigitRegex, zipCodeInvalid)
-          .required(zipCodeRequired),
-    }),
-})
+      .matches(zipCodeFiveDigitRegex, zipCodeInvalid)
+      .required(zipCodeRequired),
+  }),
+});
 
 export type AddLocationFormValues = yup.InferType<typeof addLocationSchema>;
 
@@ -181,7 +188,7 @@ export const newClinicSchema = yup.object().shape({
           .string()
           .matches(phoneNumberTenDigitRegex, phoneNumberInvalid)
           .required(contactPhoneRequired),
-      })
+      }),
     )
     .min(1, "At least one contact is required")
     .required(),
@@ -207,7 +214,20 @@ export const newClinicSchema = yup.object().shape({
       .matches(zipCodeFiveDigitRegex, zipCodeInvalid)
       .required(zipCodeRequired),
   }),
-})
+});
 
 export type NewClinicFormValues = yup.InferType<typeof newClinicSchema>;
 
+export const newTaskSchema = yup.object().shape({
+  taskCategory: yup.string().required(taskCategoryRequired),
+  taskTitle: yup.string().required(taskTitleRequired),
+  patientName: yup.string().default(""),
+  assignedTo: yup.string().default(""),
+  date: yup.string().required(dateRequired),
+  status: yup.string().default(""),
+  priority: yup.string().default(""),
+  reminder: yup.string().default(""),
+  repeat: yup.string().default(""),
+});
+
+export type NewTaskformValues = yup.InferType<typeof newTaskSchema>;
