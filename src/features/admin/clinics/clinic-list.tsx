@@ -2,7 +2,7 @@ import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
 import { Box, Typography } from "@mui/material";
 import type { GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
 import { DataGrid } from "@mui/x-data-grid";
-import React from "react";
+import React, { useEffect } from "react";
 import { allClinicRows } from "../settings/DummyData/dummy";
 
 import Inventory2OutlinedIcon from "@mui/icons-material/Inventory2Outlined";
@@ -15,12 +15,27 @@ import type { ClinicRow } from "./constant";
 import { dataGridStyles } from "../../../styles/dataGridStyles";
 import { useNavigate } from "react-router-dom";
 
-const AllClinicList: React.FC = () => {
+interface AllClinicListProps {
+  status: "all" | "archived";
+}
+
+const AllClinicList: React.FC<AllClinicListProps> = ({ status }) => {
   const navigate = useNavigate();
 
   const handleNavigate = (params: GridRenderCellParams) => {
     navigate(`/tps/clinic-details/${params.row.id}`);
   };
+
+  const fetchActiveClinics = () => {};
+
+  const fetchArchivedClinics = () => {};
+  useEffect(() => {
+    if (status === "all") {
+      fetchActiveClinics();
+    } else {
+      fetchArchivedClinics();
+    }
+  }, [status]);
 
   const clinicsColumns: GridColDef<(typeof allClinicRows)[number]>[] = [
     {

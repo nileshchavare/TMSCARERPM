@@ -15,13 +15,37 @@ import { taskData } from "../settings/DummyData/dummy";
 import { taskStatus, type TaskRow } from "./constant";
 import CheckIcon from "@mui/icons-material/Check";
 import { dataGridStyles } from "../../../styles/dataGridStyles";
+import React, { useEffect, useState } from "react";
 
-const TaskList = () => {
+interface TaskListProps {
+  status: "all" | "indivisual" | "group";
+}
+
+const TaskList: React.FC<TaskListProps> = ({ status }) => {
   const navigate = useNavigate();
 
   const handleNavigate = (params: GridRenderCellParams) => {
     navigate(`/tps/clinic-details/${params.row.id}`);
   };
+
+  const limit = 10;
+  const [page] = useState(1);
+
+  const fetchTasks = ({
+    page,
+    limit,
+    status,
+  }: {
+    page: number;
+    limit: number;
+    status: string;
+  }) => {
+    return [page, limit, status];
+  };
+
+  useEffect(() => {
+    fetchTasks({ page, limit, status });
+  }, [status, page]);
 
   const tasksColumn: GridColDef<(typeof taskData)[number]>[] = [
     {

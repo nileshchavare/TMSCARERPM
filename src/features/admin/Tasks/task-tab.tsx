@@ -25,6 +25,8 @@ const DrawerContent = ({
   return <></>;
 };
 
+const statusMap = ["all", "indivisual", "group"] as const;
+
 const Tasks = () => {
   const [tabValue, setTabValue] = useState(0);
   const { control, setValue, getValues } = useForm({
@@ -49,8 +51,6 @@ const Tasks = () => {
   };
 
   const tabs = ["All", "Indivisual", "Group"];
-  const tabComponents = [TaskList, TaskList, TaskList];
-  const ActiveTab = tabComponents[tabValue];
   return (
     <>
       <Grid
@@ -124,7 +124,7 @@ const Tasks = () => {
         </Box>
 
         <Box>
-          <ActiveTab />
+          <TaskList status={statusMap[tabValue]} />
         </Box>
       </Grid>
       <MainDrawer

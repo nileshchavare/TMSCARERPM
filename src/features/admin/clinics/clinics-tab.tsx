@@ -48,8 +48,6 @@ const Clinics: React.FC = () => {
   };
 
   const tabs = ["All Clinics", "Archived"];
-  const tabComponents = [AllClinicList, AllClinicList];
-  const ActiveTab = tabComponents[tabValue];
 
   return (
     <>
@@ -106,7 +104,7 @@ const Clinics: React.FC = () => {
         </Box>
 
         <Box>
-          <ActiveTab />
+          <AllClinicList status={tabValue === 0 ? "all" : "archived"} />
         </Box>
       </Grid>
       <MainDrawer

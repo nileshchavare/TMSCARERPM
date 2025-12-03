@@ -194,14 +194,23 @@ const TaskForm = ({ onClose }: { onClose?: () => void }) => {
               name="date"
               control={control}
               rules={{ required: "Date is required" }}
-              render={({ field, fieldState }) => (
-                <CustomDatePicker
-                  value={field.value}
-                  onDateChange={(val) => field.onChange(val)}
-                  bgWhite={true}
-                  hasError={!!fieldState.error}
-                  errorMessage={fieldState.error?.message}
-                />
+              render={({ field }) => (
+                <>
+                  <CustomDatePicker
+                    value={field.value}
+                    onDateChange={(val) => field.onChange(val)}
+                    bgWhite={true}
+                  />
+                  {errors.date && (
+                    <Typography
+                      textAlign={"start"}
+                      sx={errorStyle}
+                      variant="caption"
+                    >
+                      {errors.date?.message}
+                    </Typography>
+                  )}
+                </>
               )}
             />
           </Grid>
