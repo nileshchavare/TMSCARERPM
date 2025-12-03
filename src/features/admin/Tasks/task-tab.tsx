@@ -10,6 +10,7 @@ import { useDrawer } from "../../../hooks/useDrawer";
 import TaskList from "./task-list";
 import DropDownForText from "../../../components/common-components/drop-dwon-for-text/drop-down-for-text";
 import { SPECIALTY_OPTIONS } from "../clinics/constant";
+import { PRIORITY_OPTIONS } from "./constant";
 
 const DrawerContent = ({
   identifier,
@@ -106,7 +107,7 @@ const Tasks = () => {
             <Grid size={{ xs: 12, sm: "auto" }}>
               <DropDownForText
                 value={getValues("priority")}
-                options={SPECIALTY_OPTIONS}
+                options={PRIORITY_OPTIONS}
                 onChange={(e) => setValue("priority", e.target.value)}
                 placeholder="Priority"
               />
