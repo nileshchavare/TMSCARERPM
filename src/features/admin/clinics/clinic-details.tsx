@@ -60,12 +60,14 @@ const ClinicDetails = () => {
     openDrawer({
       identifier: "drawer-add-staff",
       title: "Add Staff User",
+      componentId: "clinic-details",
     });
   };
   const handleProvider = () => {
     openDrawer({
       identifier: "drawer-add-provider",
       title: "Add Provider",
+      componentId: "clinic-details",
     });
   };
 
@@ -74,6 +76,7 @@ const ClinicDetails = () => {
     openDrawer({
       identifier: "drawer-add-location",
       title: "Add Location",
+      componentId: "clinic-details",
     });
   };
 
@@ -290,6 +293,7 @@ const ClinicDetails = () => {
         drawerWidth="700px"
         anchor="right"
         showMandatoryIndicator
+        componentId="clinic-details"
         content={
           <DrawerContent
             onClose={closeDrawer}

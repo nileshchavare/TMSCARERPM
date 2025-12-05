@@ -24,7 +24,7 @@ export type PrimaryContact = {
   name: string;
   email: string;
   phone: string;
-}
+};
 
 export type Address = {
   addressLine1: string;
@@ -32,7 +32,7 @@ export type Address = {
   state: string;
   city: string;
   zipCode: string;
-}
+};
 
 export interface FormValues {
   rpmBillingScheme: string;
@@ -78,3 +78,26 @@ export const clinicOptions = [
   { key: "C009", value: "Valley View Medical" },
 ];
 
+export interface UserData {
+  id: number;
+  userId: string;
+  username: string;
+  roleType: string;
+  role: string;
+  email: string;
+  contactNumber: string;
+  status: string;
+  action: string;
+}
+
+export interface LocationData {
+  id: number;
+  locationName: string;
+  phoneNumber: string;
+  email: string;
+  npiNumber: string;
+  taxNumber: string;
+  address: string;
+  status: string;
+  action: string;
+}

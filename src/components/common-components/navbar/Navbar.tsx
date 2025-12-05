@@ -49,7 +49,7 @@ const settings: SettingItem[] = [
 
 const settingsLinks: Record<SettingKey, string> = {
   profile: "/tps/profile",
-  logout: "/tps/logout",
+  logout: "/auth/login",
 };
 
 const Navbar: React.FC = () => {

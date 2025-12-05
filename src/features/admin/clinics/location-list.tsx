@@ -3,9 +3,47 @@ import { dataGridStyles } from "../../../styles/dataGridStyles";
 import { locationRows } from "../settings/DummyData/dummy";
 import CommonStatusChip from "../../../components/common-components/common-status-chip/CommonStatusChip";
 import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
-import { Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
+import MainDrawer from "../../../components/ui/MainDrawer";
+import LocationDetails from "./location-details";
+import { useDrawer } from "../../../hooks/useDrawer";
+import { useState } from "react";
+import type { LocationData } from "./constant";
+
+const DrawerContent = ({
+  identifier,
+  location,
+}: {
+  identifier: string;
+  onClose: () => void;
+  location?: LocationData;
+}) => {
+  if (!location) return null;
+  if (identifier === "drawer-location-details") {
+    return <LocationDetails location={location} />;
+  }
+
+  return null;
+};
 
 const LocationList = () => {
+  const [location, setLocation] = useState<LocationData>();
+  const {
+    open: openDrawer,
+    close: closeDrawer,
+    content: contentDrawer,
+  } = useDrawer();
+
+  // here we used params: GridRenderCellParams
+  const handleNavigate = (params: LocationData) => {
+    setLocation(params);
+    openDrawer({
+      identifier: "drawer-location-details",
+      title: "Location",
+      componentId: "location-details",
+    });
+  };
+
   const locationColumn: GridColDef[] = [
     {
       field: "locationName",
@@ -16,7 +54,10 @@ const LocationList = () => {
           variant="body14PX500FW"
           sx={{ cursor: "pointer" }}
           color="primary.70"
-          onClick={() => handleNavigate()}
+          onClick={(e) => {
+            e.stopPropagation();
+            handleNavigate(params.row);
+          }}
         >
           {params.value}
         </Typography>
@@ -49,17 +90,31 @@ const LocationList = () => {
     },
   ];
   // here we used params: GridRenderCellParams
-  const handleNavigate = () => {};
-  // here we used params: GridRenderCellParams
   const handleEdit = () => {};
   return (
     <>
-      <DataGrid
-        columns={locationColumn}
-        rows={locationRows}
-        pageSizeOptions={[5, 10, 15]}
-        sx={dataGridStyles}
-        disableRowSelectionOnClick={true}
+      <Grid>
+        <DataGrid
+          columns={locationColumn}
+          rows={locationRows}
+          pageSizeOptions={[5, 10, 15]}
+          sx={dataGridStyles}
+          disableRowSelectionOnClick={true}
+        />
+      </Grid>
+
+      <MainDrawer
+        drawerWidth="1000px"
+        componentId="location-details"
+        anchor="right"
+        showSecondButton
+        content={
+          <DrawerContent
+            identifier={contentDrawer.identifier ?? ""}
+            location={location}
+            onClose={closeDrawer}
+          />
+        }
       />
     </>
   );
