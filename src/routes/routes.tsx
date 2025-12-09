@@ -12,6 +12,7 @@ import ClinicDetails from "../features/admin/clinics/clinic-details";
 import MainLayout from "../layout/main-layout";
 import Profile from "../features/admin/navbar-menu/profile";
 import Tasks from "../features/admin/Tasks/task-tab";
+import PatientDemographics from "../features/admin/patients/patient-demographics/patient-demographics";
 
 const ForgotPassword = lazy(
   () => import("../features/auth/pages/login/ForgotPassword"),
@@ -83,6 +84,10 @@ export const privateRoutes = createBrowserRouter([
       {
         path: "patients",
         element: <Patients />,
+      },
+      {
+        path: "patient-demographics/:id",
+        element: <PatientDemographics />,
       },
       {
         path: "clinics",

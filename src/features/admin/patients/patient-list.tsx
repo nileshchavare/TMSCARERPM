@@ -1,6 +1,10 @@
 import React from "react";
 import { Box, Grid, Typography } from "@mui/material";
-import { DataGrid, type GridColDef } from "@mui/x-data-grid";
+import {
+  DataGrid,
+  type GridColDef,
+  type GridRenderCellParams,
+} from "@mui/x-data-grid";
 import { dataGridStyles } from "../../../styles/dataGridStyles";
 import { patientRows } from "../settings/DummyData/dummy";
 import type { PatientRow } from "../settings/types/type";
@@ -9,6 +13,7 @@ import CustomInput from "../../../components/common-components/custom-input/cust
 import { STATUS_OPTIONS } from "../clinics/constant";
 import DropDownForText from "../../../components/common-components/drop-dwon-for-text/drop-down-for-text";
 import { errorStyle } from "../../../components/common-components/custom-input/widgets/custom-input-styles";
+import { useNavigate } from "react-router-dom";
 
 const PatientList: React.FC = () => {
   const defaultValues = {
@@ -21,6 +26,13 @@ const PatientList: React.FC = () => {
   } = useForm({
     defaultValues,
   });
+
+  const navigate = useNavigate();
+
+  const handlePatientNameClick = (params: GridRenderCellParams<PatientRow>) => {
+    navigate(`/tps/patient-demographics/${params.row.id}`);
+  };
+
   const patientColumns: GridColDef<PatientRow>[] = [
     {
       field: "patientId",
@@ -33,6 +45,16 @@ const PatientList: React.FC = () => {
       headerName: "Patient Name",
       flex: 1.2,
       minWidth: 150,
+      renderCell: (params) => (
+        <Typography
+          variant="body14PX500FW"
+          sx={{ cursor: "pointer" }}
+          color="primary.70"
+          onClick={() => handlePatientNameClick(params)}
+        >
+          {params.value}
+        </Typography>
+      ),
     },
     {
       field: "referringProvider",
