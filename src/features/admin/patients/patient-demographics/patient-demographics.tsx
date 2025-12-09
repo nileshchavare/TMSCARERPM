@@ -144,8 +144,40 @@ const PatientDemographics = () => {
             </Grid>
           </Grid>
         </Grid>
-        <Grid width={"15%"} border={1}>
-          sanskruti
+        <Grid container flexDirection={"column"} rowGap={1} width={"15%"}>
+          <Grid
+            container
+            width={"100%"}
+            bgcolor={"#FFFF"}
+            p={2}
+            borderRadius={2}
+            border={1}
+            borderColor="#E7E7E7"
+          >
+            lkdwkl
+          </Grid>
+          <Grid
+            container
+            width={"100%"}
+            bgcolor={"#FFFF"}
+            p={2}
+            borderRadius={2}
+            border={1}
+            borderColor="#E7E7E7"
+          >
+            lkdwkl
+          </Grid>
+          <Grid
+            container
+            width={"100%"}
+            bgcolor={"#FFFF"}
+            p={2}
+            borderRadius={2}
+            border={1}
+            borderColor="#E7E7E7"
+          >
+            lkdwkl
+          </Grid>
         </Grid>
         <Grid width={"30%"} border={1}>
           sanskruti
