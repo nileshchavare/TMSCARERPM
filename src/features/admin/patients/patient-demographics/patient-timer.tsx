@@ -89,5 +89,4 @@ const PatientTimer = () => {
     </Grid>
   );
 };
-
 export default PatientTimer;

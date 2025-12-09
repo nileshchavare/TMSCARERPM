@@ -51,6 +51,16 @@ const getStatusStyles = (label: string) => {
         bg: theme.palette.negative?.[5],
         text: theme.palette.negative?.[60],
       };
+    case "MEDIUM":
+      return {
+        bg: theme.palette.warningColor?.[5],
+        text: theme.palette.warningColor?.[60],
+      };
+    case "ROUTING":
+      return {
+        bg: theme.palette.positive?.[5],
+        text: theme.palette.positive?.[60],
+      };
     case "LOW":
       return {
         bg: theme.palette.warningColor?.[5],

@@ -155,7 +155,7 @@ const PatientDemographics = () => {
   };
   return (
     <Grid container width={"100%"} flexDirection={"column"} rowGap={2}>
-      <Grid container width={"100%"} p={1} justifyContent={"space-between"}>
+      <Grid container width={"100%"} justifyContent={"space-between"}>
         <Grid
           width={"25%"}
           container

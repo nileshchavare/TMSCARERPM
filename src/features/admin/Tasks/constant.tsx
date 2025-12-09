@@ -12,6 +12,17 @@ export type TaskRow = {
   priority: string;
 };
 
+export type PatientTaskRow = {
+  id: number;
+  taskName: string;
+  Priority: string;
+  reviewedBy: string;
+  dueDate: string;
+  taskStatus: string;
+  taskType: string;
+  completedDate: string;
+};
+
 export const TASK_CATEGORY_OPTIONS = [
   { key: "group", value: "Group" },
   { key: "indivisual", value: "Indivisual" },
