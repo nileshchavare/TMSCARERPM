@@ -7,6 +7,7 @@ import {
   Slider,
   styled,
   Typography,
+  useMediaQuery,
 } from "@mui/material";
 import CommonStatusChip from "../../../../components/common-components/common-status-chip/CommonStatusChip";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
@@ -98,6 +99,9 @@ const timeMarks = [
 ];
 
 const PatientDemographics = () => {
+  const belowWidth1366 = useMediaQuery("(max-width:1366px)");
+  const belowWidth1440 = useMediaQuery("(max-width:1440px)");
+
   const [currentDate, setCurrentDate] = useState(new Date());
 
   /***  Display value for the slider (can be replaced with actual data) */
@@ -190,13 +194,34 @@ const PatientDemographics = () => {
             </Grid>
           </Grid>
           <Grid container width={"100%"} justifyContent={"space-between"}>
-            <Grid width={"49%"} container columnGap={1} alignItems={"center"}>
+            <Grid
+              width={"49%"}
+              container
+              columnGap={1}
+              alignItems={
+                belowWidth1440 || belowWidth1366 ? "flex-start" : "center"
+              }
+            >
               <EmailOutlinedIcon sx={{ fontSize: "20px", color: "#74797B" }} />
-              <Typography variant="body14PX500FW" color="neutral.90">
+              <Typography
+                variant="body14PX500FW"
+                color="neutral.90"
+                sx={{
+                  flex: 1,
+                  wordBreak: "break-word",
+                }}
+              >
                 robert.fox@example.com
               </Typography>
             </Grid>
-            <Grid width={"49%"} container columnGap={1} alignItems={"center"}>
+            <Grid
+              width={"49%"}
+              container
+              columnGap={1}
+              alignItems={
+                belowWidth1440 || belowWidth1366 ? "flex-start" : "center"
+              }
+            >
               <LocalHospitalOutlinedIcon
                 sx={{ fontSize: "20px", color: "#74797B" }}
               />
@@ -205,15 +230,43 @@ const PatientDemographics = () => {
               </Typography>
             </Grid>
           </Grid>
-          <Grid width={"100%"} container columnGap={1} alignItems={"center"}>
+          <Grid
+            width={"100%"}
+            container
+            columnGap={1}
+            alignItems={
+              belowWidth1440 || belowWidth1366 ? "flex-start" : "center"
+            }
+          >
             <FmdGoodOutlinedIcon sx={{ fontSize: "20px", color: "#74797B" }} />
-            <Typography variant="body14PX500FW" color="neutral.90">
+            <Typography
+              variant="body14PX500FW"
+              color="neutral.90"
+              sx={{
+                flex: 1,
+                wordBreak: "break-word",
+              }}
+            >
               4517 Washington Ave. Manchester, Kentucky 39495
             </Typography>
           </Grid>
-          <Grid width={"100%"} container columnGap={1} alignItems={"center"}>
+          <Grid
+            width={"100%"}
+            container
+            columnGap={1}
+            alignItems={
+              belowWidth1440 || belowWidth1366 ? "flex-start" : "center"
+            }
+          >
             <VaccinesOutlinedIcon sx={{ fontSize: "20px", color: "#74797B" }} />
-            <Typography variant="body14PX500FW" color="neutral.90">
+            <Typography
+              variant="body14PX500FW"
+              color="neutral.90"
+              sx={{
+                flex: 1,
+                wordBreak: "break-word",
+              }}
+            >
               Heart Center Hospital
             </Typography>
           </Grid>
@@ -301,7 +354,14 @@ const PatientDemographics = () => {
               borderRadius={"50%"}
               mb={0.5}
             ></Grid>
-            <Typography variant="body16PX400FW" color="neutral.90">
+            <Typography
+              variant="body16PX400FW"
+              color="neutral.90"
+              sx={{
+                flex: 1,
+                wordBreak: "break-word",
+              }}
+            >
               Average Glucose : 120 mg/dL
             </Typography>
           </Grid>

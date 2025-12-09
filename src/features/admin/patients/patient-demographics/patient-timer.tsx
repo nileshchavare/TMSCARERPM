@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
-import { Grid, Typography } from "@mui/material";
+import { Grid, Typography, useMediaQuery } from "@mui/material";
 import PauseOutlinedIcon from "@mui/icons-material/PauseOutlined";
 import ReplaySharpIcon from "@mui/icons-material/ReplaySharp";
 import LockClockOutlinedIcon from "@mui/icons-material/LockClockOutlined";
 
 const PatientTimer = () => {
+  const belowWidth1366 = useMediaQuery("(max-width:1366px)");
+  const belowWidth1440 = useMediaQuery("(max-width:1440px)");
+
   const [elapsedTime, setElapsedTime] = useState(0);
 
   useEffect(() => {
@@ -36,7 +39,7 @@ const PatientTimer = () => {
       alignItems={"center"}
       justifyContent={"center"}
       rowGap={1}
-      width={"60%"}
+      width={belowWidth1440 || belowWidth1366 ? "100%" : "60%"}
     >
       <Grid
         container
