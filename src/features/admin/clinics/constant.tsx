@@ -19,6 +19,13 @@ export const STATUS_OPTIONS = [
   { key: "DISABLED", value: "Disabled" },
 ];
 
+export const TASK_STATUS_OPTIONS = [
+  { key: "ALL", value: "All" },
+  { key: "TODO", value: "To Do" },
+  { key: "OVER_DUE", value: "Over Due" },
+  { key: "COMPLETED", value: "Completed" },
+];
+
 export type PrimaryContact = {
   id: string;
   name: string;
