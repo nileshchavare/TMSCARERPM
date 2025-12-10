@@ -1,26 +1,20 @@
-import AddIcon from "@mui/icons-material/Add";
-import { Box, Button, Grid } from "@mui/material";
-import React from "react";
+import AddIcon from '@mui/icons-material/Add';
+import { Box, Button, Grid } from '@mui/material';
+import React from 'react';
 
-import CustomInput from "../../../components/common-components/custom-input/custom-input";
-import CustomTabs from "../../../components/common-components/custom-tab/CustomTabs";
+import CustomInput from '../../../components/common-components/custom-input/custom-input';
+import CustomTabs from '../../../components/common-components/custom-tab/CustomTabs';
 
-import { Controller, useForm } from "react-hook-form";
+import { Controller, useForm } from 'react-hook-form';
 
-import AddClinicForm from "../../../forms/clinic-form";
-import AllClinicList from "./clinic-list";
+import AddClinicForm from '../../../forms/clinic-form';
+import AllClinicList from './clinic-list';
 
-import MainDrawer from "../../../components/ui/MainDrawer";
-import { useDrawer } from "../../../hooks/useDrawer";
+import MainDrawer from '../../../components/ui/MainDrawer';
+import { useDrawer } from '../../../hooks/useDrawer';
 
-const DrawerContent = ({
-  identifier,
-  onClose,
-}: {
-  identifier: string;
-  onClose?: () => void;
-}) => {
-  if (identifier === "drawer-add-clinic") {
+const DrawerContent = ({ identifier, onClose }: { identifier: string; onClose?: () => void }) => {
+  if (identifier === 'drawer-add-clinic') {
     return <AddClinicForm onClose={onClose} />;
   }
   return <></>;
@@ -30,53 +24,49 @@ const Clinics: React.FC = () => {
   const [tabValue, setTabValue] = React.useState(0);
   const { control } = useForm({
     defaultValues: {
-      search: "",
+      search: '',
     },
   });
 
-  const {
-    open: openDrawer,
-    close: closeDrawer,
-    content: contentDrawer,
-  } = useDrawer();
+  const { open: openDrawer, close: closeDrawer, content: contentDrawer } = useDrawer();
 
   const openAddClinic = () => {
     openDrawer({
-      identifier: "drawer-add-clinic",
-      title: "Add Clinic",
+      identifier: 'drawer-add-clinic',
+      title: 'Add Clinic',
     });
   };
 
-  const tabs = ["All Clinics", "Archived"];
+  const tabs = ['All Clinics', 'Archived'];
 
   return (
     <>
       <Grid
         container
-        width={"100%"}
-        height={"100%"}
-        flexDirection={"column"}
-        flexWrap={"nowrap"}
+        width={'100%'}
+        height={'100%'}
+        flexDirection={'column'}
+        flexWrap={'nowrap'}
         rowGap={2}
         p={2}
       >
         <Box
           sx={{
-            display: "flex",
-            flexDirection: { xs: "column", md: "row" },
-            justifyContent: "space-between",
-            alignItems: { xs: "flex-start", md: "center" },
+            display: 'flex',
+            flexDirection: { xs: 'column', md: 'row' },
+            justifyContent: 'space-between',
+            alignItems: { xs: 'flex-start', md: 'center' },
             gap: 2,
           }}
         >
           <CustomTabs tabs={tabs} value={tabValue} onChange={setTabValue} />
           <Box
             sx={{
-              display: "flex",
-              alignItems: "center",
+              display: 'flex',
+              alignItems: 'center',
               gap: 1.5,
-              width: { xs: "100%", md: "auto" },
-              flexDirection: { xs: "column", sm: "row" },
+              width: { xs: '100%', md: 'auto' },
+              flexDirection: { xs: 'column', sm: 'row' },
             }}
           >
             <Controller
@@ -96,7 +86,7 @@ const Clinics: React.FC = () => {
               variant="contained"
               startIcon={<AddIcon />}
               onClick={openAddClinic}
-              sx={() => ({ width: "180px" })}
+              sx={() => ({ width: '180px' })}
             >
               Add Clinic
             </Button>
@@ -104,7 +94,7 @@ const Clinics: React.FC = () => {
         </Box>
 
         <Box>
-          <AllClinicList status={tabValue === 0 ? "all" : "archived"} />
+          <AllClinicList status={tabValue === 0 ? 'all' : 'archived'} />
         </Box>
       </Grid>
       <MainDrawer
@@ -112,10 +102,7 @@ const Clinics: React.FC = () => {
         anchor="right"
         showMandatoryIndicator
         content={
-          <DrawerContent
-            onClose={closeDrawer}
-            identifier={contentDrawer.identifier ?? ""}
-          />
+          <DrawerContent onClose={closeDrawer} identifier={contentDrawer.identifier ?? ''} />
         }
       />
     </>
