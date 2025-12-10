@@ -57,3 +57,7 @@ export const dateRequired = "Date is required";
 export const priorityRequired = "Priority is required";
 export const reminderRequired = "Reminder selection is required";
 export const repeatRequired = "Repeat selection is required";
+
+// Task Patient Demographics Form Error Messages
+export const taskNameRequired = "Task name is required";
+export const assigneeRequired = "Assignee is required";

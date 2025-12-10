@@ -34,6 +34,8 @@ import {
   taskCategoryRequired,
   taskTitleRequired,
   dateRequired,
+  taskNameRequired,
+  assigneeRequired,
 } from "./errorMessages";
 import {
   emailRegex,
@@ -231,3 +233,17 @@ export const newTaskSchema = yup.object().shape({
 });
 
 export type NewTaskformValues = yup.InferType<typeof newTaskSchema>;
+
+export const taskPatientDemographicsSchema = yup.object().shape({
+  taskName: yup.string().required(taskNameRequired),
+  assignee: yup.string().required(assigneeRequired),
+  date: yup.string().required(dateRequired),
+  priority: yup.string().default(""),
+  repeat: yup.boolean().default(false),
+  repeatDays: yup.string().default(""),
+  repeatFrequency: yup.string().default(""),
+});
+
+export type TaskPatientDemographicsFormValues = yup.InferType<
+  typeof taskPatientDemographicsSchema
+>;

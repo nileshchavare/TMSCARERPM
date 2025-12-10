@@ -68,10 +68,12 @@ const PatientDemographicsTab = () => {
   return (
     <Grid container width={"100%"} flexDirection={"column"} rowGap={2} p={1.7}>
       <PatientDemographicsHeader />
-      <Grid container>
+      <Grid container width={"100%"}>
         <CustomTabs tabs={tabs} value={tabValue} onChange={handleTabChange} />
       </Grid>
-      <Grid container>{tabValue === 2 && <PatientDemographicsTaskList />}</Grid>
+      <Grid container width={"100%"}>
+        {tabValue === 2 && <PatientDemographicsTaskList />}
+      </Grid>
     </Grid>
   );
 };

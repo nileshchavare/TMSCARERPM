@@ -1,4 +1,10 @@
-import { Button, Grid, Typography, useMediaQuery } from "@mui/material";
+import {
+  Button,
+  Grid,
+  Typography,
+  useMediaQuery,
+  type Theme,
+} from "@mui/material";
 import DropDownForText from "../../../../../components/common-components/drop-dwon-for-text/drop-down-for-text";
 import { TASK_STATUS_OPTIONS } from "../../../clinics/constant";
 import AddIcon from "@mui/icons-material/Add";
@@ -14,12 +20,48 @@ import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import CheckIcon from "@mui/icons-material/Check";
 import CommonStatusChip from "../../../../../components/common-components/common-status-chip/CommonStatusChip";
+import { useDrawer } from "../../../../../hooks/useDrawer";
+import MainDrawer from "../../../../../components/ui/MainDrawer";
+import TaskPatientDemographicsForm from "../../../../../forms/task-patient-demographics-form";
+import { useState } from "react";
+
+const DrawerContent = ({
+  identifier,
+  onClose,
+  isEdit,
+}: {
+  identifier: string;
+  onClose?: () => void;
+  isEdit: boolean;
+}) => {
+  if (identifier === "drawer-add-task-patient-demographics") {
+    return <TaskPatientDemographicsForm onClose={onClose} isEdit={isEdit} />;
+  }
+  return <></>;
+};
 
 const PatientDemographicsTaskList = () => {
   const belowHeight768 = useMediaQuery("(max-height:768px)");
   const belowHeight900 = useMediaQuery("(max-height:900px)");
+  const [isEditDrawerOpen, setIsEditDrawerOpen] = useState(false);
 
-  const patientColumns: GridColDef<PatientTaskRow>[] = [
+  const {
+    open: openDrawer,
+    close: closeDrawer,
+    content: contentDrawer,
+  } = useDrawer();
+
+  const handleDrawer = {
+    addTaskPatientDemographics: (action: string) => {
+      setIsEditDrawerOpen(action === "Edit");
+      openDrawer({
+        title: `${action} Task`,
+        identifier: "drawer-add-task-patient-demographics",
+      });
+    },
+  };
+
+  const patientColumns: GridColDef<(typeof patientTaskRows)[number]>[] = [
     {
       field: "taskName",
       headerName: "Task Name",
@@ -45,6 +87,7 @@ const PatientDemographicsTaskList = () => {
       field: "taskStatus",
       headerName: "Task Status",
       flex: 1,
+      renderCell: (params) => <CommonStatusChip value={params.value} />,
     },
     {
       field: "taskType",
@@ -68,7 +111,9 @@ const PatientDemographicsTaskList = () => {
     },
   ];
 
-  const onEdit = () => {};
+  const onEdit = (_row: PatientTaskRow) => {
+    handleDrawer.addTaskPatientDemographics("Edit");
+  };
 
   const onDelete = () => {};
 
@@ -110,7 +155,7 @@ const PatientDemographicsTaskList = () => {
           <Button
             variant="contained"
             startIcon={<AddIcon />}
-            onClick={() => {}}
+            onClick={() => handleDrawer.addTaskPatientDemographics("Add")}
             sx={() => ({ width: "110px" })}
           >
             Add Task
@@ -122,16 +167,30 @@ const PatientDemographicsTaskList = () => {
           rows={patientTaskRows}
           columns={patientColumns}
           pageSizeOptions={[5, 10, 15]}
-          sx={{
-            ...dataGridStyles,
+          sx={(theme) => ({
+            ...(dataGridStyles as (theme: Theme) => Record<string, unknown>)(
+              theme,
+            ),
             height: belowHeight768
               ? "250px"
               : belowHeight900
                 ? "400px"
                 : "631px",
-          }}
+          })}
         />
       </Grid>
+      <MainDrawer
+        drawerWidth="700px"
+        anchor="right"
+        showMandatoryIndicator
+        content={
+          <DrawerContent
+            onClose={closeDrawer}
+            identifier={contentDrawer.identifier ?? ""}
+            isEdit={isEditDrawerOpen}
+          />
+        }
+      />
     </Grid>
   );
 };

@@ -45,6 +45,11 @@ export const PATIENT_NAME_OPTIONS = [
   { key: "sophia-garcia", label: "Sophia Garcia", value: "Sophia Garcia" },
 ];
 
+export const REPEAT_FREQUENCY_OPTIONS = [
+  { key: "daily", label: "Daily", value: "Daily" },
+  { key: "weekly", label: "Weekly", value: "Weekly" },
+  { key: "monthly", label: "Monthly", value: "Monthly" },
+];
 export const ASSIGNED_TO_OPTIONS = [
   { key: "nurse-kelly", label: "Nurse Kelly", value: "Nurse Kelly" },
   { key: "reception", label: "Reception", value: "Reception" },

@@ -10,6 +10,11 @@ interface StatusChipProps {
 
 const getStatusStyles = (label: string) => {
   switch (label) {
+    case "DONE":
+      return {
+        bg: theme.palette.positive?.[5],
+        text: theme.palette.positive?.[60],
+      };
     case "MALE":
       return {
         bg: "#F4F3FF",
