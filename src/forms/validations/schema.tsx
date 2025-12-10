@@ -1,4 +1,4 @@
-import * as yup from "yup";
+import * as yup from 'yup';
 import {
   clinicNameRequired,
   groupNpiRequired,
@@ -36,25 +36,19 @@ import {
   dateRequired,
   taskNameRequired,
   assigneeRequired,
-} from "./errorMessages";
+} from './errorMessages';
 import {
   emailRegex,
   npiNumberRegex,
   phoneNumberTenDigitRegex,
   zipCodeFiveDigitRegex,
-} from "./regex";
+} from './regex';
 
 export const providerSchema = yup.object({
   firstName: yup.string().required(firstNameRequired),
   lastName: yup.string().required(lastNameRequired),
-  npiNumber: yup
-    .string()
-    .matches(npiNumberRegex, npiNumberInvalid)
-    .required(groupNpiRequired),
-  email: yup
-    .string()
-    .matches(emailRegex, emailRegexErrorMsg)
-    .required(emailIsRequired),
+  npiNumber: yup.string().matches(npiNumberRegex, npiNumberInvalid).required(groupNpiRequired),
+  email: yup.string().matches(emailRegex, emailRegexErrorMsg).required(emailIsRequired),
   phoneNumber: yup
     .string()
     .matches(phoneNumberTenDigitRegex, phoneNumberInvalid)
@@ -68,7 +62,7 @@ export const providerSchema = yup.object({
   physicalAddress: yup
     .object({
       addressLine1: yup.string().required(addressLine1Required),
-      addressLine2: yup.string().default(""),
+      addressLine2: yup.string().default(''),
       state: yup.string().required(stateRequired),
       city: yup.string().required(cityRequired),
       zipCode: yup
@@ -81,7 +75,7 @@ export const providerSchema = yup.object({
   billingAddress: yup
     .object({
       addressLine1: yup.string().required(addressLine1Required),
-      addressLine2: yup.string().default(""),
+      addressLine2: yup.string().default(''),
       state: yup.string().required(stateRequired),
       city: yup.string().required(cityRequired),
       zipCode: yup
@@ -97,10 +91,7 @@ export type AddProviderFormValues = yup.InferType<typeof providerSchema>;
 export const addStaffSchema = yup.object({
   title: yup.string().required(titleRequired),
   name: yup.string().required(nameRequired),
-  email: yup
-    .string()
-    .matches(emailRegex, emailRegexErrorMsg)
-    .required(emailIsRequired),
+  email: yup.string().matches(emailRegex, emailRegexErrorMsg).required(emailIsRequired),
   phoneNumber: yup
     .string()
     .matches(phoneNumberTenDigitRegex, phoneNumberInvalid)
@@ -118,35 +109,23 @@ export const addLocationSchema = yup.object().shape({
     .string()
     .matches(phoneNumberTenDigitRegex, phoneNumberInvalid)
     .required(phoneNumberRequired),
-  email: yup
-    .string()
-    .matches(emailRegex, emailRegexErrorMsg)
-    .required(emailIsRequired),
-  npiNumber: yup
-    .string()
-    .matches(npiNumberRegex, npiNumberInvalid)
-    .required(groupNpiRequired),
+  email: yup.string().matches(emailRegex, emailRegexErrorMsg).required(emailIsRequired),
+  npiNumber: yup.string().matches(npiNumberRegex, npiNumberInvalid).required(groupNpiRequired),
   taxNumber: yup.string().required(taxNumberRequired),
   tinEin: yup.string().required(tinEinRequired),
   physicalAddress: yup.object().shape({
     addressLine1: yup.string().required(addressLine1Required),
-    addressLine2: yup.string().default(""),
+    addressLine2: yup.string().default(''),
     state: yup.string().required(stateRequired),
     city: yup.string().required(cityRequired),
-    zipCode: yup
-      .string()
-      .matches(zipCodeFiveDigitRegex, zipCodeInvalid)
-      .required(zipCodeRequired),
+    zipCode: yup.string().matches(zipCodeFiveDigitRegex, zipCodeInvalid).required(zipCodeRequired),
   }),
   billingAddress: yup.object().shape({
     addressLine1: yup.string().required(addressLine1Required),
-    addressLine2: yup.string().default(""),
+    addressLine2: yup.string().default(''),
     state: yup.string().required(stateRequired),
     city: yup.string().required(cityRequired),
-    zipCode: yup
-      .string()
-      .matches(zipCodeFiveDigitRegex, zipCodeInvalid)
-      .required(zipCodeRequired),
+    zipCode: yup.string().matches(zipCodeFiveDigitRegex, zipCodeInvalid).required(zipCodeRequired),
   }),
 });
 
@@ -155,24 +134,18 @@ export type AddLocationFormValues = yup.InferType<typeof addLocationSchema>;
 export const newClinicSchema = yup.object().shape({
   rpmBillingScheme: yup.string().required(rpmBillingSchemeRequired),
   useTpsCdces: yup.string().required(useTpsCdcesRequired),
-  useTpsBilling: yup.string().default(""),
-  rpmBilling: yup.string().default(""),
+  useTpsBilling: yup.string().default(''),
+  rpmBilling: yup.string().default(''),
   clinicName: yup.string().required(clinicNameRequired),
-  groupNpiNumber: yup
-    .string()
-    .matches(npiNumberRegex, npiNumberInvalid)
-    .required(groupNpiRequired),
+  groupNpiNumber: yup.string().matches(npiNumberRegex, npiNumberInvalid).required(groupNpiRequired),
   phoneNumber: yup
     .string()
     .matches(phoneNumberTenDigitRegex, phoneNumberInvalid)
     .required(phoneNumberRequired),
-  email: yup
-    .string()
-    .matches(emailRegex, emailRegexErrorMsg)
-    .required(emailIsRequired),
-  fax: yup.string().default(""),
-  taxNumber: yup.string().default(""),
-  tinEin: yup.string().default(""),
+  email: yup.string().matches(emailRegex, emailRegexErrorMsg).required(emailIsRequired),
+  fax: yup.string().default(''),
+  taxNumber: yup.string().default(''),
+  tinEin: yup.string().default(''),
   specialty: yup.string().required(specialtyRequired),
   status: yup.string().required(statusRequired),
 
@@ -182,39 +155,30 @@ export const newClinicSchema = yup.object().shape({
       yup.object().shape({
         id: yup.string().required(),
         name: yup.string().required(contactNameRequired),
-        email: yup
-          .string()
-          .matches(emailRegex, emailRegexErrorMsg)
-          .required(contactEmailRequired),
+        email: yup.string().matches(emailRegex, emailRegexErrorMsg).required(contactEmailRequired),
         phone: yup
           .string()
           .matches(phoneNumberTenDigitRegex, phoneNumberInvalid)
           .required(contactPhoneRequired),
-      }),
+      })
     )
-    .min(1, "At least one contact is required")
+    .min(1, 'At least one contact is required')
     .required(),
 
   physicalAddress: yup.object().shape({
     addressLine1: yup.string().required(addressLine1Required),
-    addressLine2: yup.string().default(""),
+    addressLine2: yup.string().default(''),
     state: yup.string().required(stateRequired),
     city: yup.string().required(cityRequired),
-    zipCode: yup
-      .string()
-      .matches(zipCodeFiveDigitRegex, zipCodeInvalid)
-      .required(zipCodeRequired),
+    zipCode: yup.string().matches(zipCodeFiveDigitRegex, zipCodeInvalid).required(zipCodeRequired),
   }),
 
   billingAddress: yup.object().shape({
     addressLine1: yup.string().required(addressLine1Required),
-    addressLine2: yup.string().default(""),
+    addressLine2: yup.string().default(''),
     state: yup.string().required(stateRequired),
     city: yup.string().required(cityRequired),
-    zipCode: yup
-      .string()
-      .matches(zipCodeFiveDigitRegex, zipCodeInvalid)
-      .required(zipCodeRequired),
+    zipCode: yup.string().matches(zipCodeFiveDigitRegex, zipCodeInvalid).required(zipCodeRequired),
   }),
 });
 
@@ -223,13 +187,13 @@ export type NewClinicFormValues = yup.InferType<typeof newClinicSchema>;
 export const newTaskSchema = yup.object().shape({
   taskCategory: yup.string().required(taskCategoryRequired),
   taskTitle: yup.string().required(taskTitleRequired),
-  patientName: yup.string().default(""),
-  assignedTo: yup.string().default(""),
+  patientName: yup.string().default(''),
+  assignedTo: yup.string().default(''),
   date: yup.string().required(dateRequired),
-  status: yup.string().default(""),
-  priority: yup.string().default(""),
-  reminder: yup.string().default(""),
-  repeat: yup.string().default(""),
+  status: yup.string().default(''),
+  priority: yup.string().default(''),
+  reminder: yup.string().default(''),
+  repeat: yup.string().default(''),
 });
 
 export type NewTaskformValues = yup.InferType<typeof newTaskSchema>;
@@ -238,12 +202,21 @@ export const taskPatientDemographicsSchema = yup.object().shape({
   taskName: yup.string().required(taskNameRequired),
   assignee: yup.string().required(assigneeRequired),
   date: yup.string().required(dateRequired),
-  priority: yup.string().default(""),
+  priority: yup.string().default(''),
   repeat: yup.boolean().default(false),
-  repeatDays: yup.string().default(""),
-  repeatFrequency: yup.string().default(""),
+  repeatDays: yup.string().default(''),
+  repeatFrequency: yup.string().default(''),
 });
 
-export type TaskPatientDemographicsFormValues = yup.InferType<
-  typeof taskPatientDemographicsSchema
+export type TaskPatientDemographicsFormValues = yup.InferType<typeof taskPatientDemographicsSchema>;
+
+export const patientDemographicsCareTeamSchema = yup.object().shape({
+  provider: yup.string().required(nameRequired),
+  role: yup.string().required(roleRequired),
+  specialty: yup.string().required(specialtyRequired),
+  contactNumber: yup.string().default(''),
+});
+
+export type PatientDemographicsCareTeamFormValues = yup.InferType<
+  typeof patientDemographicsCareTeamSchema
 >;
